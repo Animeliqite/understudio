@@ -1,0 +1,1 @@
+battle_soul_sethurtevent();
