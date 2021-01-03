@@ -9,13 +9,18 @@ if (menuno == -2) {
     else
         battle_setstate(-1);
     
-    if (ready == false) {
+    if (ready == false) && (global.monster.monsterhp[sel[1]] > 0) {
         with (global.monster) {
             event_user(2);
         }
         
         ready = true;
     }
+	else if (ready == false) && (global.monster.monsterhp[sel[1]] <= 0) {
+		menuno = 10000;
+		
+		ready = true;
+	}
 }
 
 #endregion
@@ -49,7 +54,6 @@ if (instance_exists(global.monster)) {
         cooldown--;
     
     if (menuno == 0) {
-		ready = false;
         if (!instance_exists(obj_typer)) && (wroteIntroString == false)
             create_text(obj_uborder.x, obj_uborder.y, "DEFAULT-BATTLE", c_white, global.monster.introString, false);
         
@@ -500,6 +504,28 @@ if (instance_exists(global.monster)) {
 
 #endregion
 
+#region -- BATTLE END (FIGHT) --
+
+if (menuno == 10000) {
+    if (instance_exists(obj_targetchoice))
+        instance_destroy(obj_targetchoice);
+    
+    if (instance_exists(obj_target))
+        obj_target.done = true;
+    
+	mus_stop(global.currentsong);
+	
+    if (!instance_exists(obj_typer))
+        create_text(obj_uborder.x, obj_uborder.y, "DEFAULT-BATTLE", c_white, "* YOU WON!^1#* You earned " + string(xpReward) + " XP and " + string(goldReward) + " gold.", false);
+        
+    if (obj_typer.writing == false) && (input.confirm) {
+        if (alarm[0] < 0)
+            alarm[0] = 1;
+    }
+}
+
+#endregion
+
 #region -- BOX MOVEMENT --
 
 if (obj_uborder.x == global.boxplacement_x[0]) &&
@@ -508,9 +534,11 @@ if (obj_uborder.x == global.boxplacement_x[0]) &&
     (obj_dborder.y == global.boxplacement_y[1]) {
         
         box_id_prev = global.boxplacement;
-        
-        if (menuno == -1)
+		
+		if (menuno == -1) {
             menuno = 0;
+			ready = false;
+		}
 }
 else {
     obj_battleheart.moveable = true;
@@ -535,3 +563,5 @@ else {
 }
 
 #endregion
+
+global.selectedMonster = global.monster.body[sel[1]];

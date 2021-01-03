@@ -32,3 +32,17 @@ if (moveable == true) {
         y -= move_speed;
 }
 
+if (hurt == true) {
+	if (inv > 0) {
+		image_speed = 0.25;
+		
+		inv--;
+	}
+	else {
+		hurt = false;
+		inv = 30;
+		
+		image_speed = 0;
+		image_index = 0;
+	}
+}

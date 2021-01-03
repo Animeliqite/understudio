@@ -1,0 +1,4 @@
+camera_set_view_pos(view_camera[view_current], -(camera_get_view_width(view_camera[view_current]) / 2) + x, -(camera_get_view_height(view_camera[view_current]) / 2) + y);
+camera_set_view_pos(view_camera[view_current], clamp(camera_get_view_x(view_camera[view_current]), 0, room_width - camera_get_view_width(view_camera[view_current])), clamp(camera_get_view_x(view_camera[view_current]), 0, room_height - camera_get_view_height(view_camera[view_current])));
+camera_set_view_pos(view_camera[view_current], camera_get_view_x(random_range(-shake, shake)), camera_get_view_x(random_range(-shake, shake)));
+shake *= 0.75;

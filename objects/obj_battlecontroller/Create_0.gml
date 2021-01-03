@@ -31,6 +31,7 @@ ready = false;
 #region -- AT THE BATTLE END --
 
 goldReward = irandom(5);
+xpReward = irandom(3);
 chance = irandom(100); // For fleeing
 cooldown = 0;
 
