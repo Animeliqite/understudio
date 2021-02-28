@@ -40,5 +40,6 @@ if (monsterhp[0] > 0) {
 }
 else {
 	instance_create(body[0].x, body[0].y, obj_vaporize);
+	body[0].visible = false;
 	obj_battlecontroller.menuno = 10000;
 }

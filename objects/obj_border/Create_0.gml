@@ -15,5 +15,4 @@ screen_yscale = border_yscale;
 screen_xoffset = 0;
 screen_yoffset = 0;
 
-enabled = false;
-
+enabled = global.border_enabled;

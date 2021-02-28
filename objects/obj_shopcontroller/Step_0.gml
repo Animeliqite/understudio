@@ -3,7 +3,7 @@ if (menu == 0) {
         create_text(0, 110, "DEFAULT", c_white, introString, false);
     }
     
-    if (input.up_p) {
+    if (global.up_press) {
         if (menuSel[0] > 0) {
             menuSel[0]--;
         }
@@ -11,7 +11,7 @@ if (menu == 0) {
             menuSel[0] = 3;
         }
     }
-    if (input.down_p) {
+    if (global.down_press) {
         if (menuSel[0] < 3) {
             menuSel[0]++;
         }
@@ -20,7 +20,7 @@ if (menu == 0) {
         }
     }
     
-    if (input.confirm) {
+    if (global.confirm) {
         instance_destroy(obj_typer);
         
         if (menuSel[0] == 2) {
@@ -36,7 +36,7 @@ if (menu == 2) {
         create_text(210, 110, "DEFAULT", c_white, talkMenuText, false);
     }
     
-    if (input.up_p) {
+    if (global.up_press) {
         if (menuSel[1] > 0) {
             menuSel[1]--;
         }
@@ -44,7 +44,7 @@ if (menu == 2) {
             menuSel[1] = 4;
         }
     }
-    if (input.down_p) {
+    if (global.down_press) {
         if (menuSel[1] < 4) {
             menuSel[1]++;
         }
@@ -53,7 +53,7 @@ if (menu == 2) {
         }
     }
     
-    if (input.confirm) {
+    if (global.confirm) {
         instance_destroy(obj_typer);
         
         if (menuSel[1] == 4) {

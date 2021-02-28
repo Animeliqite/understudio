@@ -62,7 +62,7 @@ if (instance_exists(global.monster)) {
         
         wroteIntroString = true;
         
-        if (input.left_p) {
+        if (global.left_press) {
             if (sel[0] > 0)
                 sel[0]--;
             else
@@ -70,7 +70,7 @@ if (instance_exists(global.monster)) {
             
             audio_play_sound(snd_menuswitch, 10, false)
         }
-        if (input.right_p) {
+        if (global.right_press) {
             if (sel[0] < 3)
                 sel[0]++;
             else
@@ -78,7 +78,7 @@ if (instance_exists(global.monster)) {
             
             audio_play_sound(snd_menuswitch, 10, false)
         }
-        if (input.confirm) && (cooldown == 0) {
+        if (global.confirm) && (cooldown == 0) {
             if (sel[0] == 0) {
                 menuno = 1;
                 sel[1] = 0;
@@ -106,18 +106,38 @@ if (instance_exists(global.monster)) {
             case 0:
                 obj_battleheart.x = obj_fightbt.x + 8;
                 obj_battleheart.y = obj_fightbt.y + 14;
+				
+				obj_fightbt.image_index = 1;
+				obj_actbt.image_index = 0;
+				obj_itembt.image_index = 0;
+				obj_mercybt.image_index = 0;
                 break;
             case 1:
                 obj_battleheart.x = obj_actbt.x + 8;
                 obj_battleheart.y = obj_actbt.y + 14;
+				
+				obj_fightbt.image_index = 0;
+				obj_actbt.image_index = 1;
+				obj_itembt.image_index = 0;
+				obj_mercybt.image_index = 0;
                 break;
             case 2:
                 obj_battleheart.x = obj_itembt.x + 8;
                 obj_battleheart.y = obj_itembt.y + 14;
+				
+				obj_fightbt.image_index = 0;
+				obj_actbt.image_index = 0;
+				obj_itembt.image_index = 1;
+				obj_mercybt.image_index = 0;
                 break;
             case 3:
                 obj_battleheart.x = obj_mercybt.x + 8;
                 obj_battleheart.y = obj_mercybt.y + 14;
+				
+				obj_fightbt.image_index = 0;
+				obj_actbt.image_index = 0;
+				obj_itembt.image_index = 0;
+				obj_mercybt.image_index = 1;
                 break;
         }
     }
@@ -145,7 +165,7 @@ if (instance_exists(global.monster)) {
                 create_text_instant(obj_uborder.x, obj_uborder.y, "DEFAULT-BATTLE", c_white, "   * " + global.monster.monstername[0]);
             
         }
-        if (input.up_p) {
+        if (global.up_press) {
             if (sel[1] > 0)
                 sel[1]--;
             else {
@@ -163,7 +183,7 @@ if (instance_exists(global.monster)) {
                     sel[1] = 0;
             }
         }
-        if (input.down_p) {
+        if (global.down_press) {
             if (global.monster.monstername[2] != "") {
                 if (sel[1] < 2)
                     sel[1]++;
@@ -188,7 +208,7 @@ if (instance_exists(global.monster)) {
         obj_battleheart.x = obj_uborder.x + 30;
         obj_battleheart.y = obj_uborder.y + 30 + (sel[1] * 35);
         
-        if (input.confirm) && (cooldown == 0) {
+        if (global.confirm) && (cooldown == 0) {
             if (sel[1] == 0) {
                 show_debug_message("sel[1] is selected!");
                 
@@ -224,7 +244,7 @@ if (instance_exists(global.monster)) {
             audio_play_sound(snd_menuselect, 10, false)
         }
         
-        if (input.cancel) {
+        if (global.cancel) {
             menuno = 0;
             instance_destroy(obj_typer);
             
@@ -257,7 +277,7 @@ if (instance_exists(global.monster)) {
         
         wroteIntroString = true;
         
-        if (input.left_p) {
+        if (global.left_press) {
             if (sel[0] > 0)
                 sel[0]--;
             else
@@ -265,7 +285,7 @@ if (instance_exists(global.monster)) {
             
             audio_play_sound(snd_menuswitch, 10, false)
         }
-        if (input.right_p) {
+        if (global.right_press) {
             if (sel[0] < 3)
                 sel[0]++;
             else
@@ -273,7 +293,7 @@ if (instance_exists(global.monster)) {
             
             audio_play_sound(snd_menuswitch, 10, false)
         }
-        if (input.confirm) {
+        if (global.confirm) {
             if (sel[1] == 0)
                 menuno = 1;
             if (sel[1] == 1)
@@ -289,7 +309,7 @@ if (instance_exists(global.monster)) {
             audio_play_sound(snd_menuselect, 10, false)
         }*/
         
-        if (input.cancel) {
+        if (global.cancel) {
             menuno = 0;
             
             obj_battleheart.x = -9999;
@@ -321,7 +341,7 @@ if (instance_exists(global.monster)) {
         
         wroteIntroString = true;
         
-        if (input.left_p) {
+        if (global.left_press) {
             if (sel[0] > 0)
                 sel[0]--;
             else
@@ -329,7 +349,7 @@ if (instance_exists(global.monster)) {
             
             audio_play_sound(snd_menuswitch, 10, false)
         }
-        if (input.right_p) {
+        if (global.right_press) {
             if (sel[0] < 3)
                 sel[0]++;
             else
@@ -337,7 +357,7 @@ if (instance_exists(global.monster)) {
             
             audio_play_sound(snd_menuswitch, 10, false)
         }
-        if (input.confirm) {
+        if (global.confirm) {
             if (sel[1] == 0)
                 menuno = 1;
             if (sel[1] == 1)
@@ -353,7 +373,7 @@ if (instance_exists(global.monster)) {
             audio_play_sound(snd_menuselect, 10, false)
         }*/
         
-        if (input.cancel) {
+        if (global.cancel) {
             menuno = 0;
             
             obj_battleheart.x = -9999;
@@ -393,7 +413,7 @@ if (instance_exists(global.monster)) {
         obj_battleheart.x = obj_uborder.x + 30;
         obj_battleheart.y = obj_uborder.y + 30 + (sel[4] * 35);
         
-        if (input.up_p) {
+        if (global.up_press) {
             if (fleeable) {
                 if (sel[4] > 0)
                     sel[4]--;
@@ -402,7 +422,7 @@ if (instance_exists(global.monster)) {
             }
             audio_play_sound(snd_menuswitch, 10, false)
         }
-        if (input.down_p) {
+        if (global.down_press) {
             if (fleeable) {
                 if (sel[4] < 1)
                     sel[4]++;
@@ -412,7 +432,7 @@ if (instance_exists(global.monster)) {
             audio_play_sound(snd_menuswitch, 10, false)
         }
         
-        if (input.confirm) && (cooldown == 0) {
+        if (global.confirm) && (cooldown == 0) {
             show_debug_message(string(menuno));
             if (sel[4] == 0) {
                 if (spareable) {
@@ -451,7 +471,7 @@ if (instance_exists(global.monster)) {
             }
         }
         
-        if (input.cancel) {
+        if (global.cancel) {
             menuno = 0;
             sel[4] = -1;
             
@@ -495,7 +515,7 @@ if (instance_exists(global.monster)) {
         if (!instance_exists(obj_typer))
             create_text(obj_uborder.x, obj_uborder.y, "DEFAULT-BATTLE", c_white, "* YOU WON!^1#* You earned 0 XP and " + string(goldReward) + " gold.", false);
         
-        if (obj_typer.writing == false) && (input.confirm) {
+        if (obj_typer.writing == false) && (global.confirm) {
             if (alarm[0] < 0)
                 alarm[0] = 1;
         }
@@ -518,10 +538,21 @@ if (menuno == 10000) {
     if (!instance_exists(obj_typer))
         create_text(obj_uborder.x, obj_uborder.y, "DEFAULT-BATTLE", c_white, "* YOU WON!^1#* You earned " + string(xpReward) + " XP and " + string(goldReward) + " gold.", false);
         
-    if (obj_typer.writing == false) && (input.confirm) {
+    if (obj_typer.writing == false) && (global.confirm) {
         if (alarm[0] < 0)
             alarm[0] = 1;
     }
+}
+
+#endregion
+
+#region -- WHEN THE PLAYER DIES --
+
+if (global.hp <= 0) {
+	global.soul_pos_x = obj_battleheart.x;
+	global.soul_pos_y = obj_battleheart.y;
+	
+	room_goto(room_gameover);
 }
 
 #endregion

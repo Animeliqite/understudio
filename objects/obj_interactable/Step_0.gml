@@ -1,5 +1,5 @@
 if (collision_rectangle(x - 2, y - 2, x + sprite_width + 2, y + sprite_height + 2, obj_player, false, false)) {
-    if (input.confirm) {
+    if (global.confirm) {
         keyboard_clear(vk_enter);
         keyboard_clear(ord("Z"));
         

@@ -6,8 +6,8 @@ if (spared == true) {
     
     sprite_index = global.monster.hurtSprite[0];
     
-    if (created < 6) {
-        repeat (6) {
+    if (created < 12) {
+        repeat (12) {
             instance_create(x, y, obj_spareeffect); 
             created++;
         }

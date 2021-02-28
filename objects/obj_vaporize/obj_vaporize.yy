@@ -26,8 +26,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Effects",
-    "path": "folders/Objects/Battle/Effects.yy",
+    "name": "Vaporize",
+    "path": "folders/Objects/Battle/Effects/Vaporize.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_vaporize",

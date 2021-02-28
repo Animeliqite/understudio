@@ -1,8 +1,6 @@
 /// @description  Work with some variables
 
 if (enabled) {
-    window_set_size(960, 540);
-    
     border_xscale = window_get_width() / 960;
     border_yscale = window_get_height() / 540;
     
@@ -13,8 +11,6 @@ if (enabled) {
     screen_yoffset = floor(30 * border_yscale);
 }
 else {
-    window_set_size(640, 480);
-    
     border_xscale = window_get_width() / 640;
     border_yscale = window_get_height() / 480;
     

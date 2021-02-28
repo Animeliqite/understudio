@@ -1,18 +1,18 @@
 if (moveable == true) {
-    if (input.left) {
+    if (global.left_hold) {
         x -= move_speed;
     }
-    if (input.right) {
+    if (global.right_hold) {
         x += move_speed;
     }
-    if (input.up) {
+    if (global.up_hold) {
         y -= move_speed;
     }
-    if (input.down) {
+    if (global.down_hold) {
         y += move_speed;
     }
     
-    if (input.cancel_h) {
+    if (global.cancel_hold) {
         move_speed = 1.5
     }
     else {

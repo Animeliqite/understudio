@@ -2,7 +2,10 @@ depth = -8;
 alarm[0] = 8;
 ready = false;
 
-pixel = 0;
+body = global.monster.body[obj_battlecontroller.sel[1]];
+monster = global.monster;
 
-var body = global.monster.body[obj_battlecontroller.sel[1]];
-surface = surface_create(1024, 1024);
+surface = -1;
+collision = -1;
+
+_y = 0;

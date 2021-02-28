@@ -5,5 +5,5 @@ textFont = fnt_dialogue;
 textColor = c_white;
 textEffect = "NONE";
 
-depth = -y;
+depth = depth_overworld.character-y;
 

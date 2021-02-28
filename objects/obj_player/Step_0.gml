@@ -1,25 +1,25 @@
 /// @description  Move the player
 
 if (global.cutscene == false) {
-    if (input.left) {
+    if (global.left_hold) {
         facingTo = "LEFT";
         x -= moveSpeed;
         sprite_index = spriteLeft[inGenocide];
         image_speed = moveSpeed / 30;
     }
-    if (input.right) {
+    if (global.right_hold) {
         facingTo = "RIGHT";
         x += moveSpeed;
         sprite_index = spriteRight[inGenocide];
         image_speed = moveSpeed / 30;
     }
-    if (input.up) {
+    if (global.up_hold) {
         facingTo = "UP";
         y -= moveSpeed;
         sprite_index = spriteUp[inGenocide];
         image_speed = moveSpeed / 30;
     }
-    if (input.down) {
+    if (global.down_hold) {
         facingTo = "DOWN";
         y += moveSpeed;
         sprite_index = spriteDown[inGenocide];
@@ -37,52 +37,52 @@ depth = -y;
 /// Collision System
 
 if (global.cutscene == false) {
-    if (input.left) && (place_meeting(x - moveSpeed, y, obj_solid_parent)) {
+    if (global.left_hold) && (place_meeting(x - moveSpeed, y, obj_solid_parent)) {
         x += moveSpeed;
     }
-    if (input.right) && (place_meeting(x + moveSpeed, y, obj_solid_parent)) {
+    if (global.right_hold) && (place_meeting(x + moveSpeed, y, obj_solid_parent)) {
         x -= moveSpeed;
     }
-    if (input.up) && (place_meeting(x, y - moveSpeed, obj_solid_parent)) {
+    if (global.up_hold) && (place_meeting(x, y - moveSpeed, obj_solid_parent)) {
         y += moveSpeed;
     }
-    if (input.down) && (place_meeting(x, y + moveSpeed, obj_solid_parent)) {
+    if (global.down_hold) && (place_meeting(x, y + moveSpeed, obj_solid_parent)) {
         y -= moveSpeed;
     }
     
     if (place_meeting(x - moveSpeed, y - moveSpeed, obj_slope_dl)) {
-        if (input.left)
+        if (global.left_hold)
             y -= moveSpeed;
         
-        if (input.down)
+        if (global.down_hold)
             x += moveSpeed;
     }
     if (place_meeting(x + moveSpeed, y - moveSpeed, obj_slope_dr)) {
-        if (input.right)
+        if (global.right_hold)
             y -= moveSpeed;
         
-        if (input.down)
+        if (global.down_hold)
             x -= moveSpeed;
     }
     if (place_meeting(x - moveSpeed, y + moveSpeed, obj_slope_ul)) {
-        if (input.left)
+        if (global.left_hold)
             y += moveSpeed;
         
-        if (input.up)
+        if (global.up_hold)
             x += moveSpeed;
     }
     if (place_meeting(x + moveSpeed, y + moveSpeed, obj_slope_ur)) {
-        if (input.right)
+        if (global.right_hold)
             y += moveSpeed;
         
-        if (input.up)
+        if (global.up_hold)
             x -= moveSpeed;
     }
 }
 
 /// C-Menu
 
-if (input.menu) && (global.cutscene == false) {
+if (global.menu) && (global.cutscene == false) {
     keyboard_clear(vk_lcontrol);
     keyboard_clear(ord("C"));
     

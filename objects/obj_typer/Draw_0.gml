@@ -15,14 +15,14 @@ for (var i = 1; i < charNo + 1; i++;) {
     }
         
     if (textEffect != "CONNECTION") {
-        if (input.cancel) && (charNo < string_length(text[textNo])) {
+        if (global.cancel) && (charNo < string_length(text[textNo])) {
             charNo = string_length(text[textNo]);
             audio_stop_sound(textSound);
 			
             writing = false;
         }
         
-        if (input.confirm) && (charNo >= string_length(text[textNo])) && (skippableZ == true) {
+        if (global.confirm) && (charNo >= string_length(text[textNo])) && (skippableZ == true) {
             if (textNo >= array_length_1d(text) - 1) {
                 typerStatus = "DESTROY";
                 writing = false;
@@ -179,6 +179,24 @@ for (var i = 1; i < charNo + 1; i++;) {
                 textSpeed = 1;
                 textColor = c_black;
                 textEffect = "WAVY";
+            }
+            if (string_char_at(text[textNo], i + 2) == "7") {
+                textFont = fnt_dialogue_24;
+                textSound = snd_text_default;
+                textWidth = 16;
+                textHeight = 36;
+                textSpeed = 1;
+                textColor = c_white;
+                textEffect = "NONE";
+            }
+            if (string_char_at(text[textNo], i + 2) == "8") {
+                textFont = fnt_dialogue_24;
+                textSound = snd_text_asgore;
+                textWidth = 18;
+                textHeight = 38;
+                textSpeed = 2;
+                textColor = c_white;
+                textEffect = "NONE";
             }
             
             i += 2;

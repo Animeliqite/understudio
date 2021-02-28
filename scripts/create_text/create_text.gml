@@ -42,6 +42,14 @@ function create_text(argument0, argument1, argument2, argument3, argument4, argu
 	    case "SPEECH":
 	        prefix = "\\T6";
 	        break;
+		case 6:
+		case "DEFAULT-BIGGER":
+			prefix = "\\T7";
+			break;
+		case 7:
+		case "GAME-OVER":
+			prefix = "\\T8";
+			break;
 	}
 
 	var w = instance_create(xx + 20, yy + 20, obj_typer);

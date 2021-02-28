@@ -23,7 +23,7 @@ body[0] = instance_create(room_width / 2, room_height / 2 - 100, obj_testmonster
 body[1] = -1;
 body[2] = -1;
 
-monsterhp[0] = 120;
+monsterhp[0] = 1;
 monsterhp[1] = -1;
 monsterhp[2] = -1;
 

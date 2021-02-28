@@ -13,7 +13,7 @@ if (!miss) {
     draw_set_halign(fa_left);
     draw_set_color(c_white);
     
-    draw_healthbar(xstart - global.monster.body[obj_battlecontroller.sel[1]].sprite_width + 25, ystart + 40 - 5, xstart + global.monster.body[obj_battlecontroller.sel[1]].sprite_width - 25, ystart + 40 + 5, show_hp / global.monster.monsterhpmax[obj_battlecontroller.sel[1]] * 100, c_gray, c_lime, c_lime, 0, true, true);
+    draw_healthbar(xstart - global.monster.body[obj_battlecontroller.sel[1]].sprite_width + 28, ystart + 40 - 5, xstart + global.monster.body[obj_battlecontroller.sel[1]].sprite_width - 28, ystart + 40 + 5, show_hp / global.monster.monsterhpmax[obj_battlecontroller.sel[1]] * 100, c_gray, c_lime, c_lime, 0, true, true);
 
     if (alarm[0] < 0)
         alarm[0] = 40;
