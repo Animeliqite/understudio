@@ -1,0 +1,349 @@
+===============
+ Known Issues
+===============
+
+	*	Tweens with struct targets are not being automatically destroyed.
+	*	For now, please call TweenDestroy() manually for any tweens with struct targets.
+	*	This seems due to a bug with GameMaker's garbage collector.
+
+
+========================
+= Changes Since Beta 4 =
+========================
+
+[5.2]
+-Updated TweenSet() support
+	* TweenSet(t, "start/destination", 123) better supports tweens created with TweenCreate()
+	* TweenSet/Get(tween, "property") works again!
+	* Added "raw_start" and "raw_destination" support for TweenGet()/TweenSet()
+	
+-Extended tween selection to support custom lists and arrays holding tween ids
+	* e.g.
+		tList = ds_list_create();
+		ds_list_add(tList, tween1, tween2, tween3);
+		TweenPause({list: tList});
+		
+		tArray = [tween1, tween2, tween3];
+		TweenResume({list: tArray});
+		
+		TweenStop({list: [tween1, tween2, tween3]});
+
+
+[5.1]
+-Fixed issue with struct targets when using TweenCreate()/TweenPlay() -- also fixes using self/other keywords
+-TweenStep() is functional again (yay!)
+-Added TweenSetDefault() / TweenGetDefault()
+-Added check to prevent error when group scale is 0
+-Updated TweenSet()TweenGet() to support [continue count] labels: "continue_count" "count" "cc"
+-TweenDefine() is functional again but experimental and possibly quite buggy -- Maybe don't use it except for backwards compatiblity with existing projects
+-Cleaned up TGMS_ExecuteEvent
+	* Callbacks can now take an "unlimited" number or arguments
+	* Note: built-in GM functions no longer work with callbacks -- please convert to using user functions or methods
+
+
+[5.0]
+-Animation curves ids can now be directly used as ease arguments
+	* Custom ease functions must be converted to methods, as function ids are no longer valid
+	* Removed EaseCurve()
+	* Removed EaseChannel()
+	
+-An empty string can now be used as ease/curve parameter to denote default (linear)
+	* e.g. TweenFire(id, "", "once", true, 0, 1, "x>", 10) // linear ease
+	
+-Updated EaseToString() 
+	* Fixed upper/lower case handling -- case type is now irrelevant like default ease strings --> "MyEase" and "myEASE" are treated the same
+	* Channel argument for animation curves is now optional
+	
+-Updated TweenSet()
+	* "rest" now supported
+	* "target" now supports structs
+	* "ease" now supports animation curve ids
+	
+-Ease() now supports Animation Curve IDs and Channels
+-Added string cache for TGMS_StringLower -- improves performance when initializing tweens
+-Fixed potential issue with TweenScript/TweenScriptMore caused by EaseNone
+-Fixed crash with TweenSystemClearRoom() -- caused by trying to destroy a list which is now an array
+-Fixed issue with ease swapping when using Ease* methods
+
+
+========================
+= Changes Since Beta 3 =
+========================
+
+[4.2]
+-Fixed struct targets (oops!)
+
+-[self] and [other] can now be used as valid targets
+	* TweenFire(self, ...)
+	
+-Start and Destination strings can now call "global.variable" and "self.variable" explicitly
+	* [self] tells to use variable belonging to calling environment when tween fired and not the tween target (though... target and caller are often the same)
+	* If no explicit environment is specified, TweenGMS will first check for the existing variable within the target scope, then caller scope, then global scope
+	* global.var and self.var currently work but global.var.othervar and global.var.othervar will break -- I hope to expand this in the future
+
+
+[4.1]
+-Fixed issue where starting an easy tween at launch would cause crash
+-Fixed TGMS_FetchTween() to properly return undefined/null tween ids
+-Adjusted TGMS_FetchTween to prevent crash if o_SharedTweener doesn't exist yet
+-Stopped adding "TGMS" layer to rooms
+
+
+[4.0]
+-HTML5 fixes!
+-TPFunc*() now supports struct targets
+-TPFunc() now properly binds method/function to set target environment
+-Removed TPFuncX()
+	** TPFunc() now requires a target to help prevent errors caused by assuming wrong target environment
+	
+-Modified "normalized duration" calculation to be divided by the number of properties
+	** You may need to adjust for this change! Please test this change if you've used normalized durations!
+
+-Shared tweener now created immediately at very start of game
+	** Do not destroy or deactivate o_SharedTweener
+
+-Ease algorithms must now be methods or animation curve channels -- function ids no longer supported!!
+	** EaseFunction = function() { ... } // SUPPORTED
+	   function EaseFunction() { ... }   // NOT SUPPORTED -- please convert to method
+
+-Fixed TGMS_FetchTween mishandling structs
+	** Caused errors with {group: 0} and {tween: tID} when attempting to select tweens
+
+-Added EaseChannel()
+	** Naming convention may change in the futurue
+	
+-Fixed image_blend... again?
+-Fixed TweenSet(tID, "group", 0) not working when trying to assign group
+-Improved TweenSet() and TweenGet() -- still in progress
+-Added support for property methods inside struct targets
+-Improved performance when easing with ease *functions* (not curves)
+-Changed tween default to use CurveLinear instead of EaseLinear -- improved performance
+-Prevented possible issue where manually creating shared tweener can cause conflict
+-Moved default property methods into the global {TGMS} struct environment
+-Changed built-in properties to methods -- improves performance
+-Added optimised default properties for variables 'z', 'depth', 'friction', 'gravity', 'gravity_direction'
+-Fixed ("-time",10) and "=10" not setting time inside Tween*() calls
+-Fixed bug with TweenPause() trying to access an non-existing script
+-Event map now marks event lists -- may improve tween destruction performance for tweens with event callbacks
+-Removed TweenGMS extension file
+-Removed TGMS_NULL()
+
+
+========================
+= Changes Since Beta 2 =
+========================
+
+-Improved general stability
+-Greatly improved YYC compile time
+-Fixed TweenPlay() not supporting 0, -1, -2 tween id indexing
+-Fixed TweenPlay() failing when using "ease" strings or Curve*
+-Fixed "image_blend" property causing error
+-Added fix to prevent invalid duration values
+-Updated TweenExists() to support struct targets
+-Fixed "@" and [100] start/dest support for properties when using structs
+
+-Fixed issue where TP*() functions failed to work with to/from ">"/"<" strings
+	* TweenFire("$60", TPList("myList>", 0), 100); 
+
+-Added EaseToString() for setting custom ease/curve strings
+	EaseToString("smooth", SomeEaseFunction);
+	EaseToString("butter", SomeCurve, 0);
+	TweenFire("$60", "~smooth", ...)
+	TweenFire("$60", "~butter", ...)
+	
+-Functions can now be executed as properties...
+	function Spark(value,target,args)
+	{
+		if (args == undefined)
+		{
+			effect_create_above(ef_spark, target.x, target.y, 1, c_white*value);
+		}
+		else
+		{
+			effect_create_above(ef_spark, target.x, target.y 1, args);
+		}
+	}
+	  
+	// Pass function with no arguments
+	TweenFire(self, EaseInOutQuad, 2, true, 0, 1, "x>", 100, [Spark], 0, 1);
+	
+	// Pass function with argument 'c_green'
+	TweenFire(self, EaseInOutQuad, 2, true, 0, 1, "x>", 100, [Spark, c_green], 0, 1);
+	
+
+========================
+= Changes Since Beta 1 =
+========================
+
+-Added duration continue swapping
+	TweenFire("$", [1,2], "~patrol", "x>", 10);
+
+-Structs can now be used as valid tween targets
+	TweenFire(aStruct, EaseLinear, 0, true, 0, 1, "x>", 10);
+	** Make sure to delete any structs that need to be cleared right away.
+	** Tween callbacks could continue to be fired if struct not cleared from memory.
+	** Otherwise, manually destroy tween's as needed.
+
+-Default TweenFire() calls can now use "ease" and "mode" strings
+	TweenFire(id, "ioSine", "patrol", true, 0, 1, "x>", 10);
+
+-Default TweenFire() calls can now use advanced array parameters for MODE, DURATION, and DELAY
+	TweenFire(id, ["linear","oQuad"], ["patrol",2], true, [0,1,2], [1,2], "x>", 10);
+	
+-TweenAddCallback()/TweenAddCallbackUser() now support "event" strings
+	"finish", "@finish", etc...
+
+-Default EASE functions are now internally converted to animation curves at startup for improved performance.
+ However, to make use of them, you must either use "ease" strings or the new Curve* macros
+	TweenFire("$60", "~ioQuad", "x>", 10);			// Optimised
+	TweenFire("$60", "~", CurveInOutQuad, "x>", 10);	// Optimised
+	TweenFire("$60", "~", EaseInOutQuad, "x>", 10);	// Not Optimised -- still calls ease function directly
+
+-Added support for object property prefixes -- "obj_Player.x"
+	TweenFire("$60", "obj_Player.x", 0, 10);
+	guy = o_Guy;
+	TweenFire("$60", "guy.x", 0, 10);
+
+-Fixed To/From support for structs when using TPTarget
+	TweenFire("$60", TPTarget(o_Player, "x>"), 10);
+	TweenFire("$60", TPTarget(aStruct, "y<"), 10);
+
+-Change TGMS_PropertyMethod to TPFunc() and TPFuncX() -- Can also be directly used in a Tween funcion call
+	// Create 'myProp' property to be used in tween call
+	TPFunc("myProp", function(value,target){ target.myValue = value }, function(target){ return target.myValue });
+	TweenFire("$60", "myProp>", 10);
+		
+	// Use TPFunc directly inside tween call
+	TweenFire("$60", TPFunc("abc", function(v,t){t.abc=v}), 0, 10);
+	// "abc" can still be resued in further calls
+	TweenFire(">>", "$60", "abc", 10, 100);
+
+-Added ability to pass target id for inline tween callbacks by passing a struct as first array element with target value
+	TweenFire(..., "@finish", [{target:other}, Explode]);
+	
+-Added TWEEN_SELF so tweens can now reference themselves in functions/methods for event callbacks.
+	TweenFire("$60", "#patrol", "x>", 100, "@continue", function(){ TweenPause(TWEEN_SELF) });
+	
+-TweenMore() now works with 0,-1,-2,... indexing
+	TweenFire(...);
+	TweenMore(0, "ioSine", "patrol", true, 0, 1, "x>", 10);
+
+-Animation curve channels can now be directly passed as an ease type without the need for EaseCurve()
+	curve_channel = animcurve_get_channel(animcurve_get(someCurve), 0);
+	TweenFire("$60", "~", curve_channel, "x>", 20); 
+	
+-Added 'Tweens' selection target support
+	TweenPause({target: aStruct})
+	
+-EaseCurve() now takes an optional channel argument
+
+-Added EaseToCurve() for converting existing ease functions into animation curve channels
+
+-Fixed issue where TweenEventClear() failed to actually clear the event... derp.
+
+-TPStruct() has been merged into TPTarget()
+
+-Fixed TweenIsPaused()
+
+
+====================
+= Previous Changes =
+====================
+
+-TweenFire() can now use "ease" and "mode" strings -- e.g. TweenFire(id, "ioQuad", "patrol", true, 0, 1, "x", 0, 100);
+-TweenMore() now works with 0,-1,-2,... indexing.
+-Added TWEEN_SELF so tweens can now reference themselves in functions/methods for event callbacks.
+	TweenFire("$60", "#patrol", "x>", 100, "@continue", function(){ TweenPause(TWEEN_SELF) });
+-Fixed issue where TweenEventClear() failed to actually clear the event... derp.
+-Added support for "object.id, x" properties
+-Added TPStruct
+-TweenAddCallback()/TweenAddCallbackUser() now support "event" strings.
+	e.g. "finish", "@finish"
+-Added group time scales
+-Optimised EaseElastic* functions
+-Added support for self and other .. Remove need for Tweens() scripts ... TweenPause({group:5});
+-Add support for duration swap array -- done
+-Fixed TweenPlay() to properly reset internal tween direction -- this could cause unexpected behaviour or tweens to fail completely
+-Removed need for Tweens() script --> Added struct { } support. e.g. TweenPause({group: 2}) .. TweenResume({target: oSign, group: 3}) .. TweenPause(self) .. TweenPause(other) .. etc...
+-Added support for "delay" parameter to take array with REST values -- [delayTime, restTime1, restTime2]
+-Added string support for setting easy types -- "InOutQuad", "ioQuad", "iQuad", "oQuad", "io"
+-Strings can now be used to set play modes "once", "bounce", "patrol", "loop", "repeat"
+-Added support for play mode to pass continue count within array [TWEEN_MODE_PATROL, 7]
+-Updated TweenGet
+-Added TweenJust*() scripts
+-Updated TweenStep
+-TGMS_PropertyMethod()
+-TweenCreate/TweenPlay
+-Added support for SET/GET methods
+-Something is broken with "@" again stuff in destination or something
+	-- this is because of trailing decimal 	tween = TweenFire("$60", "x:", "@", "@+1.1");
+	--> Problem was in TGMS_Variable_Get
+-Changed name of obj_SharedTweener to o_SharedTweener
+-Added "|" for rest and ">" for continue
+-Added continue counts for play modes which continue
+-Callbacks no longer take a target paramter -- As a result, callbacks are no longer auto-cleaned for dead targets -- return undefined from callback script to remove callback
+-Added Ease Switching
+-Added support for animation curves
+-Added support for tweening structures -- e.g. TweenFire("$1", "pos.x>", mouse_x);
+-Added Tween Event for while a tween is resting -- TWEEN_EV_REST
+-Added EaseNone()
+-A negative delay causes targets to immediately jump to initial tween values -- absolute delay value is used for duration
+-Removed support for health and score as they are deprecated
+-Added Getters for mouse_x and mouse_y inorder to support HTML5 (variable_* functions not supporting built-in global variables)
+-[duration] array support -- allows for change-per-step or change-per-second
+-Optimised Ease*Bounce algorithms
+-Improved path performance for HTML5
+-Added time overflow for delayed tweens (should help keep things in sync for games using delta time)
+-Optimised Ease() performance
+-Added "REST" feature for tweens with continue modes
+-Replaced TweenPath() with TPPath (Can be combined with other tween properties)
+-Added TweenEasyPath
+-Clamped tween time between 0 and duration when using TweenGet()
+-Updated TweenCalc (Merged with TweenCalcTime and TweenCalcAmount)
+-Changed TGMS_ExecuteEvent to simply take tween id and event type ... This could allow me to merge the event maps
+-Added /// @params to easing algorithms
+-Added caller id to tween data to make sure right environment is called
+-Fixed YYC warnings
+-Added "#mode" tags
+-Shortened "time_amount" and "time_scale" to "amount" and "scale" -- old tags can still be used
+-Added "shorthand tags" --> TweenCreate(">>", "#2", "+30", "$60", ...);
+-Changed USER EVENT properties to use target environment by default --> no need to use TWEEN_USER_TARGET anymore
+	* There is a macro to enable the previous method for faster HTML5 performance
+-Removed TweenCallbackNull() ---> Use undefined instead
+-All tween references are now treated as "safe" -- Removed TweenDestroySafe()
+-Added TweenIsFinished() script
+-Merged "Tweens*()" scripts into one -> Tweens()
+-Removed TweenSystemCount() -> Functionality moved into TweenSystemGet()
+-Removed "round(x)"/"round(y)" -- Use TPRound instead
+-Fixed extended property setters in TGMS_TweenPreprocess
+-Added ability to round/floor/ceil variables --> e.g. TweenFire(..., TPRound("x"), 0, 100);
+-Fixed TPExt not working if property script not "built"
+-Changed TGMS_NULL__ to TGMS_NULL
+-The number 0 can now be used to address last created tween (negative values can access previously created tweens e.g. -1, -2)
+-Changed built-in property script names to prevent naming conflicts
+-Changed TPFuncSharedNormalize to TPFuncSharedNormal
+-Removed TweenForcePropertyUpdate()
+-Removed SharedTweenerDestroy() and SharedTweenerActivate() -- use instance_destroy(o_SharedTweener) and instance_activate_object(o_SharedTweener) instead
+-Fixed values not reaching destination when using TweenMore with same property
+-Delayed state changes made in process loop!
+-Fixed TweenPath() for mode TWEEN_MODE_REPEAT when path not absolute
+-Fixed REPEAT mode
+-Added relative time factor
+-Added to/from support for data structure properties --> e.g. TweenFire(..., TPArray("myArray>", 0), 100);
+-Fixed "image_scale" not supporting property getter when using ">"
+-Added global variable support for start/dest string values
+-TweenFire(">>", 0, "...", ...); // This is similar to using TweenMore
+-Added "tag" support to end of TweenFire(), TweenCreate(), TweenPlay(), and TweenMore()
+-Removed TweenFireTo and TweenFireFrom
+-Improved "_data" array creation speed (TweenFire ... etc)
+-Added "tag" support to TweenFire(), TweenCreate(), TweenPlay(), TweenMore()
+-Added TweenDefaultDelta(bool)
+-Tweens can now be played without supplying properties to tween
+-Added "@event" tags for shorthand callbacks
+-Optimised calls to TPArray(), TPList(), TPGrid()
+-Removed unneeded 'keepPersistent' variable from o_SharedTweener
+-Removed unused variables from o_SharedTweener Room End event
+-Changed all references of 'mod' to '%'
+-TweenStep now honours timescale for delayed tweens
+-Corrected docs for TweenCalcTime() and TweenCalcAmount()
+-Minor tweaks to TweenPath() and ext_path__()

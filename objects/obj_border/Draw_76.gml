@@ -35,5 +35,4 @@ if (next_sprite != -1) {
 }
 
 display_set_gui_size(640, 480);
-display_set_gui_maximise(screen_xscale, screen_yscale, screen_xoffset, screen_yoffset);
-
+display_set_gui_maximise(screen_xscale * 2, screen_yscale * 2, screen_xoffset, screen_yoffset);

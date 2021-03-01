@@ -1,0 +1,62 @@
+
+Please read [TGMS_0_Beta_Notes] for documentation related to the beta.
+The following documents are outdated but can still be used to supplement incomplete beta docs.
+
+===================
+== Starter Guide ==
+===================
+
+	http://www.stephenloney.com/_/TweenGMS/105/Starter%20Guide.html
+
+======================
+== Script Reference ==
+======================
+
+	http://www.stephenloney.com/_/TweenGMS/105/Script%20Reference.html
+	
+=====================
+== Video Tutorials ==
+=====================
+
+	https://www.youtube.com/playlist?list=PLX4uKTcINfBYVRaYyWbev0rj_9XygYtPK
+
+======================
+== Example Projects == 
+======================
+	
+	[Demo Project]
+	http://www.stephenloney.com/_/TweenGMS/105/TGMS_Examples_105.yyz
+
+	[Game Project]
+	http://www.stephenloney.com/_/TweenGMS/105/TGMS_AlienOdds_105.yyz
+	
+====================
+== Discord Server ==
+====================
+	
+	Come chat!
+	https://discord.gg/CW45d5bAhj
+
+====================
+== Special Thanks ==
+====================
+
+Matthew Humphries
+	twitter: @mthwgeek
+
+BeveledEdgeCo
+	twitter: @bevelededgeco
+	site: http://bevelededge.co
+
+TeamSteeve
+	twitter: @teamsteeve
+
+Davide Massara
+	galladhan
+
+Jaime Pascual
+	jaimitoes
+	site: https://www.solostudio.tech/
+	YouTube: https://www.youtube.com/channel/UCGb1IVJFuVrs_pY7NTc6bSQ?
+
+@Tsugumo_BPO

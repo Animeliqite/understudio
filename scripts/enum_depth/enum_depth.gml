@@ -11,6 +11,7 @@ function enum_depth(){
 	enum depth_overworld {
 		dev = 0,
 		character = -10,
-		ui = -100
+		ui = -100,
+		ui_high = -200
 	}
 }

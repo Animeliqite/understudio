@@ -12,18 +12,13 @@ language_init_english();
 global.debug = true;
 global.genocide = -1; // Genocide Counter
 
+stats_init();
+
 global.player_pos_x = 0;
 global.player_pos_y = 0;
 
 global.soul_pos_x = room_width / 2;
 global.soul_pos_y = room_height / 2;
-
-global.name = "CHARA";
-global.lv = 1;
-global.hp = 20;
-global.maxhp = 20;
-global.xp = 0;
-global.gold = 0;
 
 global.boxplacement = 0;
 
@@ -37,14 +32,6 @@ global.monster = noone;
 
 global.currentroom = room_empty;
 global.currentsong = undefined;
-
-for (var i = 0; i < 256; i++;) {
-    global.flag[i] = false;
-}
-
-for (var i = 0; i < 7; i++;) {
-    global.item[i] = 0;
-}
 
 global.geno_sprite = false;
 

@@ -1,5 +1,6 @@
-text[0] = "* (It says \"sample text\".)";
-textFont = fnt_dialogue;
-textColor = c_white;
-textEffect = "NONE";
-
+messages = ["* Error."];
+baseColor = c_white;
+font = fnt_dialogue;
+textEffect = 0; // 0 = none, 1 = shaking, 2 = wavy
+textSpeed = 1;
+textSound = [snd_text_default];

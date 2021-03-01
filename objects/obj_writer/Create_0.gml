@@ -1,34 +1,24 @@
-xx = x;
-yy = y;
+/// @description Set the variables
 
-alpha = 1;
-x_scale = 1;
-y_scale = 1;
-angle = 0;
-siner = 0;
-
-shake_max_x = 0.5;
-shake_max_y = 0.5;
-
-color = c_white;
-effect = text_effect.none;
-sound_array = [snd_text_default];
+messages = ["* Error."];
+messageIndex = 0;
+messageCharPos = 0;
+drawString = "";
+baseColor = c_white;
 font = fnt_dialogue;
+charSiner = 0;
+charWidth = 8;
+charHeight = 18;
+textEffect = 0; // 0 = none, 1 = shaking, 2 = wavy
+textSpeed = 1;
+textSound = [noone];
+pauseTimer = 0;
+isDone = false;
 
-text_speed = 1;
+mustBeInBounds = false;
+textBounds = [0, 0, camera_get_view_width(view_current), camera_get_view_height(view_current)];
 
-character_no = 0;
-char_width = 1.8;
-char_height = 0;
+_x = x;
+_y = y;
 
-skippable = true;
-instant = false;
-
-command = "";
-command_char = "";
-loop = false;
-
-text = ["* Error!"];
-text_no = 0;
-
-alarm[0] = text_speed;
+depth = depth_overworld.ui_high;

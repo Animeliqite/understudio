@@ -2,10 +2,10 @@ event_inherited();
 
 image_speed = 0;
 
-text[0] = "\\T3\\F3CALCIUM IS GOOD FOR#YOUR BONES!";
-text[1] = "NYEH HEH HEH HEH!";
-textFont = fnt_papyrus;
-textColor = c_white;
-textEffect = "NONE";
-
-
+messages = ["* Error."];
+font = fnt_dialogue;
+charWidth = 8;
+charHeight = 18;
+textEffect = 0; // 0 = none, 1 = shaking, 2 = wavy
+textSpeed = 1;
+textSound = [snd_text_default];

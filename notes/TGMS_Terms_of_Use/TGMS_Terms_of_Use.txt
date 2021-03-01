@@ -1,0 +1,8 @@
+
+[TweenGMS Version 2.0]
+
+This is a preview of an early beta build. This build is not approved for live production.
+Any damages is at your own risk. You've been warned! ^.^
+
+-No selling of this source code without owner's permission
+-No packaging with other assets or software without owner's permission

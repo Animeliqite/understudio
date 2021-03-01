@@ -14,10 +14,6 @@
   ],
   "layers": [
     {"instances":[
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_fightbt","path":"objects/obj_fightbt/obj_fightbt.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":32.0,"y":432.0,"resourceVersion":"1.0","name":"inst_AED3A11B","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_actbt","path":"objects/obj_actbt/obj_actbt.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":185.0,"y":432.0,"resourceVersion":"1.0","name":"inst_0169FFED","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_itembt","path":"objects/obj_itembt/obj_itembt.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":345.0,"y":432.0,"resourceVersion":"1.0","name":"inst_43B61378","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_mercybt","path":"objects/obj_mercybt/obj_mercybt.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":500.0,"y":432.0,"resourceVersion":"1.0","name":"inst_CFB96512","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_uborder","path":"objects/obj_uborder/obj_uborder.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":32.0,"y":250.0,"resourceVersion":"1.0","name":"inst_5498178A","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_dborder","path":"objects/obj_dborder/obj_dborder.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":602.0,"y":385.0,"resourceVersion":"1.0","name":"inst_3FFF6E4B","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_battleheart","path":"objects/obj_battleheart/obj_battleheart.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":220.0,"y":320.0,"resourceVersion":"1.0","name":"inst_3B3944D1","tags":[],"resourceType":"GMRInstance",},
@@ -29,10 +25,6 @@
   "creationCodeFile": "RoomCreationCode.gml",
   "inheritCode": false,
   "instanceCreationOrder": [
-    {"name":"inst_AED3A11B","path":"rooms/room_battle/room_battle.yy",},
-    {"name":"inst_0169FFED","path":"rooms/room_battle/room_battle.yy",},
-    {"name":"inst_43B61378","path":"rooms/room_battle/room_battle.yy",},
-    {"name":"inst_CFB96512","path":"rooms/room_battle/room_battle.yy",},
     {"name":"inst_5498178A","path":"rooms/room_battle/room_battle.yy",},
     {"name":"inst_3FFF6E4B","path":"rooms/room_battle/room_battle.yy",},
     {"name":"inst_3B3944D1","path":"rooms/room_battle/room_battle.yy",},

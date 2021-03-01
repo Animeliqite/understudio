@@ -104,40 +104,20 @@ if (instance_exists(global.monster)) {
         
         switch (sel[0]) {
             case 0:
-                obj_battleheart.x = obj_fightbt.x + 8;
-                obj_battleheart.y = obj_fightbt.y + 14;
-				
-				obj_fightbt.image_index = 1;
-				obj_actbt.image_index = 0;
-				obj_itembt.image_index = 0;
-				obj_mercybt.image_index = 0;
+                obj_battleheart.x = 40;
+                obj_battleheart.y = 446;
                 break;
             case 1:
-                obj_battleheart.x = obj_actbt.x + 8;
-                obj_battleheart.y = obj_actbt.y + 14;
-				
-				obj_fightbt.image_index = 0;
-				obj_actbt.image_index = 1;
-				obj_itembt.image_index = 0;
-				obj_mercybt.image_index = 0;
+                obj_battleheart.x = 193;
+                obj_battleheart.y = 446;
                 break;
             case 2:
-                obj_battleheart.x = obj_itembt.x + 8;
-                obj_battleheart.y = obj_itembt.y + 14;
-				
-				obj_fightbt.image_index = 0;
-				obj_actbt.image_index = 0;
-				obj_itembt.image_index = 1;
-				obj_mercybt.image_index = 0;
+                obj_battleheart.x = 353;
+                obj_battleheart.y = 446;
                 break;
             case 3:
-                obj_battleheart.x = obj_mercybt.x + 8;
-                obj_battleheart.y = obj_mercybt.y + 14;
-				
-				obj_fightbt.image_index = 0;
-				obj_actbt.image_index = 0;
-				obj_itembt.image_index = 0;
-				obj_mercybt.image_index = 1;
+                obj_battleheart.x = 508;
+                obj_battleheart.y = 446;
                 break;
         }
     }
@@ -150,9 +130,7 @@ if (instance_exists(global.monster)) {
 if (instance_exists(global.monster)) {
     if (menuno == 1) {
         instance_destroy(obj_typer);
-        
-        obj_fightbt.image_index = 1;
-        
+		
         obj_battleheart.x = -9999;
         obj_battleheart.y = -9999;
         
@@ -264,8 +242,6 @@ if (instance_exists(global.monster)) {
     if (menuno == 2) {
         instance_destroy(obj_typer);
         
-        obj_actbt.image_index = 1;
-        
         obj_battleheart.x = -9999;
         obj_battleheart.y = -9999;
         
@@ -327,8 +303,6 @@ if (instance_exists(global.monster)) {
 if (instance_exists(global.monster)) {
     if (menuno == 3) {
         instance_destroy(obj_typer);
-        
-        obj_itembt.image_index = 1;
         
         obj_battleheart.x = -9999;
         obj_battleheart.y = -9999;
@@ -408,7 +382,6 @@ if (instance_exists(global.monster)) {
                     create_text_instant(obj_uborder.x, obj_uborder.y, "DEFAULT-BATTLE", c_white, "   * Spare");
             }
         }
-        obj_mercybt.image_index = 1;
         
         obj_battleheart.x = obj_uborder.x + 30;
         obj_battleheart.y = obj_uborder.y + 30 + (sel[4] * 35);

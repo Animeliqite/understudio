@@ -1,9 +1,4 @@
-image_speed = 0.2;
+event_inherited();
 
-text[0] = "* (They are just standing there.)";
-textFont = fnt_dialogue;
-textColor = c_white;
-textEffect = "NONE";
-
+image_speed = 1 / 3;
 depth = depth_overworld.character-y;
-
