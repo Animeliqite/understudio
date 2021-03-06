@@ -124,7 +124,7 @@
   ],
   "regenerateBitmap": false,
   "canGenerateBitmap": true,
-  "maintainGms1Font": false,
+  "maintainGms1Font": true,
   "parent": {
     "name": "Fonts",
     "path": "folders/Fonts.yy",

@@ -15,8 +15,17 @@ textSound = [noone];
 pauseTimer = 0;
 isDone = false;
 
-mustBeInBounds = false;
-textBounds = [0, 0, camera_get_view_width(view_current), camera_get_view_height(view_current)];
+skip = false;
+skippable = true;
+confirmable = true;
+
+face = "";
+faceEmotion = 0;
+faceIndex = 0;
+faceSurface = -1;
+
+mustBeInBounds = true;
+textBounds = [0, 0, display_get_gui_width(), display_get_gui_height()];
 
 _x = x;
 _y = y;

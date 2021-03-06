@@ -2,7 +2,7 @@ event_inherited();
 
 image_speed = 0;
 
-messages = ["* Error."];
+messages = ["`fP3` * I'M GOING TO JUST.`p1`.`p1`.`p2` &  STAND THERE..."];
 font = fnt_dialogue;
 charWidth = 8;
 charHeight = 18;

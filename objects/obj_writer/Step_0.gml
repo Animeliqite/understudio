@@ -11,6 +11,15 @@ if (pauseTimer == 0)
 	var len = string_length(msg);
 	if (messageCharPos < len)
 	{
+		var faceAsset = asset_get_index(face + "_" + string(faceEmotion));
+		
+		if (face != noone) {
+			if (faceIndex < floor(sprite_get_number(faceAsset)))
+				faceIndex += 0.25;
+			else
+				faceIndex = 0;
+		}
+		
 		var c = string_char_at(msg, ++messageCharPos);
 		if (c == "`")
 		{
@@ -18,8 +27,8 @@ if (pauseTimer == 0)
 			switch (cmdType)
 			{
 				case "p": // Pause
-					messageCharPos++;
 					pauseTimer = real(string_char_at(msg, ++messageCharPos)) * 10;
+					messageCharPos++;
 					break;
 				case "#":
 					messageCharPos++;
@@ -27,16 +36,15 @@ if (pauseTimer == 0)
 					break;
 				default:
 					drawString += "`" + cmdType;
-					while (messageCharPos < len && (string_char_at(msg, messageCharPos + 1) != "`"))
+					while (messageCharPos <= len && (string_char_at(msg, messageCharPos + 1) != "`"))
 						drawString += string_char_at(msg, ++messageCharPos);
-					drawString += "`"
+					drawString += "`";
 					messageCharPos++;
 					break;
 			}
 		} else
-		{
-			drawString += c;
-			if (textSound != noone)
+		{	
+			if (textSound != noone) && (c != " ")
 			{
 				for (var i = 0; i < array_length_1d(textSound) - 1; i++;)
 					audio_stop_sound(textSound[i]);
@@ -44,20 +52,23 @@ if (pauseTimer == 0)
 				audio_play_sound(textSound[random_range(0, array_length_1d(textSound) - 1)], 8, false);
 			}
 			
-			if (global.cancel) {
-				drawString = msg;
-				messageCharPos = len;
-			}
+			drawString += c;
 			pauseTimer = textSpeed;
+			
+			if (global.cancel) && (skippable) {
+				messageCharPos = len;
+				drawString = msg;
+			}
 		}
 	}
 	else {
 		isDone = true;
+		faceIndex = 0;
 		
 		for (var i = 0; i < array_length_1d(textSound) - 1; i++;)
 			audio_stop_sound(textSound[i]);
 		
-		if (global.confirm) {
+		if (global.confirm) && (confirmable) {
 			if (messageIndex < array_length_1d(messages) - 1) {
 				mustBeInBounds = false;
 				messageIndex++;

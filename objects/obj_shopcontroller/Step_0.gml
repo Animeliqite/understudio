@@ -1,6 +1,8 @@
 if (menu == 0) {
     if (!instance_exists(obj_typer)) {
-        create_text(0, 110, "DEFAULT", c_white, introString, false);
+		var w = instance_create(40, 260, obj_writer);
+		w.messages = [introString];
+		w.confirmable = false;
     }
     
     if (global.up_press) {
@@ -33,7 +35,9 @@ if (menu == 0) {
 }
 if (menu == 2) {
     if (!instance_exists(obj_typer)) {
-        create_text(210, 110, "DEFAULT", c_white, talkMenuText, false);
+		var w = instance_create(460, 260, obj_writer);
+		w.messages = [talkMenuText];
+		w.confirmable = false;
     }
     
     if (global.up_press) {
@@ -62,14 +66,11 @@ if (menu == 2) {
     }
 }
 
-
-
-
-
-
 if (menu == 888) {
     if (canTalk == false) {
-        create_text(0, 110, typer, c_white, talkString, true);
+		var w = instance_create(40, 260, obj_writer);
+		w.messages = [talkString];
+		w.confirmable = false;
         menu = 889;
     }
     else if (canTalk == true) {
