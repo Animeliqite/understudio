@@ -2,5 +2,5 @@ event_inherited();
 
 image_speed = 0.2;
 
-messages = ["`cR` * Red color `c$` &* White color"];
+messages = [get_message("testMessage1_001")];
 

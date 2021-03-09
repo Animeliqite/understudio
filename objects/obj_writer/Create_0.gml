@@ -22,7 +22,6 @@ confirmable = true;
 face = "";
 faceEmotion = 0;
 faceIndex = 0;
-faceSurface = -1;
 
 mustBeInBounds = true;
 textBounds = [0, 0, display_get_gui_width(), display_get_gui_height()];

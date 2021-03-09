@@ -6,8 +6,8 @@ instance_create(0, 0, input); // Create the input system
 instance_create(0, 0, obj_border); // Create the border system
 border_enable(true);
 
-global.language_en = ds_map_create();
-language_init_english();
+global.messages = ds_map_create();
+localization_init("data/game.json");
 
 global.debug = true;
 global.genocide = -1; // Genocide Counter

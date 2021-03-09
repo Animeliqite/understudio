@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Language",
-    "path": "folders/Scripts/Language.yy",
+    "name": "Localization",
+    "path": "folders/Scripts/Localization.yy",
   },
   "resourceVersion": "1.0",
-  "name": "language_init_english",
+  "name": "localization_init",
   "tags": [],
   "resourceType": "GMScript",
 }
