@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Encounter",
-    "path": "folders/Scripts/Battle/Encounter.yy",
+    "name": "Overworld",
+    "path": "folders/Scripts/Overworld.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_encounter",
+  "name": "room_getname",
   "tags": [],
   "resourceType": "GMScript",
 }

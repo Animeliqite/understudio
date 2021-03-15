@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Encounter",
-    "path": "folders/Scripts/Battle/Encounter.yy",
+    "name": "Saving & Loading",
+    "path": "folders/Scripts/Saving & Loading.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_encounter",
+  "name": "generate_key",
   "tags": [],
   "resourceType": "GMScript",
 }

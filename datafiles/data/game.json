@@ -3,5 +3,10 @@
     "testMessage0_002":"* (I'm glad to hear that!)",
     "testMessage0_003":"* (I'm sad to hear that.)",
 
-    "testMessage1_001":"*`cR`  Red color.`p1``c$` &* Base color."
+    "testMessage1_001":"*`cR`  Red color.`p1``c$` &* Base color.",
+
+    "saveOption_0":"Save",
+    "saveOption_1":"Return",
+    "saveResult":"File saved.",
+    "saveInfo_LV":"LV"
 }

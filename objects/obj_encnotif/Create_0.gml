@@ -1,4 +1,4 @@
-if (global.genocide > -1)
+if (global.murderlv > 0)
     image_index = 1;
 else
     image_index = 0;

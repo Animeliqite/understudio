@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "Encounter",
-    "path": "folders/Scripts/Encounter.yy",
+    "path": "folders/Scripts/Battle/Encounter.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_getbattleinfo",
