@@ -25,7 +25,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Slopes",
-    "path": "folders/Objects/Overworld/Solids/Slopes.yy",
+    "path": "folders/General Objects/Core Engine/Overworld/Solids/Slopes.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_slope_dr",

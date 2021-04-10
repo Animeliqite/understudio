@@ -6,7 +6,7 @@ if (obj_typer.writing == false) && (global.confirm) {
         text_current++;
     else {
         instance_destroy();
-        battle_setstate(-2);
+        bt_setstate(-2);
     }
 }
 

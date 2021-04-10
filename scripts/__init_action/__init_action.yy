@@ -3,7 +3,7 @@
   "isCompatibility": true,
   "parent": {
     "name": "action",
-    "path": "folders/Scripts/GMS 1 Compatibility/action.yy",
+    "path": "folders/General Scripts/Core Engine/GMS 1 Compatibility/action.yy",
   },
   "resourceVersion": "1.0",
   "name": "__init_action",

@@ -79,9 +79,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"075eca40-0950-4685-9b98-eee6c8eaa7a2","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Soul",
-    "path": "folders/Sprites/Battle/Soul.yy",
+    "path": "folders/General Sprites/Core Engine/Battles/Soul.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_battleheart_shard",

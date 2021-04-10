@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"98586452-c11b-433d-bac0-101ad63a3567","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Game Over",
-    "path": "folders/Sprites/Game Over.yy",
+    "path": "folders/General Sprites/Core Engine/Game Over.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_gameover_header",

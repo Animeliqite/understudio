@@ -1,9 +1,6 @@
-/// @description  mus_stop(sound);
-/// @param sound
+/// @description mus_stop(sid);
+/// @param id
 function mus_stop(argument0) {
-
-	audio_stop_sound(argument0);
-
-
-
+	audio_destroy_stream(global.music[argument0]);
+	//global.music[argument0] = "";
 }

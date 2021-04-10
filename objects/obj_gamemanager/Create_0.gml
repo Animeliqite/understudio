@@ -1,13 +1,8 @@
-/// @description  Add the global variables and create some instances
-
-instance_create(0, 0, input); // Create the input system
+/// @description Add the global variables and create some instances
+instance_create_depth(0, 0, 0, obj_gamecamera);
 
 global.border_enabled = false;
-instance_create(0, 0, obj_border); // Create the border system
 border_enable(true);
-
-global.messages = ds_map_create();
-localization_init("data/game.json");
 
 global.debug = true;
 stats_init();
@@ -16,18 +11,37 @@ global.seconds = 0;
 global.minutes = 0;
 alarm[0] = room_speed;
 
-if (!file_exists("secret")) {
-	global.key = generate_key();
-	ini_open_encrypted_zlib("secret", "VeryVerySecret");
-	ini_write_string("SaveData", "AES", global.key);
-	ini_close_encrypted_zlib("secret", "VeryVerySecret");
-}
-else {
-	ini_open_encrypted_zlib("secret", "VeryVerySecret");
-	global.key = ini_read_string("SaveData", "AES", "");
-	show_debug_message(global.key);
-	ini_close();
-}
+music_init();
+
+global.drawingSurface = -1;
+global.flavor_sprites = false; // Flavors the monster sprites
+
+currentSprite = spr_border_line;
+nextSprite = -1;
+
+currentSpriteAlpha = 1;
+nextSpriteAlpha = 0;
+
+borderXScale = 1;
+borderYScale = 1;
+
+screenXScale = borderXScale;
+screenYScale = borderYScale;
+
+screenXOffset = 0;
+screenYOffset = 0;
+
+borderEnabled = global.border_enabled;
+
+global.lang_punctuation = [".", ",", "!", "?", ":", ";"];
+global.lang_asterisk = "*";
+global.lang_period = ".";
+global.format = [];
+
+global.languages = ds_list_create();
+global.messages = ds_map_create();
+localization_init("game");
+//localization_load("example");
 
 global.player_pos_x = 0;
 global.player_pos_y = 0;
@@ -64,4 +78,7 @@ enum text_effect {
 
 #macro game_savename "undertale_engine"
 #macro game_name "Undertale Engine"
+#macro game_version "1.00"
 #macro game_owner "Animelici804"
+
+room_goto_next();

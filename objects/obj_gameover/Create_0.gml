@@ -14,4 +14,4 @@ alpha = 0;
 text[0] = "Do not give up just#yet...";
 text[1] = global.name + "!^2 #Stay determined...";
 text_no = 0;
-text_end = array_length_1d(text);
+text_end = array_length(text);

@@ -7,7 +7,7 @@ draw_box(0, 120, 319, 239);
 if (menu == 0) {
     draw_box(210, 120, 319, 239);
     
-    if (global.genocide > -1) {
+    if (global.murderlv > -1) {
         draw_text(240, 130, string_hash_to_newline("Take"));
         draw_text(240, 150, string_hash_to_newline("Steal"));
         draw_text(240, 170, string_hash_to_newline("Read"));

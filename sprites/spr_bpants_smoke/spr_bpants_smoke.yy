@@ -71,9 +71,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"040ca7d8-b335-4601-87ac-2092d79670fe","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Smoke",
-    "path": "folders/Sprites/Shops/Burgerpants/Smoke.yy",
+    "path": "folders/General Sprites/The Game/Shops/Burgerpants/Smoke.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_bpants_smoke",

@@ -126,8 +126,8 @@
   "canGenerateBitmap": true,
   "maintainGms1Font": true,
   "parent": {
-    "name": "Fonts",
-    "path": "folders/Fonts.yy",
+    "name": "General Fonts",
+    "path": "folders/General Fonts.yy",
   },
   "resourceVersion": "1.0",
   "name": "fnt_dialogue_24",

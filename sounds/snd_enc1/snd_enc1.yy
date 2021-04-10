@@ -14,7 +14,7 @@
   "duration": 0.077562,
   "parent": {
     "name": "Encounter Sounds",
-    "path": "folders/Sounds/Encounter Sounds.yy",
+    "path": "folders/General Sound Effects/Core Engine/Encounter Sounds.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_enc1",

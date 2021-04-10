@@ -8,7 +8,7 @@ if (spared == true) {
     
     if (created < 12) {
         repeat (12) {
-            instance_create(x, y, obj_spareeffect); 
+            instance_create(x, y, obj_dustcloud); 
             created++;
         }
     }

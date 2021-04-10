@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"a5e3fc7f-bc4c-497d-bf2e-a11c19b30320","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Sans",
-    "path": "folders/Sprites/Faces/Sans.yy",
+    "path": "folders/General Sprites/Core Engine/Faces/Sans.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_face_sans_noeyes",

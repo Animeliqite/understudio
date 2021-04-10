@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"123e0c73-77f6-436c-a26e-c60fa4a76979","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Burgerpants",
-    "path": "folders/Sprites/Shops/Burgerpants.yy",
+    "path": "folders/General Sprites/The Game/Shops/Burgerpants.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_bpants_face5",

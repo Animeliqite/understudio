@@ -9,6 +9,8 @@ font = fnt_dialogue;
 charSiner = 0;
 charWidth = 8;
 charHeight = 18;
+charSpaceX = 1;
+charSpaceY = 1;
 textEffect = 0; // 0 = none, 1 = shaking, 2 = wavy
 textSpeed = 1;
 textSound = [noone];
@@ -25,6 +27,11 @@ faceIndex = 0;
 
 mustBeInBounds = true;
 textBounds = [0, 0, display_get_gui_width(), display_get_gui_height()];
+
+buttonString = "";
+buttonSprite = -1;
+
+messages[messageIndex] = format_text_basic(messages[messageIndex], true, true);
 
 _x = x;
 _y = y;

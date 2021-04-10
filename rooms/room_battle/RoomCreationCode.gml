@@ -1,1 +1,1 @@
-scr_getbattleinfo();
+bt_getmonsterinfo();

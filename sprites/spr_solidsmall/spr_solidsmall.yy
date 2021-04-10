@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"13b28e08-4752-4a17-aa75-f35685885fe3","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Solids",
-    "path": "folders/Sprites/Overworld/Solids.yy",
+    "path": "folders/General Sprites/Core Engine/Overworld/Solids.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_solidsmall",

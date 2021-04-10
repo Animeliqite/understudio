@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "Enumerates",
-    "path": "folders/Scripts/Enumerates.yy",
+    "path": "folders/General Scripts/Core Engine/Enumerates.yy",
   },
   "resourceVersion": "1.0",
   "name": "enum_depth",

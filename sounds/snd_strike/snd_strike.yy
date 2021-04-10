@@ -14,7 +14,7 @@
   "duration": 0.55559,
   "parent": {
     "name": "Battle Sounds",
-    "path": "folders/Sounds/Battle Sounds.yy",
+    "path": "folders/General Sound Effects/Core Engine/Battle Sounds.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_strike",

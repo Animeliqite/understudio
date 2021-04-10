@@ -71,9 +71,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"394a6a07-bdec-46aa-b6ac-409c0a34ba3d","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Undyne",
-    "path": "folders/Sprites/Faces/Undyne.yy",
+    "path": "folders/General Sprites/Core Engine/Faces/Undyne.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_face_undyne0",

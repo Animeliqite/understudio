@@ -1,1 +1,0 @@
-enabled = global.border_enabled;

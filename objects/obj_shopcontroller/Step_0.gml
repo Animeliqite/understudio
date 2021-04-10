@@ -84,7 +84,7 @@ if (menu == 890) {
     menu = 2;
 }
 if (menu == 999) {
-    if (global.genocide == -1)
+    if (global.murderlv == -1)
         create_text(0, 110, typer, c_white, exitString, true);
     
     menu = 1000;
@@ -96,7 +96,7 @@ if (menu == 1000) && (!instance_exists(obj_typer)) {
         fade.targetRoom = exitRoom;
     }
     
-    audio_sound_gain(global.currentsong, 0, 250);
+    mus_set_volume(0, 0, 1000);
     
     global.cutscene = true;
 }

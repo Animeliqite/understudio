@@ -12,14 +12,20 @@ selection = 0;
 state = 0;
 show_ui = false;
 
-if (file_exists(game_savename + ".ini")) {
-	ini_open_encrypted_zlib(game_savename + ".ini", global.key);
-	roomname = ini_read_real("Player", "Room", -1);
-	name = ini_read_string("Player", "Name", "EMPTY");
-	love = ini_read_real("Player", "LV", 0);
-	seconds = ini_read_real("Time", "Seconds", 1);
-	minutes = ini_read_real("Time", "Minutes", 1);
-	ini_close();
+if (file_exists(get_savefile_name())) {
+	var buffer = buffer_load(get_savefile_name());
+	var finalBuffer = buffer_decompress(buffer);
+	
+	name = buffer_read(finalBuffer, buffer_string);
+	hp = buffer_read(finalBuffer, buffer_u16);
+	maxhp = buffer_read(finalBuffer, buffer_u16);
+	love = buffer_read(finalBuffer, buffer_u8);
+	roomname = buffer_read(finalBuffer, buffer_u32);
+	seconds = buffer_read(finalBuffer, buffer_u8);
+	minutes = buffer_read(finalBuffer, buffer_u32);
+	
+	buffer_delete(buffer);
+	buffer_delete(finalBuffer);
 }
 else {
 	roomname = -1;

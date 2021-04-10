@@ -1,4 +1,5 @@
 messages = ["* Error."];
+formatList = [];
 baseColor = c_white;
 font = fnt_dialogue;
 textEffect = 0; // 0 = none, 1 = shaking, 2 = wavy

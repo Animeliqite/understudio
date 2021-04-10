@@ -14,7 +14,7 @@
   "duration": 0.250079,
   "parent": {
     "name": "Damage Sounds",
-    "path": "folders/Sounds/Battle Sounds/Damage Sounds.yy",
+    "path": "folders/General Sound Effects/Core Engine/Battle Sounds/Damage Sounds.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_damage_other",

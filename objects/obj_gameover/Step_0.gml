@@ -1,6 +1,6 @@
 if (ready == true) {
 	if (phase == 0) {
-		mus_loop_safe(mus_gameover, 1, 1);
+		mus_loop_safe(5, "gameover", 1, 1);
 		
 		phase = 1;
 	}
@@ -23,7 +23,7 @@ if (ready == true) {
 		}
 	}
 	if (phase == 3) {
-		mus_set_volume(mus_gameover, 0, 1500);
+		mus_set_volume(5, 0, 1500);
 		
 		if (alpha > 0)
 			alpha -= 0.025;

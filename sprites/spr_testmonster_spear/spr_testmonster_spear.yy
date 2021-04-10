@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"5ca864f0-1acd-4bc6-8282-fb2e9041a91f","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Attacks",
-    "path": "folders/Sprites/Battle/Monsters/Test Monster/Attacks.yy",
+    "path": "folders/General Sprites/The Game/Battles/Monsters/Test Monster/Attacks.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_testmonster_spear",

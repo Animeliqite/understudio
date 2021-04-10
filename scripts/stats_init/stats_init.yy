@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Initialization",
-    "path": "folders/Scripts/Initialization.yy",
+    "name": "System",
+    "path": "folders/General Scripts/Core Engine/System.yy",
   },
   "resourceVersion": "1.0",
   "name": "stats_init",

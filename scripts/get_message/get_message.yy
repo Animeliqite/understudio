@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "Localization",
-    "path": "folders/Scripts/Localization.yy",
+    "path": "folders/General Scripts/Core Engine/Localization.yy",
   },
   "resourceVersion": "1.0",
   "name": "get_message",

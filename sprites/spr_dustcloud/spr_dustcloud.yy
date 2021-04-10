@@ -75,9 +75,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"5042646e-6ed4-4f13-8389-dfe9a5a18fb4","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Effects",
-    "path": "folders/Sprites/Battle/Effects.yy",
+    "path": "folders/General Sprites/Core Engine/Battles/Effects.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_dustcloud",

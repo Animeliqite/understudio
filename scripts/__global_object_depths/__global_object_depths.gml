@@ -70,7 +70,7 @@ function __global_object_depths() {
 	global.__objectDepths[62] = -999998; // obj_targetchoice
 	global.__objectDepths[63] = -999997; // obj_target
 	global.__objectDepths[64] = -999998; // obj_speechbubble
-	global.__objectDepths[65] = -99999; // obj_battlecontroller
+	global.__objectDepths[65] = -99999; // obj_battlemanager
 	global.__objectDepths[66] = 0; // obj_shopcontroller
 	global.__objectDepths[67] = 0; // obj_shop_bpants
 
@@ -140,13 +140,13 @@ function __global_object_depths() {
 	global.__objectNames[62] = "obj_targetchoice";
 	global.__objectNames[63] = "obj_target";
 	global.__objectNames[64] = "obj_speechbubble";
-	global.__objectNames[65] = "obj_battlecontroller";
+	global.__objectNames[65] = "obj_battlemanager";
 	global.__objectNames[66] = "obj_shopcontroller";
 	global.__objectNames[67] = "obj_shop_bpants";
 
 
 	// create another array that has the correct entries
-	var len = array_length_1d(global.__objectDepths);
+	var len = array_length(global.__objectDepths);
 	global.__objectID2Depth = [];
 	for( var i=0; i<len; ++i ) {
 		var objID = asset_get_index( global.__objectNames[i] );

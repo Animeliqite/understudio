@@ -4,6 +4,7 @@ height = camera_get_view_height(view_current);
 top = obj_player.y > height / 2;
 
 messages = ["* Error."];
+formatList = [];
 baseColor = c_white;
 font = fnt_dialogue;
 charWidth = 8;

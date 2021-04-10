@@ -1,0 +1,1 @@
+enc_prepare([obj_testmonster_battle], true, true, false);

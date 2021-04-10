@@ -5,15 +5,15 @@ var c = global.cancel;
 var sel_max = 1;
 
 if (show_ui) {
-	draw_box(108, 98, 530, 270);
+	draw_box(108, 118, 530, 290);
 	draw_set_font(fnt_dialogue);
 	draw_set_color((state == 1 ? c_yellow : c_white));
-	draw_text(140, 160, room_getname(roomname));
-	draw_text(140, 120, name);
-	draw_text(lv_pos, 120, get_message("saveInfo_LV") + " " + string(love));
+	draw_text(140, 180, room_getname(roomname));
+	draw_text(140, 140, name);
+	draw_text(lv_pos, 140, get_message("saveInfo_LV") + " " + string(love));
 	
 	draw_set_halign(fa_right);
-	draw_text(500, 120, string(minutes) + ":" + (seconds < 10 ? "0" : "") + string(seconds));
+	draw_text(500, 140, string(minutes) + ":" + (seconds < 10 ? "0" : "") + string(seconds));
 	
 	draw_set_halign(fa_left);
 	
@@ -21,10 +21,10 @@ if (show_ui) {
 		seconds = 59;
 	
 	if (state == 0) {
-		draw_sprite_ext(spr_heartsmall, 0, (selection == 0 ? 140 : 342), 225, 2, 2, 0, c_white, 1);
+		draw_sprite_ext(spr_heartsmall, 0, (selection == 0 ? 147 : 349), 255, 2, 2, 0, c_white, 1);
 		
-		draw_text(170, 220, get_message("saveOption_0")); // Save
-		draw_text(372, 220, get_message("saveOption_1")); // Return
+		draw_text(170, 240, get_message("saveOption_0")); // Save
+		draw_text(372, 240, get_message("saveOption_1")); // Return
 	
 		if (l) {
 			if (selection > 0)
@@ -76,7 +76,7 @@ if (show_ui) {
 	}
 	else if (state == 1) {
 		draw_set_color(c_yellow);
-		draw_text(170, 220, get_message("saveResult")); // File saved.
+		draw_text(170, 240, get_message("saveResult")); // File saved.
 		
 		if (z) {
 			global.cutscene = false;

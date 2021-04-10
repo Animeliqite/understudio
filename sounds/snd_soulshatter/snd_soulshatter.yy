@@ -14,7 +14,7 @@
   "duration": 0.716111,
   "parent": {
     "name": "Soul",
-    "path": "folders/Sounds/Battle Sounds/Soul.yy",
+    "path": "folders/General Sound Effects/Core Engine/Battle Sounds/Soul.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_soulshatter",

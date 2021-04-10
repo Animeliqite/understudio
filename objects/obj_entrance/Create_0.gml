@@ -1,0 +1,1 @@
+entranceNo = -1;

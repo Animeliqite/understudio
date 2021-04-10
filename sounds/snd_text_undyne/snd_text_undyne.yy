@@ -14,7 +14,7 @@
   "duration": 0.070306,
   "parent": {
     "name": "Typing Sounds",
-    "path": "folders/Sounds/Typing Sounds.yy",
+    "path": "folders/General Sound Effects/Core Engine/Typing Sounds.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_text_undyne",

@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"d0266947-2999-4fd5-8d09-e828f015b2f3","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Sans",
-    "path": "folders/Sprites/Faces/Sans.yy",
+    "path": "folders/General Sprites/Core Engine/Faces/Sans.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_face_sans",

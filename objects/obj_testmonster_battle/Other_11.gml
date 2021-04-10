@@ -2,9 +2,9 @@
 
 if (monsterhp[0] > 0) { 
 	scr_setbox(1);
-	scr_centerheart();
+	bt_centerheart();
 
-	battle_setturntime(160);
+	bt_setturntime(160);
 
 	textPhase[0]++;
 
@@ -39,7 +39,7 @@ if (monsterhp[0] > 0) {
 	}
 }
 else {
-	instance_create(body[0].x, body[0].y, obj_vaporize);
+	bt_spawn_dust(body[0].x, body[0].y, "t", true);
 	body[0].visible = false;
-	obj_battlecontroller.menuno = 10000;
+	obj_battlemanager.menuno = 10000;
 }

@@ -7,7 +7,7 @@ if (textAlpha > 0) {
 else {
      textAlpha = 1;
      outlineAlpha = 0;
-     if (textNo >= array_length_1d(text) - 1) {
+     if (textNo >= array_length(text) - 1) {
          global.textNo = 0;
          instance_destroy();
      }

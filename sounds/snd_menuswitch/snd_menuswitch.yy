@@ -14,7 +14,7 @@
   "duration": 0.028401,
   "parent": {
     "name": "Menu Sounds",
-    "path": "folders/Sounds/Menu Sounds.yy",
+    "path": "folders/General Sound Effects/Core Engine/Menu Sounds.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_menuswitch",

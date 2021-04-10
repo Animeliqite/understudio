@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"fa1cdd94-7ff5-436a-810b-b26c3b933a59","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Icons",
-    "path": "folders/Sprites/Battle/Icons.yy",
+    "path": "folders/General Sprites/Core Engine/Battles/Icons.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_hpicon",

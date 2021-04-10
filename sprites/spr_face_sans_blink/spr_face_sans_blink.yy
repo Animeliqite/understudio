@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"0bd90d35-daa8-4741-b544-90491a8d41dd","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Sans",
-    "path": "folders/Sprites/Faces/Sans.yy",
+    "path": "folders/General Sprites/Core Engine/Faces/Sans.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_face_sans_blink",

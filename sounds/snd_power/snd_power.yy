@@ -14,7 +14,7 @@
   "duration": 0.717971,
   "parent": {
     "name": "Saving",
-    "path": "folders/Sounds/Menu Sounds/Saving.yy",
+    "path": "folders/General Sound Effects/Core Engine/Menu Sounds/Saving.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_power",

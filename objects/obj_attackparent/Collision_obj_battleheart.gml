@@ -1,1 +1,1 @@
-battle_soul_sethurtevent();
+bt_soul_hurtevent();

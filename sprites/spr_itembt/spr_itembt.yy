@@ -71,9 +71,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"b89c0db5-bd7d-4989-b2b6-2e81cf923040","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Buttons",
-    "path": "folders/Sprites/Battle/Buttons.yy",
+    "path": "folders/General Sprites/Core Engine/Battles/Buttons.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_itembt",

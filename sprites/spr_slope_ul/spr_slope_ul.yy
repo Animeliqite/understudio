@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"93c322ff-4080-4b1d-bef2-c88e4693eae3","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Slopes",
-    "path": "folders/Sprites/Overworld/Solids/Slopes.yy",
+    "path": "folders/General Sprites/Core Engine/Overworld/Solids/Slopes.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_slope_ul",

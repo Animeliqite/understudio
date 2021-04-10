@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"8362406a-3897-4206-9aa3-6115dd61d730","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Burgerpants",
-    "path": "folders/Sprites/Tilesets/Shop/Burgerpants.yy",
+    "path": "folders/General Sprites/The Game/Tilesets/Shop/Burgerpants.yy",
   },
   "resourceVersion": "1.0",
   "name": "bg_shop_burgerpants",

@@ -25,7 +25,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Borders",
-    "path": "folders/Objects/Battle/Borders.yy",
+    "path": "folders/General Objects/Core Engine/Battles/Borders.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_dborder",

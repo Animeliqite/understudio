@@ -91,9 +91,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"91ac17ac-d687-40bb-91ab-fedac6577c45","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Fight",
-    "path": "folders/Sprites/Battle/UI/Fight.yy",
+    "path": "folders/General Sprites/Core Engine/Battles/UI/Fight.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_attack_knife",

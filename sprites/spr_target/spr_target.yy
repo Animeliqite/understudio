@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"e84e6a80-0322-43ad-b53d-f5f31fa2cbc0","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Fight",
-    "path": "folders/Sprites/Battle/UI/Fight.yy",
+    "path": "folders/General Sprites/Core Engine/Battles/UI/Fight.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_target",

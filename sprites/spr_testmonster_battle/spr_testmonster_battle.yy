@@ -79,9 +79,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"818b5a3e-c91c-4bc5-9f43-908869371376","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Test Monster",
-    "path": "folders/Sprites/Battle/Monsters/Test Monster.yy",
+    "path": "folders/General Sprites/The Game/Battles/Monsters/Test Monster.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_testmonster_battle",

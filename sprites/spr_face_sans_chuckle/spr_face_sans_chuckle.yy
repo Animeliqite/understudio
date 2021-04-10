@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"24b9e340-3efe-4a34-8217-2c6608dc4999","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Sans",
-    "path": "folders/Sprites/Faces/Sans.yy",
+    "path": "folders/General Sprites/Core Engine/Faces/Sans.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_face_sans_chuckle",

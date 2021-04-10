@@ -23,7 +23,7 @@ for (var i = 1; i < charNo + 1; i++;) {
         }
         
         if (global.confirm) && (charNo >= string_length(text[textNo])) && (skippableZ == true) {
-            if (textNo >= array_length_1d(text) - 1) {
+            if (textNo >= array_length(text) - 1) {
                 typerStatus = "DESTROY";
                 writing = false;
             }

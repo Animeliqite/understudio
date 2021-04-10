@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"d25ad24e-837b-47be-8356-23752f6c388c","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Other",
-    "path": "folders/Sprites/Other.yy",
+    "path": "folders/General Sprites/Core Engine/Other.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_pixel_white",

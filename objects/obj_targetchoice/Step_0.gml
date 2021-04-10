@@ -1,6 +1,6 @@
 if (x < obj_dborder.x) && (hspeed == 10) {
     if (global.confirm) {
-        instance_create(global.monster.body[obj_battlecontroller.sel[1]].x, global.monster.body[obj_battlecontroller.sel[1]].y, obj_attack_knife);
+        instance_create(global.monster.body[obj_battlemanager.sel[1]].x, global.monster.body[obj_battlemanager.sel[1]].y, obj_attack_knife);
         hspeed = 0;
         
         damage = round(damage);
@@ -10,7 +10,7 @@ else if (x > obj_dborder.x - 10) {
     x = obj_dborder.x - 10;
     hspeed = 0;
     
-    var inst = instance_create(global.monster.body[obj_battlecontroller.sel[1]].x, global.monster.body[obj_battlecontroller.sel[1]].y, obj_attack_healthbar);
+    var inst = instance_create(global.monster.body[obj_battlemanager.sel[1]].x, global.monster.body[obj_battlemanager.sel[1]].y, obj_attack_healthbar);
     inst.miss = true;
 }
 

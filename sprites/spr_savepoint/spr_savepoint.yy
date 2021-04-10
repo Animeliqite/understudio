@@ -71,9 +71,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"283eb24c-d66b-4c51-94e1-dff78371c295","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Interactables",
-    "path": "folders/Sprites/Overworld/Interactables.yy",
+    "path": "folders/General Sprites/Core Engine/Overworld/Interactables.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_savepoint",

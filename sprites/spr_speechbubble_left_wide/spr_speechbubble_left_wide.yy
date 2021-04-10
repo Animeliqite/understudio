@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"a52e69bf-5e57-4cf8-9421-5d5f23e8a9c0","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Speech Bubbles",
-    "path": "folders/Sprites/Battle/UI/Speech Bubbles.yy",
+    "path": "folders/General Sprites/Core Engine/Battles/UI/Speech Bubbles.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_speechbubble_left_wide",

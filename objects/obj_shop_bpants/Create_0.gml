@@ -1,8 +1,8 @@
 event_inherited();
 
-global.currentsong = mus_shop;
+global.currentsong = "shop";
 
-mus_loop_safe(global.currentsong, vol, 0.7);
+mus_loop_safe(0, global.currentsong, vol, 0.7);
 
 faceNo = 0;
 

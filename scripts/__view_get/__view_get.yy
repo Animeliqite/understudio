@@ -3,7 +3,7 @@
   "isCompatibility": true,
   "parent": {
     "name": "view",
-    "path": "folders/Scripts/GMS 1 Compatibility/view.yy",
+    "path": "folders/General Scripts/Core Engine/GMS 1 Compatibility/view.yy",
   },
   "resourceVersion": "1.0",
   "name": "__view_get",

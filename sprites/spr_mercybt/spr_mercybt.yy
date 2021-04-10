@@ -71,9 +71,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"c10ce49c-dd5d-4217-8cdb-daa96d9db134","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Buttons",
-    "path": "folders/Sprites/Battle/Buttons.yy",
+    "path": "folders/General Sprites/Core Engine/Battles/Buttons.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_mercybt",

@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Overworld",
-    "path": "folders/Scripts/Overworld.yy",
+    "name": "System",
+    "path": "folders/General Scripts/Core Engine/System.yy",
   },
   "resourceVersion": "1.0",
   "name": "room_getname",

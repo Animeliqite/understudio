@@ -71,9 +71,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"733589c2-f83b-4e96-bd25-e2974b70864f","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Effects",
-    "path": "folders/Sprites/Overworld/Effects.yy",
+    "path": "folders/General Sprites/Core Engine/Overworld/Effects.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_encnotif",

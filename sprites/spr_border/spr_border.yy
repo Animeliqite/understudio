@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"e08c6579-7fc4-4c36-95b0-9b0ada2dddcb","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Borders",
-    "path": "folders/Sprites/Battle/Borders.yy",
+    "path": "folders/General Sprites/Core Engine/Battles/Borders.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_border",

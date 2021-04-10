@@ -79,9 +79,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"186b46d6-0246-4f1c-8ba2-5ffb39611575","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Ruins",
-    "path": "folders/Sprites/Overworld/NPC/Ruins.yy",
+    "path": "folders/General Sprites/The Game/Overworld/NPC/Ruins.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_froggit",

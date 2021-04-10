@@ -28,7 +28,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Solids",
-    "path": "folders/Objects/Overworld/Solids.yy",
+    "path": "folders/General Objects/Core Engine/Overworld/Solids.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_solidsmall",

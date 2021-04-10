@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"4ef97326-f135-4c62-8ce3-15b58cda3527","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Hands",
-    "path": "folders/Sprites/Shops/Burgerpants/Body Parts/Hands.yy",
+    "path": "folders/General Sprites/The Game/Shops/Burgerpants/Body Parts/Hands.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_bpants_hands",

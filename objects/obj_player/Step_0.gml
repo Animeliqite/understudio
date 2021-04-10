@@ -1,17 +1,18 @@
-/// @description  Move the player
-
+/// @description Move the player
 if (global.cutscene == false) {
-    if (global.left_hold) {
-        facingTo = "LEFT";
-        x -= moveSpeed;
-        sprite_index = spriteLeft[inGenocide];
-        image_speed = moveSpeed / 30;
+	if (global.left_hold) {
+	    facingTo = "LEFT";
+	    x -= moveSpeed;
+	    sprite_index = spriteLeft[inGenocide];
+	    image_speed = moveSpeed / 30;
     }
     if (global.right_hold) {
-        facingTo = "RIGHT";
-        x += moveSpeed;
-        sprite_index = spriteRight[inGenocide];
-        image_speed = moveSpeed / 30;
+		if (!global.left_hold) {
+		    facingTo = "RIGHT";
+		    x += moveSpeed;
+		    sprite_index = spriteRight[inGenocide];
+		    image_speed = moveSpeed / 30;
+		}
     }
     if (global.up_hold) {
         facingTo = "UP";
@@ -20,22 +21,37 @@ if (global.cutscene == false) {
         image_speed = moveSpeed / 30;
     }
     if (global.down_hold) {
-        facingTo = "DOWN";
-        y += moveSpeed;
-        sprite_index = spriteDown[inGenocide];
-        image_speed = moveSpeed / 30;
+		if (!global.up_hold) {
+	        facingTo = "DOWN";
+	        y += moveSpeed;
+	        sprite_index = spriteDown[inGenocide];
+	        image_speed = moveSpeed / 30;
+		}
     }
+	
+	if (global.up_hold) && (place_meeting(x, y - moveSpeed, obj_solid_parent)) {
+		if (global.up_hold) && (global.down_hold) {
+			sprite_index = (dance ? spr_player_up : spr_player_down);
+			if (alarm[0] < 0)
+				alarm[0] = 1;
+		}
+	}
+	if (place_meeting(x, y, obj_entrance)) {
+		obj_entrance.fade = true;
+		global.cutscene = true;
+	}
 }
-
 if (x == xprevious) && (y == yprevious) {
     image_speed = 0;
     image_index = 0;
 }
+else {
+	if (instance_exists(obj_encountersetup))
+		obj_encountersetup.currentSteps++;
+}
+depth = depth_overworld.character-y + (sprite_height / 2);
 
-depth = -y;
-
-/// Collision System
-
+// Collision System
 if (global.cutscene == false) {
     if (global.left_hold) && (place_meeting(x - moveSpeed, y, obj_solid_parent)) {
         x += moveSpeed;
@@ -80,8 +96,7 @@ if (global.cutscene == false) {
     }
 }
 
-/// C-Menu
-
+// C-Menu
 if (global.menu) && (global.cutscene == false) {
     keyboard_clear(vk_lcontrol);
     keyboard_clear(ord("C"));
@@ -91,8 +106,7 @@ if (global.menu) && (global.cutscene == false) {
     }
 }
 
-/// Debug System
-
+// Debug System
 if (global.debug == true) {
     if (keyboard_check_pressed(ord("V"))) {
         if (instance_exists(obj_solid_parent)) {

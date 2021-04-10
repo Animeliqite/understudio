@@ -42,7 +42,7 @@ function file_fast_crypt_ultra_zlib(argument0, argument1, argument2, argument3) 
 	*********************************************************************
 
 	If you like this script, please consider making a donation to the author using PayPal to valkiunas@gmail.com.
-
+-
 	*/
 
 	var _data, _filename_in, _filename_out, _pos, _len, _xor_shift, _bit_shift, _shift_direction, _enc_key, _key_hash, _key_hash2, _key_pos, _key_len, _is_encrypting;

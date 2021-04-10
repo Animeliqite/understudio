@@ -21,13 +21,13 @@
   "physicsKinematic": false,
   "physicsShapePoints": [],
   "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_battleheart_gtfo","path":"objects/obj_battleheart_gtfo/obj_battleheart_gtfo.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
     "name": "Heart",
-    "path": "folders/Objects/Battle/Heart.yy",
+    "path": "folders/General Objects/Core Engine/Battles/Heart.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_battleheart_gtfo",

@@ -2,7 +2,7 @@ function border_enable( enabled ){
 	switch (enabled) {
 		case true:
 			global.border_enabled = true;
-			window_set_size(950, 540);
+			window_set_size(960, 540);
 			break;
 		
 		case false:

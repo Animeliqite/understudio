@@ -71,9 +71,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"c18cad8c-2dae-4c03-ad92-d0913e9c6756","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Papyrus",
-    "path": "folders/Sprites/Faces/Papyrus.yy",
+    "path": "folders/General Sprites/Core Engine/Faces/Papyrus.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_face_papyrus_0",

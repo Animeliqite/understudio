@@ -1,17 +1,18 @@
 function scr_save(){
-	ini_open_encrypted_zlib(game_savename + ".ini", global.key);
+	var buffer = buffer_create(1024, buffer_grow, 1);
+	buffer_seek(buffer, buffer_seek_start, 0);
 	
-	ini_write_string("Player", "Name", global.name);
-	ini_write_real("Player", "HP", global.hp);
-	ini_write_real("Player", "MaxHP", global.maxhp);
-	ini_write_real("Player", "LV", global.lv);
-	ini_write_real("Player", "Room", global.currentroom);
-	ini_write_real("Time", "Seconds", global.seconds);
-	ini_write_real("Time", "Minutes", global.minutes);
+	buffer_write(buffer, buffer_string, global.name);
+	buffer_write(buffer, buffer_u16, global.hp);
+	buffer_write(buffer, buffer_u16, global.maxhp);
+	buffer_write(buffer, buffer_u8, global.lv);
+	buffer_write(buffer, buffer_u32, global.currentroom);
+	buffer_write(buffer, buffer_u8, global.seconds);
+	buffer_write(buffer, buffer_u32, global.minutes);
 	
-	for (var i = 0; i < 256; i++;) {
-		ini_write_real("Flag", "FlagNo_" + string(i), global.flag[i]);
-	}
+	var finalBuffer = buffer_compress(buffer, 0, buffer_tell(buffer));
+	buffer_save(finalBuffer, get_savefile_name());
 	
-	ini_close_encrypted_zlib(game_savename + ".ini", global.key);
+	buffer_delete(buffer);
+	buffer_delete(finalBuffer);
 }
