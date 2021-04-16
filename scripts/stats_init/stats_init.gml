@@ -20,7 +20,5 @@ function stats_init(){
 	global.currentroom = room;
 	global.currentsong = undefined;
 	
-	for (var i = 0; i < 256; i++;) {
-		global.flag[i] = false;
-	}
+	global.flag = ds_map_create();
 }

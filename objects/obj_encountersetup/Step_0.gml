@@ -3,7 +3,7 @@ if (currentSteps > currentStepsMax) {
 	enc_start(monster, showBubble, animateSoul, progressQuick);
     currentSteps = 0;
 	
-    global.player_pos_x = obj_player.x;
-    global.player_pos_y = obj_player.y;
+    global.playerX = obj_player.x;
+    global.playerY = obj_player.y;
 }
 

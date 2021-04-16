@@ -40,14 +40,14 @@ global.format = [];
 
 global.languages = ds_list_create();
 global.messages = ds_map_create();
-localization_init("game");
+localization_init();
 //localization_load("example");
 
-global.player_pos_x = 0;
-global.player_pos_y = 0;
+global.playerX = 0;
+global.playerY = 0;
 
-global.soul_pos_x = room_width / 2;
-global.soul_pos_y = room_height / 2;
+global.soulX = room_width / 2;
+global.soulY = room_height / 2;
 
 global.boxplacement = 0;
 
@@ -61,8 +61,6 @@ global.monster = noone;
 
 global.currentroom = room_empty;
 global.currentsong = undefined;
-
-global.geno_sprite = false;
 
 global.cutscene = false;
 global.spawn = -999;

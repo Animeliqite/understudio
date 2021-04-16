@@ -70,10 +70,10 @@ if (pauseTimer == 0)
 		isDone = true;
 		faceIndex = 0;
 		
-		/*for (var i = 0; i < array_length(textSound) - 1; i++;) {
+		for (var i = 0; i < array_length(textSound) - 1; i++;) {
 			if (audio_exists(textSound[i]))
 				audio_stop_sound(textSound[i]);
-		}*/
+		}
 		
 		if (global.confirm) && (confirmable) {
 			if (messageIndex < array_length(messages) - 1) {

@@ -1,6 +1,7 @@
-function localization_init( filename ){
-	var fileDir = "data/game.json";
-	var file = file_text_open_read(fileDir);
+function localization_init(){
+	var fname = "data/game.json";
+	var file = file_text_open_read(fname);
+	show_debug_message(directory_list("data/", ".lang", global.languages));
 	var generated_json = "";
 	
 	while (!file_text_eof(file)) {

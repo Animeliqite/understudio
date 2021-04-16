@@ -15,7 +15,6 @@
   "layers": [
     {"instances":[],"visible":true,"depth":-10,"userdefinedDepth":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":20,"gridY":20,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Higher_Instances","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_musicer","path":"objects/obj_musicer/obj_musicer.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":0.0,"resourceVersion":"1.0","name":"inst_0764809A","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_npc_template","path":"objects/obj_npc_template/obj_npc_template.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":80.0,"y":70.0,"resourceVersion":"1.0","name":"inst_2CDF74BA","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_solidsmall","path":"objects/obj_solidsmall/obj_solidsmall.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":3.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":120.0,"y":160.0,"resourceVersion":"1.0","name":"inst_98D30E5D","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_slope_dr","path":"objects/obj_slope_dr/obj_slope_dr.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":260.0,"y":160.0,"resourceVersion":"1.0","name":"inst_2756D4A3","tags":[],"resourceType":"GMRInstance",},
@@ -35,7 +34,6 @@
   "creationCodeFile": "${project_dir}/rooms/room_overworldtest/RoomCreationCode.gml",
   "inheritCode": false,
   "instanceCreationOrder": [
-    {"name":"inst_0764809A","path":"rooms/room_overworldtest/room_overworldtest.yy",},
     {"name":"inst_2CDF74BA","path":"rooms/room_overworldtest/room_overworldtest.yy",},
     {"name":"inst_98D30E5D","path":"rooms/room_overworldtest/room_overworldtest.yy",},
     {"name":"inst_2756D4A3","path":"rooms/room_overworldtest/room_overworldtest.yy",},

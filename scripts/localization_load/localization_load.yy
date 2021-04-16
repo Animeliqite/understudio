@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "Localization",
-    "path": "folders/General Scripts/Core Engine/Localization.yy",
+    "path": "folders/General Scripts/Core Engine/System/Localization.yy",
   },
   "resourceVersion": "1.0",
   "name": "localization_load",

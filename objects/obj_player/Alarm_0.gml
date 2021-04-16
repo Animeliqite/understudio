@@ -1,3 +1,6 @@
 /// @description Frisk Dance
+var check = (global.up_hold) && (global.down_hold);
 dance = !dance;
-alarm[0] = ((global.up_hold) && (global.down_hold) ? 1 : -1)
+image_speed = moveSpeed / 30;
+
+alarm[0] = (check ? 1 : -1)

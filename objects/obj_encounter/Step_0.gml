@@ -5,6 +5,8 @@ if (phase == 0) {
 	}
 	drawSoulX = obj_player.x;
 	drawSoulY = obj_player.y;
+	global.cutscene = true;
+	
 	phase = 1;
 }
 if (phase == 1) && (!instance_exists(obj_encnotif)) {
@@ -13,8 +15,7 @@ if (phase == 1) && (!instance_exists(obj_encnotif)) {
 		if (blinkingPhase == 3) {
 			var duration = (progressQuick ? room_speed / 2 : room_speed / 1.5);
 			audio_play_sound(snd_enc2, 10, false);
-			drawSoulTween[0] = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, duration, "drawSoulX", drawSoulX, soulTargetX);
-			drawSoulTween[1] = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, duration, "drawSoulY", drawSoulY, soulTargetY);
+			drawSoulTween = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, duration, "drawSoulX", drawSoulX, soulTargetX, "drawSoulY", drawSoulY, soulTargetY);
 			phase = 2;
 		}
 		else if (blinkingPhase < 3) {
@@ -28,7 +29,7 @@ if (phase == 1) && (!instance_exists(obj_encnotif)) {
 	}
 }
 if (phase == 2) {
-	if (!TweenIsPlaying(drawSoulTween[0])) &&  (!TweenIsPlaying(drawSoulTween[0])) {
+	if (!TweenIsPlaying(drawSoulTween)) {
 		if (alarm[1] < 0)
 			alarm[1] = (progressQuick ? room_speed / 8 : room_speed / 4);
 	}	

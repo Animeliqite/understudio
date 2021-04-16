@@ -1,8 +1,8 @@
 image_speed = 0;
 image_index = 0;
 
-x = global.soul_pos_x;
-y = global.soul_pos_y;
+x = global.soulX;
+y = global.soulY;
 
 alarm[0] = 30;
 

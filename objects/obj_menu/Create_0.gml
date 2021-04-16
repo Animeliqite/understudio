@@ -1,6 +1,8 @@
 menuno = (file_exists(get_savefile_name()) ? 3 : 0);
-cooldown = 0;
+cooldown = 2;
 global.name = (file_exists(get_savefile_name()) ? global.name : "");
+
+hasName = false;
 tempName = global.name;
 
 sel[0] = 0;
@@ -8,9 +10,7 @@ sel[1] = 0;
 sel[2] = 0;
 sel[3] = 0;
 
-nameTween[0] = -1;
-nameTween[1] = -1;
-nameTween[2] = -1;
+nameTween = -1;
 
 nameScale = 1;
 nameX = 0;
@@ -38,5 +38,3 @@ if (file_exists(get_savefile_name())) {
 }
 
 mus_loop_safe(0, "menu", 1, 1);
-
-global.format = ["[Z]", "[X]", "[C]"];

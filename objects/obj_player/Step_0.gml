@@ -1,116 +1,133 @@
 /// @description Move the player
-if (global.cutscene == false) {
+if (!global.cutscene) {
 	if (global.left_hold) {
-	    facingTo = "LEFT";
+		if (place_meeting(x - moveSpeed, y, obj_solid_parent))
+			x += moveSpeed;
+		
 	    x -= moveSpeed;
-	    sprite_index = spriteLeft[inGenocide];
-	    image_speed = moveSpeed / 30;
+		sprite_index = spriteLeft;
+	    image_speed = moveSpeed / 15;
     }
     if (global.right_hold) {
 		if (!global.left_hold) {
-		    facingTo = "RIGHT";
+			if (place_meeting(x + moveSpeed, y, obj_solid_parent))
+				x -= moveSpeed;
+			
 		    x += moveSpeed;
-		    sprite_index = spriteRight[inGenocide];
-		    image_speed = moveSpeed / 30;
+			sprite_index = spriteRight;
+			image_speed = moveSpeed / 15;
 		}
     }
     if (global.up_hold) {
-        facingTo = "UP";
+		if (place_meeting(x, y - moveSpeed, obj_solid_parent))
+			y += moveSpeed;
+		
         y -= moveSpeed;
-        sprite_index = spriteUp[inGenocide];
-        image_speed = moveSpeed / 30;
+		sprite_index = spriteUp;
+        image_speed = moveSpeed / 15;
     }
     if (global.down_hold) {
 		if (!global.up_hold) {
-	        facingTo = "DOWN";
+			if (place_meeting(x, y + moveSpeed, obj_solid_parent))
+				y -= moveSpeed;
+			
 	        y += moveSpeed;
-	        sprite_index = spriteDown[inGenocide];
-	        image_speed = moveSpeed / 30;
+			sprite_index = spriteDown;
+			image_speed = moveSpeed / 15;
 		}
     }
 	
 	if (global.up_hold) && (place_meeting(x, y - moveSpeed, obj_solid_parent)) {
 		if (global.up_hold) && (global.down_hold) {
 			sprite_index = (dance ? spr_player_up : spr_player_down);
+			image_speed = moveSpeed / 15;
 			if (alarm[0] < 0)
 				alarm[0] = 1;
 		}
 	}
-	if (place_meeting(x, y, obj_entrance)) {
-		obj_entrance.fade = true;
+	
+	if (place_meeting(x, y, obj_door)) {
+		instance_nearest(x, y, obj_door).fade = true;
 		global.cutscene = true;
 	}
+	
+	if (collision_rectangle(x - 2, y - 2, x + sprite_width + 2, y + sprite_height + 2, instance_nearest(x, y, obj_interactable), false, false)) {
+	    with (instance_nearest(x, y, obj_interactable)) {
+			if (global.confirm) && (!global.cutscene) && (interactable) {
+				create_dialogue(messages, formatList, font, baseColor, textEffect, textSound);
+				interact_amount++;
+				alarm[0] = 1; //On Dialogue Start
+			}
+	    }
+	}
+	
+	if (place_meeting(x, y, obj_npc_parent)) {
+		x = xprevious;
+		y = yprevious;
+	}
+	
+	// C-Menu
+	if (global.menu) {
+	    keyboard_clear(vk_lcontrol);
+	    keyboard_clear(ord("C"));
+    
+	    if (!instance_exists(obj_cmenu)) {
+	        instance_create(0, 0, obj_cmenu);
+	    }
+	}
+	
+	for(var i = 0; i < 2; i++) {
+		var collisionDir = ["l", "r"];
+		if(place_meeting(x + moveSpeed * (collisionDir[i] == "l" ? 1 : -1), y + moveSpeed, asset_get_index("obj_slope_u" + collisionDir[i]))){
+			if ((collisionDir[i]=="l" ? global.left_hold : global.right_hold)) {
+				y += moveSpeed;
+			}
+			if (global.up_hold) {
+				x += moveSpeed * (collisionDir[i] == "l" ? 1 : -1);
+			}
+		}
+		if(place_meeting(x + moveSpeed * (collisionDir[i] == "l" ? 1 : -1), y - moveSpeed, asset_get_index("obj_slope_d" + collisionDir[i]))){
+			if ((collisionDir[i]=="l" ? global.left_hold : global.right_hold)) {
+				y -= moveSpeed;
+			}
+			if (global.down_hold) {
+				x += moveSpeed * (collisionDir[i] == "l" ? 1 : -1);
+			}
+		}
+	}
+	
+	if (x == xprevious) && (y == yprevious) {
+	    image_speed = 0;
+	    image_index = 0;
+	}
+	else {
+		if (instance_exists(obj_encountersetup))
+			obj_encountersetup.currentSteps++;
+	}
 }
+
 if (x == xprevious) && (y == yprevious) {
-    image_speed = 0;
-    image_index = 0;
+	image_speed = 0;
+	image_index = 0;
 }
-else {
-	if (instance_exists(obj_encountersetup))
-		obj_encountersetup.currentSteps++;
-}
+
 depth = depth_overworld.character-y + (sprite_height / 2);
-
-// Collision System
-if (global.cutscene == false) {
-    if (global.left_hold) && (place_meeting(x - moveSpeed, y, obj_solid_parent)) {
-        x += moveSpeed;
-    }
-    if (global.right_hold) && (place_meeting(x + moveSpeed, y, obj_solid_parent)) {
-        x -= moveSpeed;
-    }
-    if (global.up_hold) && (place_meeting(x, y - moveSpeed, obj_solid_parent)) {
-        y += moveSpeed;
-    }
-    if (global.down_hold) && (place_meeting(x, y + moveSpeed, obj_solid_parent)) {
-        y -= moveSpeed;
-    }
-    
-    if (place_meeting(x - moveSpeed, y - moveSpeed, obj_slope_dl)) {
-        if (global.left_hold)
-            y -= moveSpeed;
-        
-        if (global.down_hold)
-            x += moveSpeed;
-    }
-    if (place_meeting(x + moveSpeed, y - moveSpeed, obj_slope_dr)) {
-        if (global.right_hold)
-            y -= moveSpeed;
-        
-        if (global.down_hold)
-            x -= moveSpeed;
-    }
-    if (place_meeting(x - moveSpeed, y + moveSpeed, obj_slope_ul)) {
-        if (global.left_hold)
-            y += moveSpeed;
-        
-        if (global.up_hold)
-            x += moveSpeed;
-    }
-    if (place_meeting(x + moveSpeed, y + moveSpeed, obj_slope_ur)) {
-        if (global.right_hold)
-            y += moveSpeed;
-        
-        if (global.up_hold)
-            x -= moveSpeed;
-    }
-}
-
-// C-Menu
-if (global.menu) && (global.cutscene == false) {
-    keyboard_clear(vk_lcontrol);
-    keyboard_clear(ord("C"));
-    
-    if (!instance_exists(obj_cmenu)) {
-        instance_create(0, 0, obj_cmenu);
-    }
-}
 
 // Debug System
 if (global.debug == true) {
     if (keyboard_check_pressed(ord("V"))) {
         if (instance_exists(obj_solid_parent)) {
             with (obj_solid_parent) {
+                visible = !visible;
+            }
+        }
+        if (instance_exists(obj_door)) {
+            with (obj_door) {
+                visible = !visible;
+            }
+        }
+        if (instance_exists(obj_entrance)) {
+            with (obj_entrance) {
                 visible = !visible;
             }
         }
@@ -136,4 +153,3 @@ if (global.debug == true) {
         }
     }
 }
-

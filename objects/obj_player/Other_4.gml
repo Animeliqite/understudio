@@ -1,4 +1,4 @@
-sprite_index = spriteDown[global.geno_sprite];
+sprite_index = spriteDown;
 global.currentroom = room;
 
 obj_gamecamera.target = self;

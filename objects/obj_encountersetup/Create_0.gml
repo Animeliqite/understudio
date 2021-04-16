@@ -1,5 +1,5 @@
 encounters = [];
-currentStepsMax = random_range(50, 100);
+currentStepsMax = random_range(300, 400);
 currentSteps = 0;
 
 showBubble = true;

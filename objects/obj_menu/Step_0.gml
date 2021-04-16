@@ -2,7 +2,9 @@ if (cooldown > 0)
 	cooldown--;
 
 if (menuno == 0) && (cooldown == 0) {
-	global.name = "";
+	if (!hasName)
+		global.name = "";
+	
 	if (global.up_press) {
 		if (sel[0] > 0)
 			sel[0]--;
@@ -20,8 +22,6 @@ if (menuno == 0) && (cooldown == 0) {
 			case 0:
 				menuno = 1;
 				cooldown = 2;
-				if (string_length(global.name) > 0)
-					global.name = string_delete(global.name, string_length(global.name), 1);
 				break;
 			case 1:
 				cooldown = 2;
@@ -31,6 +31,8 @@ if (menuno == 0) && (cooldown == 0) {
 	}
 }
 if (menuno == 1) && (cooldown == 0) {
+	hasName = true;
+	
 	if (global.left_press) {
 		if (sel[1] > 0) && (sel[1] < 53)
 			sel[1]--;
@@ -111,9 +113,7 @@ if (menuno == 1) && (cooldown == 0) {
 			nameY = 0;
 			nameScale = 1;
 			
-			nameTween[0] = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, room_speed * 4, "nameX", nameX, -60);
-			nameTween[1] = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, room_speed * 4, "nameY", nameY, 80);
-			nameTween[2] = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, room_speed * 4, "nameScale", nameScale, 3);
+			nameTween = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, room_speed * 4, "nameX", nameX, -60, "nameY", nameY, 80, "nameScale", nameScale, 3);
 			
 			event_user(0);
 		}
@@ -146,7 +146,7 @@ if (menuno == 2) && (cooldown == 0) {
 				nameResponse = "";
 				break;
 			case 1:
-				game_fade(c_white, 0, 1, room_speed * 5.5);
+				game_fade(c_white, -1, 1, room_speed * 5.5);
 				if (alarm[0] < 0)
 					alarm[0] = room_speed * 5.5;
 				
@@ -194,9 +194,7 @@ if (menuno == 3) && (cooldown == 0) {
 				nameY = 0;
 				nameScale = 1;
 				
-				nameTween[0] = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, room_speed * 4, "nameX", nameX, -60);
-				nameTween[1] = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, room_speed * 4, "nameY", nameY, 80);
-				nameTween[2] = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, room_speed * 4, "nameScale", nameScale, 3);
+				nameTween = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, room_speed * 4, "nameX", nameX, -60, "nameY", nameY, 80, "nameScale", nameScale, 3);
 				
 				menuno = 2;
 				cooldown = 2;

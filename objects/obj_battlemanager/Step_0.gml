@@ -522,8 +522,8 @@ if (menuno == 10000) {
 #region -- WHEN THE PLAYER DIES --
 
 if (global.hp <= 0) {
-	global.soul_pos_x = obj_battleheart.x;
-	global.soul_pos_y = obj_battleheart.y;
+	global.soulX = obj_battleheart.x;
+	global.soulY = obj_battleheart.y;
 	
 	room_goto(room_gameover);
 }
