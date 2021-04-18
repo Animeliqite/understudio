@@ -51,7 +51,7 @@ if (pauseTimer == 0)
 		{	
 			if (textSound != noone) && (c != " ")
 			{
-				for (var i = 0; i < array_length(textSound) - 1; i++;)
+				for (var i = 0; i < array_length(textSound) - 1; i++)
 					audio_stop_sound(textSound[i]);
 				
 				audio_play_sound(textSound[random_range(0, array_length(textSound) - 1)], 8, false);
@@ -62,6 +62,7 @@ if (pauseTimer == 0)
 		}
 		
 		if (global.cancel) && (skippable) {
+			skip = true;
 			messageCharPos = len;
 			drawString = msg;
 		}
@@ -77,6 +78,7 @@ if (pauseTimer == 0)
 		
 		if (global.confirm) && (confirmable) {
 			if (messageIndex < array_length(messages) - 1) {
+				skip = false;
 				mustBeInBounds = false;
 				messageIndex++;
 				messageCharPos = 0;
@@ -87,5 +89,7 @@ if (pauseTimer == 0)
 				instance_destroy();
 		}
 	}
-	messages[messageIndex] = format_text_basic(msg, true, true);
 }
+
+for (var i = 0; i < array_length(messages); i++)
+	messages[i] = format_text_basic(messages[i], true, true);

@@ -1,4 +1,5 @@
 /// @param messages
+/// @args format
 /// @args font
 /// @args baseColor
 /// @args textEffect
@@ -28,20 +29,13 @@ function create_dialogue(){
 		var textSound = argument5;
 	}
 	
-    global.cutscene = true;
-        
-    var d = instance_create(0, 0, obj_dialogue);
-            
-	for (var i = 0; i < array_length(messages); i++;) {
-        d.messages[i] = messages[i];
-    }
-	
-	for (var i = 0; i < array_length(formatList); i++;) {
-        global.format[i] = formatList[i];
-    }
-                
+	var d = instance_create(0, 0, obj_dialogue);
+	global.format = formatList;
+	d.messages = messages;
     d.font = font;
     d.baseColor = baseColor;
     d.textEffect = textEffect;
 	d.textSound = textSound;
+	
+    global.cutscene = true;
 }

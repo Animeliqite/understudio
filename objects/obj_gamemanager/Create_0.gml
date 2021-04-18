@@ -45,7 +45,6 @@ localization_init();
 
 global.playerX = 0;
 global.playerY = 0;
-
 global.soulX = room_width / 2;
 global.soulY = room_height / 2;
 
