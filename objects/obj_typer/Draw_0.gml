@@ -89,37 +89,7 @@ for (var i = 1; i < charNo + 1; i++;) {
             i += 2;
         }
         if (string_char_at(text[textNo], i + 1) == "E") {
-            if (string_char_at(text[textNo], i + 2) == "0") {
-                face.faceEmotion = 0; // X Face Emotion 0
-            }
-            if (string_char_at(text[textNo], i + 2) == "1") {
-                face.faceEmotion = 1; // X Face Emotion 1
-            }
-            if (string_char_at(text[textNo], i + 2) == "2") {
-                face.faceEmotion = 2; // X Face Emotion 2
-            }
-            if (string_char_at(text[textNo], i + 2) == "3") {
-                face.faceEmotion = 3; // X Face Emotion 3
-            }
-            if (string_char_at(text[textNo], i + 2) == "4") {
-                face.faceEmotion = 4; // X Face Emotion 4
-            }
-            if (string_char_at(text[textNo], i + 2) == "5") {
-                face.faceEmotion = 5; // X Face Emotion 5
-            }
-            if (string_char_at(text[textNo], i + 2) == "6") {
-                face.faceEmotion = 6; // X Face Emotion 6
-            }
-            if (string_char_at(text[textNo], i + 2) == "7") {
-                face.faceEmotion = 7; // X Face Emotion 7
-            }
-            if (string_char_at(text[textNo], i + 2) == "8") {
-                face.faceEmotion = 8; // X Face Emotion 8
-            }
-            if (string_char_at(text[textNo], i + 2) == "9") {
-                face.faceEmotion = 9; // X Face Emotion 9
-            }
-            
+			face.faceEmotion = real(string_char_at(text[textNo], i + 2));
             i += 2;
         }
         if (string_char_at(text[textNo], i + 1) == "T") {

@@ -9,7 +9,7 @@ function draw_box() {
 	var x2 = argument2;
 	var y2 = argument3;
 	
-	var width = 5;
+	var width = (room != room_battle ? 6 : 5);
 	
 	draw_set_color(c_white);
 	draw_rectangle(x1, y1, x2, y2, false);

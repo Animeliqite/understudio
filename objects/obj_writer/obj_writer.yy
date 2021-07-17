@@ -1,6 +1,6 @@
 {
   "spriteId": null,
-  "solid": false,
+  "solid": true,
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,

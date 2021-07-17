@@ -40,8 +40,7 @@ global.format = [];
 
 global.languages = ds_list_create();
 global.messages = ds_map_create();
-localization_init();
-//localization_load("example");
+localization_load("game");
 
 global.playerX = 0;
 global.playerY = 0;
