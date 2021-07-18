@@ -1,50 +1,48 @@
 /// @description Move the player
+
+var dancing = false;
+var u = global.up_hold, d = global.down_hold, l = global.left_hold, r = global.right_hold;
+var collLeft = place_meeting(x - moveSpeed, y, obj_solid_parent),
+	collRight = place_meeting(x + moveSpeed, y, obj_solid_parent),
+	collUp = place_meeting(x, y - moveSpeed, obj_solid_parent),
+	collDown = place_meeting(x, y + moveSpeed, obj_solid_parent);
+
 if (!global.cutscene) {
-	if (global.left_hold) {
-		if (place_meeting(x - moveSpeed, y, obj_solid_parent))
-			x += moveSpeed;
-		
-	    x -= moveSpeed;
-		sprite_index = spriteLeft;
-	    image_speed = moveSpeed / 15;
-    }
-    if (global.right_hold) {
-		if (!global.left_hold) {
-			if (place_meeting(x + moveSpeed, y, obj_solid_parent))
-				x -= moveSpeed;
-			
-		    x += moveSpeed;
-			sprite_index = spriteRight;
-			image_speed = moveSpeed / 15;
-		}
-    }
-    if (global.up_hold) {
-		if (place_meeting(x, y - moveSpeed, obj_solid_parent))
-			y += moveSpeed;
-		
-        y -= moveSpeed;
-		sprite_index = spriteUp;
-        image_speed = moveSpeed / 15;
-    }
-    if (global.down_hold) {
-		if (!global.up_hold) {
-			if (place_meeting(x, y + moveSpeed, obj_solid_parent))
-				y -= moveSpeed;
-			
-	        y += moveSpeed;
-			sprite_index = spriteDown;
-			image_speed = moveSpeed / 15;
-		}
+	if (l && r)
+		r = false;
+	
+	// Left
+	if (l && !collLeft) {
+		x -= moveSpeed;
+		if (!(u && d) && !(u && facingTo == "up") && !(d && facingTo == "down"))
+			facingTo = "left";
     }
 	
-	if (global.up_hold) && (place_meeting(x, y - moveSpeed, obj_solid_parent)) {
-		if (global.up_hold) && (global.down_hold) {
-			sprite_index = (dance ? spr_player_up : spr_player_down);
-			image_speed = moveSpeed / 15;
-			if (alarm[0] < 0)
-				alarm[0] = 1;
+	// Right
+    if (r && !collRight) {
+		x += moveSpeed;
+		if (!(u && d) && !(u && facingTo == "up") && !(d && facingTo == "down"))
+			facingTo = "right";
+    }
+	
+	// Up
+    if (u && !collUp) {
+		if (!dancing) {
+			y -= moveSpeed;
+			d = false;
 		}
-	}
+		if (dancing || (!(l && facingTo == "left") && !(r && facingTo == "right")))
+			facingTo = "up";
+    }
+	
+	// Down
+    if (d && !collDown) {
+		y += moveSpeed;
+		if (!(l && facingTo == "left") && !(r && facingTo == "right"))
+			facingTo = "down";
+    }
+	
+	dancing = (u && d && collUp);
 	
 	if (place_meeting(x, y, obj_door)) {
 		instance_nearest(x, y, obj_door).fade = true;
@@ -95,20 +93,36 @@ if (!global.cutscene) {
 			}
 		}
 	}
-	
-	if (x == xprevious) && (y == yprevious) {
-	    image_speed = 0;
-	    image_index = 0;
-	}
-	else {
-		if (instance_exists(obj_encountersetup))
-			obj_encountersetup.currentSteps++;
-	}
+}
+
+switch (facingTo) {
+	case "up":
+		sprite_index = spriteUp;
+		break;
+	case "down":
+		sprite_index = spriteDown;
+		break;
+	case "left":
+		sprite_index = spriteLeft;
+		break;
+	case "right":
+		sprite_index = spriteRight;
+		break;
 }
 
 if (x == xprevious) && (y == yprevious) {
 	image_speed = 0;
 	image_index = 0;
+}
+else {
+	if (image_speed == 0)
+		image_index = 1;
+	image_speed = moveSpeed / 15;
+	
+	if (!global.cutscene) {
+		if (instance_exists(obj_encountersetup))
+			obj_encountersetup.currentSteps++;
+	}
 }
 
 depth = depth_overworld.character-y + (sprite_height / 2);
