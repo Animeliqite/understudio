@@ -72,6 +72,11 @@ enum text_effect {
 	wave
 }
 
+#macro dir_up 0
+#macro dir_down 1
+#macro dir_left 2
+#macro dir_right 3
+
 #macro game_savename "undertale_engine"
 #macro game_name "Undertale Engine"
 #macro game_version "1.00"
