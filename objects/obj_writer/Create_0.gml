@@ -31,7 +31,8 @@ textBounds = [0, 0, display_get_gui_width(), display_get_gui_height()];
 buttonString = "";
 buttonSprite = -1;
 
-messages[messageIndex] = format_text_basic(messages[messageIndex], true, true);
+asteriskCheck = true;
+messages[messageIndex] = format_text_basic(messages[messageIndex], true, asteriskCheck);
 
 _x = x;
 _y = y;

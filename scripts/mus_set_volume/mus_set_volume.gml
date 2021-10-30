@@ -3,5 +3,5 @@
 /// @param volume
 /// @param time
 function mus_set_volume(argument0, argument1, argument2) {
-	audio_sound_gain(global.musicExt[argument0], argument1, argument2);
+	audio_sound_gain(global.musicExt[argument0], argument1, argument2 * (1000 / game_get_speed(gamespeed_fps)));
 }

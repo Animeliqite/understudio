@@ -1,4 +1,4 @@
 function bt_centerheart() {
-	obj_battleheart.x = global.boxplacement_x[0] + ((global.boxplacement_x[1] - global.boxplacement_x[0]) / 2) - (obj_battleheart.sprite_width / 2);
-	obj_battleheart.y = global.boxplacement_y[0] + ((global.boxplacement_y[1] - global.boxplacement_y[0]) / 2) - (obj_battleheart.sprite_height / 2);
+	obj_battleheart.x = global.boardX1 + ((global.boardX2 - global.boardX1) / 2);
+	obj_battleheart.y = global.boardY1 + ((global.boardY2 - global.boardY1) / 2);
 }

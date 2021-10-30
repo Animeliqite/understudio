@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "spr_actbt",
-    "path": "sprites/spr_actbt/spr_actbt.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": null,

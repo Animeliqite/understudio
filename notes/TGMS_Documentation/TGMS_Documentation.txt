@@ -1,18 +1,31 @@
 
-Please read [TGMS_0_Beta_Notes] for documentation related to the beta.
-The following documents are outdated but can still be used to supplement incomplete beta docs.
+Please read [TGMS___Beta_Notes] for documentation related to the beta.
+The following documents are incomplete or outdated but can still be used to supplement beta notes.
+
+====================
+== Discord Server ==
+====================
+	
+	Come chat!
+	https://discord.gg/CW45d5bAhj
+	
+================
+== Beta Notes ==
+================
+
+	http://stephenloney.com/_/TweenGMS/B200/TweenGMS%20Beta%20Notes.txt
 
 ===================
 == Starter Guide ==
 ===================
 
-	http://www.stephenloney.com/_/TweenGMS/105/Starter%20Guide.html
+	http://stephenloney.com/_/TweenGMS/B200/TweenGMS%20v2.0%20Starter%20Guide.html
 
 ======================
 == Script Reference ==
 ======================
 
-	http://www.stephenloney.com/_/TweenGMS/105/Script%20Reference.html
+	http://stephenloney.com/_/TweenGMS/B200/TweenGMS%20v2.0%20Script%20Reference.html
 	
 =====================
 == Video Tutorials ==
@@ -21,22 +34,15 @@ The following documents are outdated but can still be used to supplement incompl
 	https://www.youtube.com/playlist?list=PLX4uKTcINfBYVRaYyWbev0rj_9XygYtPK
 
 ======================
-== Example Projects == 
+== Example Projects ==
 ======================
 	
 	[Demo Project]
-	http://www.stephenloney.com/_/TweenGMS/105/TGMS_Examples_105.yyz
+	http://www.stephenloney.com/_/TweenGMS/B200/TGMS_Examples_200.yyz
 
 	[Game Project]
 	http://www.stephenloney.com/_/TweenGMS/105/TGMS_AlienOdds_105.yyz
 	
-====================
-== Discord Server ==
-====================
-	
-	Come chat!
-	https://discord.gg/CW45d5bAhj
-
 ====================
 == Special Thanks ==
 ====================
@@ -59,4 +65,5 @@ Jaime Pascual
 	site: https://www.solostudio.tech/
 	YouTube: https://www.youtube.com/channel/UCGb1IVJFuVrs_pY7NTc6bSQ?
 
-@Tsugumo_BPO
+@Tsugumo_BPO (breaker of things)
+

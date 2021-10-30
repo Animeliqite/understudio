@@ -1,15 +1,8 @@
-text_current = 0;
+textSpeed = 2;
+text = ["Error"];
+format = [];
+sound = [snd_text_default];
+sprite = [spr_speechbubble_left_normal];
 
-text[0] = "";
-sprite[0] = spr_speechbubble_left_normal;
-
-template = 0;
-
-text_end = array_length(text) - 1;
-
-if (instance_exists(obj_targetchoice))
-    instance_destroy(obj_targetchoice);
-
-if (instance_exists(obj_target))
-    obj_target.done = true;
-
+alarm[0] = 2;
+ready = false;

@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "spr_mercybt",
-    "path": "sprites/spr_mercybt/spr_mercybt.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": null,

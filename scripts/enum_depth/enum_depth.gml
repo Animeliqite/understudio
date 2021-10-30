@@ -1,7 +1,8 @@
 function enum_depth(){
 	enum depth_battle {
 		bg = -100,
-		enemy = -200,
+		ui_low = -200,
+		enemy = -250,
 		ui = -300,
 		bullet = -400,
 		heart = -500,

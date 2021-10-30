@@ -1,4 +1,4 @@
-menuno = (file_exists(get_savefile_name()) ? 3 : 0);
+state = (file_exists(get_savefile_name()) ? 3 : 0);
 cooldown = 2;
 global.name = (file_exists(get_savefile_name()) ? global.name : "");
 

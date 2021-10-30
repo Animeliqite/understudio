@@ -41,5 +41,5 @@ if (monsterhp[0] > 0) {
 else {
 	bt_spawn_dust(body[0].x, body[0].y, "t", true);
 	body[0].visible = false;
-	obj_battlemanager.menuno = 10000;
+	obj_battlemanager.menu = 10000;
 }

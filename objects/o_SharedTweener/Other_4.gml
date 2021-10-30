@@ -1,13 +1,5 @@
 /// @desc Handle Persistence
 
-// TODO: Make this a compiler option -- off by default
-// Prevent tweener from becoming deactivated by injecting layer with activation function
-/*
-if (layer_get_id("TGMS") == -1 && room != room_first)
-{
-	layer_script_begin(layer_create(0, "TGMS"), function(){instance_activate_object(id)});
-}
-*/
 
 // Reset auto-cleaner index
 autoCleanIndex = 0;

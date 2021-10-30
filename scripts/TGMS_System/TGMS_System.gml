@@ -1,6 +1,6 @@
 
 
-/// @description Creates and/or Returns Shared Tweener Singleton
+
 function SharedTweener() 
 {
 	if (instance_exists(o_SharedTweener))
@@ -12,8 +12,6 @@ function SharedTweener()
 }
 	
 	
-/// @func TGMS_FetchTween(tweenID)
-/// @desc Returns raw tween array associated with tween id
 function TGMS_FetchTween(tweenID) 
 {
 	if (is_array(tweenID))
@@ -30,18 +28,18 @@ function TGMS_FetchTween(tweenID)
 		}
 		
 		// Check for tween in Tween Index Map
-		if (ds_map_exists(global.TGMS_TweenIndexMap, tweenID))
+		if (ds_map_exists(global.TGMS.TweenIndexMap, tweenID))
 		{
-		    return global.TGMS_TweenIndexMap[? tweenID];
+		    return global.TGMS.TweenIndexMap[? tweenID];
 		}
 		
 		// Tween Offset Select
 		if (!is_undefined(tweenID) && tweenID <= 0)
 		{
-			return global.TGMS_TweenIndexMap[? global.TGMS_TweenIndex-tweenID];	
+			return global.TGMS.TweenIndexMap[? global.TGMS.TweenIndex-tweenID];	
 		}
 	}
-	else // It's gotta be a struct, right?
+	else // It's gotta be a struct, right? // TODO: THIS MIGHT BREAK WITH COMING GMS UPDATE!!
 	if (is_struct(tweenID)) // Passed 'self' for a struct
 	{
 		return tweenID == self ? {target: tweenID} : tweenID;
@@ -54,13 +52,11 @@ function TGMS_FetchTween(tweenID)
 }
 
 
-/// @func TGMS_TargetExists(target)
-/// @desc Checks if target instance exists
 function TGMS_TargetExists(target) 
 {
 	if (is_real(target))
 	{
-		if (global.TGMS_TweensIncludeDeactivated)
+		if (global.TGMS.TweensIncludeDeactivated)
 		{		
 		    if (instance_exists(target))
 			{
@@ -87,20 +83,28 @@ function TGMS_TargetExists(target)
 }
 
 
-/// @func TGMS_StringLower(string, offset)
-/// @desc Faster implementation for lowering ascii-only strings
-function TGMS_StringLower(_string, _offset) 
-{	
+function TGMS_StringStrip(_string, _offset) 
+{	/// @desc Faster implementation for lowering strings and removing underscores	
+	/// @func TGMS_StringStrip(string, offset)
+	
+	// Create static string cache
 	static cache = ds_map_create();
 	
 	// Check cache for existing lowered string
 	if (ds_map_exists(cache, _string))
 	{
-		return cache[? _string];	
+		return cache[? _string];
 	}
 	
 	// Store original string
-	var _string_og = _string;
+	static _string_og = "";
+	_string_og = _string;
+	
+	// Remove underscores
+	static _underscore = "_";
+	static _empty = "";
+	_string = string_replace_all(_string, _underscore, _empty);
+	//_string = string_lettersdigits(_string); // This might be usable instead...
 	
 	// Convert string to lowercase
 	repeat(string_length(_string)-_offset)
@@ -110,7 +114,7 @@ function TGMS_StringLower(_string, _offset)
 			_string = string_set_byte_at(_string, _offset, 32+string_byte_at(_string, _offset));
 		}
 	}
-	
+
 	// Store new string into cache
 	cache[? _string_og] = _string;
 	// Return new lower case string
@@ -118,17 +122,12 @@ function TGMS_StringLower(_string, _offset)
 }
 
 
-// Utility function for TweenAddCallbackUser()
-function TGMS_EventUser(numb) 
-{ 
-	event_user(numb);
-}
-
-
-/// @func TGMS_Tween(script, args, tweenID)
-/// @desc Base function for calling tweens
 function TGMS_Tween(script, args, tweenID)
-{	
+{
+	static STR_AT = "@";
+	static str_ref = "ref";
+	static str_path_positionprevious = "path_positionprevious";
+	
 	var _t, _tID, _pData;
 	var _doStart = true;
 	
@@ -140,7 +139,7 @@ function TGMS_Tween(script, args, tweenID)
 
 	if (script == TweenDefine)
 	{
-		_tID = (tweenID > 0) ? tweenID : global.TGMS_TweenIndexMap[? global.TGMS_TweenIndex-tweenID]; // Cache tween id
+		_tID = (tweenID > 0) ? tweenID : global.TGMS.TweenIndexMap[? global.TGMS.TweenIndex-tweenID]; // Cache tween id
 
 		if (!TweenExists(_tID))
 		{
@@ -153,9 +152,16 @@ function TGMS_Tween(script, args, tweenID)
 	}
 	else
 	if (script == TweenPlay)
-	{
-		_tID = (tweenID > 0) ? tweenID : global.TGMS_TweenIndexMap[? global.TGMS_TweenIndex-tweenID]; // Cache tween id
-
+	{	
+		if (is_array(tweenID))
+		{
+			_tID = tweenID;	
+		}
+		else
+		{
+			_tID = (tweenID > 0) ? tweenID : global.TGMS.TweenIndexMap[? global.TGMS.TweenIndex-tweenID]; // Cache tween id
+		}
+		
 		if (!TweenExists(_tID))
 		{
 			return 0;
@@ -176,14 +182,14 @@ function TGMS_Tween(script, args, tweenID)
 	}
 	else
 	{
-		_tID = ++global.TGMS_TweenIndex;			// Get new unique tween id
-		_t = global.TGMS_TweenDefault;				// Get default tween base
+		_tID = ++global.TGMS.TweenIndex;			// Get new unique tween id
+		_t = global.TGMS.TweenDefault;				// Get default tween base
 		_t[TWEEN.ID] = _tID;						// New tween created with unique id
 		_t[TWEEN.CALLER] = is_struct(self) ? weak_ref_create(self) : id; // Struct or Instance calling the script
 		_t[TWEEN.TARGET] = _t[TWEEN.CALLER];	// Set default target to caller id
 		_t[TWEEN.DESTROY] = (script == TweenCreate ? 0 : 1);  // Make persistent?
 		ds_list_add(_sharedTweener.tweens, _t);		// Add tween to global tweens list
-		global.TGMS_TweenIndexMap[? _tID] = _t;		// Associate tween with global id
+		global.TGMS.TweenIndexMap[? _tID] = _t;		// Associate tween with global id
 		_pData = [];
 	}
 
@@ -194,7 +200,7 @@ function TGMS_Tween(script, args, tweenID)
 
 	// Loop through AND process script parameters
 	while(i < _paramCount)
-	{
+	{		
 		// Get next tag
 		var _tag = args[++i]; 
 		
@@ -243,7 +249,7 @@ function TGMS_Tween(script, args, tweenID)
 			switch(_argCount)
 			{
 			case 1: _tag = [_command, undefined]; break;
-			case 2: _tag = ds_map_exists(global.TGMS_PropertyNormals, _command) ? [_command, [_firstArg, 0, 0]] : [_command, _firstArg]; break;
+			case 2: _tag = ds_map_exists(global.TGMS.PropertyNormals, _command) ? [_command, [_firstArg, 0, 0]] : [_command, _firstArg]; break;
 			default:
 				var _xargs = array_create(_argCount-1);
 				var _iArg = 0;
@@ -269,18 +275,17 @@ function TGMS_Tween(script, args, tweenID)
 			break;
 				
 			case 62: // > To
-				array_push(_pData, _tag, global.TGMS_STR_AT, args[++i]);
+				array_push(_pData, _tag, STR_AT, args[++i]);
 			break; 
 				
 			case 60: // < From
-				array_push(_pData, _tag, args[++i], global.TGMS_STR_AT);
+				array_push(_pData, _tag, args[++i], STR_AT);
 			break;
 			}
 		}
 		else // Not an advanced property...
-		{			
-			//var _argLabel = (is_int64(_tag)) ? _tag : global.TGMS_ArgumentLabels[? TGMS_StringLower(_tag, 0)]; -- original
-			var _argLabel = (is_string(_tag)) ? global.TGMS_ArgumentLabels[? TGMS_StringLower(_tag, 0)] : _tag;
+		{		
+			var _argLabel = (is_string(_tag)) ? global.TGMS.ArgumentLabels[? TGMS_StringStrip(_tag, 0)] : _tag;
 			
 			// NEW
 			if (is_numeric(_argLabel))
@@ -295,8 +300,8 @@ function TGMS_Tween(script, args, tweenID)
 						{
 							switch(_argLabel)
 							{
-								case TWEEN.EASE: _t[@ TWEEN.EASE] = global.TGMS_ShortCodesEase[? TGMS_StringLower(_nextArg, 0)]; break;
-								case TWEEN.MODE: _t[@ TWEEN.MODE] = global.TGMS_ShortCodesMode[? TGMS_StringLower(_nextArg, 0)]; break;
+								case TWEEN.EASE: _t[@ TWEEN.EASE] = global.TGMS.ShortCodesEase[? TGMS_StringStrip(_nextArg, 0)]; break;
+								case TWEEN.MODE: _t[@ TWEEN.MODE] = global.TGMS.ShortCodesMode[? TGMS_StringStrip(_nextArg, 0)]; break;
 							}
 						}
 						else
@@ -307,8 +312,17 @@ function TGMS_Tween(script, args, tweenID)
 						
 					// "@" Event Callback -- This makes sure that we use the right assigned target before actually adding the callbacks later in this function
 					case 64:
-						if (_qCallbacks == -1) { _qCallbacks = ds_queue_create(); }
-						ds_queue_enqueue(_qCallbacks, _argLabel, args[++i]);
+						/* TODO: Add "@update" 
+						if (_argLabel == -1) // THIS MEANS "@update" -- special case
+						{
+							array_push(_pData, _tag, args[i-1], args[i]);
+						}
+						else
+						*/
+						{
+							if (_qCallbacks == -1) { _qCallbacks = ds_queue_create(); }
+							ds_queue_enqueue(_qCallbacks, _argLabel, args[++i]);
+						}
 					break;
 				
 					// ">" Count OR ">>" Chain
@@ -326,24 +340,27 @@ function TGMS_Tween(script, args, tweenID)
 						if (i < _paramCount && is_real(args[i+1])) // ADD PLAY CHAIN TO SELECTED TWEEN
 						{	
 							++i;
-							TweenAddCallback(args[i] ? args[i] : args[i]+global.TGMS_TweenIndex, TWEEN_EV_FINISH, _sharedTweener, TweenPlay, _tID); // Use index based on whether or not greater than 0 ... -1
+							TweenAddCallback(args[i] ? args[i] : args[i]+global.TGMS.TweenIndex, TWEEN_EV_FINISH, _sharedTweener, TweenPlay, _tID); // Use index based on whether or not greater than 0 ... -1
 						}
 						else // < ADD PLAY CHAIN TO PREVIOUSLY CREATED TWEEN
 						{	
-							TweenAddCallback(global.TGMS_TweenIndex-1, TWEEN_EV_FINISH, _sharedTweener, TweenPlay, _tID);
+							TweenAddCallback(global.TGMS.TweenIndex-1, TWEEN_EV_FINISH, _sharedTweener, TweenPlay, _tID);
 						}
 					break;
 				} 
+				
+				_nextArg = undefined; // TODO: Check if this is needed for clear struct
 			}
 			else // Shorthand setters
 			{
-				var _shortIndex = global.TGMS_ShorthandTable[string_byte_at(_tag, 1)];
+				var _shortIndex = global.TGMS.ShorthandTable[string_byte_at(_tag, 1)];
+			
 				if (_shortIndex) // CHECK FOR SHORTHAND SETTER
 				{			
 					switch(_shortIndex)
 					{
-						case TWEEN.EASE: _t[@ _shortIndex] = global.TGMS_ShortCodesEase[? TGMS_StringLower(_tag, 1)]; break;
-						case TWEEN.MODE: _t[@ _shortIndex] = global.TGMS_ShortCodesMode[? TGMS_StringLower(_tag, 1)]; break;
+						case TWEEN.EASE: _t[@ TWEEN.EASE] = global.TGMS.ShortCodesEase[? TGMS_StringStrip(_tag, 1)]; break;
+						case TWEEN.MODE: _t[@ TWEEN.MODE] = global.TGMS.ShortCodesMode[? TGMS_StringStrip(_tag, 1)]; break;
 						default: _t[@ _shortIndex] = real(string_delete(_tag, 1, 1)); break;
 					}
 				}
@@ -359,11 +376,11 @@ function TGMS_Tween(script, args, tweenID)
 					break;
 				
 					case 62: // > To
-						array_push(_pData, string_delete(_tag, string_length(_tag), 1), global.TGMS_STR_AT, args[++i]);
+						array_push(_pData, string_delete(_tag, string_length(_tag), 1), STR_AT, args[++i]);
 					break; 
 				
 					case 60: // < From
-						array_push(_pData, string_delete(_tag, string_length(_tag), 1), args[++i], global.TGMS_STR_AT);
+						array_push(_pData, string_delete(_tag, string_length(_tag), 1), args[++i], STR_AT);
 					break;
 						
 					default:
@@ -374,12 +391,13 @@ function TGMS_Tween(script, args, tweenID)
 			}
 		}
 	}
+
 	
 	if (_t[TWEEN.GROUP] != 0)
 	{	// Default group scale to 1.0 if it doesn't exit
-		if (!ds_map_exists(global.TGMS_GroupScales, _t[TWEEN.GROUP]))
+		if (!ds_map_exists(global.TGMS.GroupScales, _t[TWEEN.GROUP]))
 		{
-			global.TGMS_GroupScales[? _t[TWEEN.GROUP]] = 1.0;	
+			global.TGMS.GroupScales[? _t[TWEEN.GROUP]] = 1.0;	
 		}
 	}
 	
@@ -387,14 +405,12 @@ function TGMS_Tween(script, args, tweenID)
 	_t[@ TWEEN.PROPERTY_DATA_RAW] = _pData;
 	
 	// Finalize used target -- If it WALKS like a duck and SOUNDS like a duck... it better be a duck!
-	static str_path_positionprevious = "path_positionprevious"
-	static str_ref = "ref";
 	if (is_real(_t[TWEEN.TARGET]) || is_real(_t[TWEEN.TARGET][$ str_path_positionprevious]))
 	{
 		_t[@ TWEEN.TARGET] = _t[TWEEN.TARGET].id;
 	}
 	else // Set target as a weak reference if it isn't a weak reference already 
-	if (variable_struct_names_count(_t[TWEEN.TARGET]) != 1 || _t[TWEEN.TARGET][$ str_ref] == undefined)
+	if (variable_struct_names_count(_t[TWEEN.TARGET]) != 1 || _t[TWEEN.TARGET][$ str_ref] == undefined) // TODO: I might get rid of this and enforce NO WEAK REFERENCES!
 	{
 		_t[@ TWEEN.TARGET] = weak_ref_create(_t[TWEEN.TARGET]);
 	}
@@ -403,52 +419,76 @@ function TGMS_Tween(script, args, tweenID)
 	// Set the active ease function -- convert "ease" string to function if needed
 	if (is_string(_t[TWEEN.EASE]))
 	{
-		_t[@ TWEEN.EASE] = global.TGMS_ShortCodesEase[? TGMS_StringLower(_t[TWEEN.EASE], 0)]
+		_t[@ TWEEN.EASE] = global.TGMS.ShortCodesEase[? TGMS_StringStrip(_t[TWEEN.EASE], 0)];
 	}
 	else
 	if (is_real(_t[TWEEN.EASE]))
 	{
-		_t[@ TWEEN.EASE] = animcurve_get_channel(_t[TWEEN.EASE], 0);
+		if (_t[TWEEN.EASE] < 100000) // Animation Curve ID
+		{
+			_t[@ TWEEN.EASE] = animcurve_get_channel(_t[TWEEN.EASE], 0);
+		}
+		else // Function ID
+		{
+			_t[@ TWEEN.EASE] = method(undefined, _t[TWEEN.EASE]);
+		}
 	}
 	else
-	if (is_array(_t[TWEEN.EASE]))
+	if (is_array(_t[TWEEN.EASE])) // DERP
 	{	
 		// Convert ease strings into functions
-		if (is_string(_t[@ TWEEN.EASE][0]))
+		if (is_string(_t[TWEEN.EASE][0]))
 		{
-			_t[TWEEN.EASE][@ 0] = global.TGMS_ShortCodesEase[? TGMS_StringLower(_t[TWEEN.EASE][0], 0)];
+			_t[TWEEN.EASE][@ 0] = global.TGMS.ShortCodesEase[? TGMS_StringStrip(_t[TWEEN.EASE][0], 0)];
 		}
 		else
-		if (is_real(_t[@ TWEEN.EASE][0]))
+		if (is_real(_t[TWEEN.EASE][0]))
 		{
-			_t[TWEEN.EASE][@ 0] = animcurve_get_channel(_t[TWEEN.EASE][0], 0);
+			if (_t[TWEEN.EASE][0] < 100000)
+			{
+				_t[TWEEN.EASE][@ 0] = animcurve_get_channel(_t[TWEEN.EASE][0], 0);
+			}
+			else
+			{
+				_t[TWEEN.EASE][@ 0] = method(undefined, _t[TWEEN.EASE][0]);
+			}
 		}
 		
-		if (is_string(_t[@ TWEEN.EASE][1]))
+		if (is_string(_t[TWEEN.EASE][1]))
 		{
-			_t[TWEEN.EASE][@ 1] = global.TGMS_ShortCodesEase[? TGMS_StringLower(_t[TWEEN.EASE][1], 0)];
+			_t[TWEEN.EASE][@ 1] = global.TGMS.ShortCodesEase[? TGMS_StringStrip(_t[TWEEN.EASE][1], 0)];
 		}
 		else
-		if (is_real(_t[@ TWEEN.EASE][1]))
+		if (is_real(_t[TWEEN.EASE][1]))
 		{
-			_t[TWEEN.EASE][@ 1] = animcurve_get_channel(_t[TWEEN.EASE][1], 0);
+			if (_t[TWEEN.EASE][1] < 100000)
+			{
+				_t[TWEEN.EASE][@ 1] = animcurve_get_channel(_t[TWEEN.EASE][1], 0);
+			}
+			else
+			{
+				_t[TWEEN.EASE][@ 1] = method(undefined, _t[TWEEN.EASE][1]);
+			}
 		}
 		
 		// Store raw tweens for swapping
-		_t[@ TWEEN.EASE_RAW] = _t[@ TWEEN.EASE];
+		_t[@ TWEEN.EASE_RAW] = _t[TWEEN.EASE];
 		// Set the active ease function
-		_t[@ TWEEN.EASE] = _t[@ TWEEN.EASE][@ 0];
+		_t[@ TWEEN.EASE] = _t[TWEEN.EASE][0];
 	}
 	
-	if (is_array(_t[TWEEN.MODE]))
+	if (!is_numeric(_t[TWEEN.MODE]))
 	{
-		_t[@ TWEEN.CONTINUE_COUNT] = _t[TWEEN.MODE][1];
-		_t[@ TWEEN.MODE] = is_real(_t[TWEEN.MODE][0]) ? _t[TWEEN.MODE][0] : global.TGMS_ShortCodesMode[? TGMS_StringLower(_t[TWEEN.MODE][0], 0)];
-	}
-	else
-	if (is_string(_t[TWEEN.MODE]))
-	{
-		_t[@ TWEEN.MODE] = global.TGMS_ShortCodesMode[? TGMS_StringLower(_t[TWEEN.MODE], 0)];
+		if (is_string(_t[TWEEN.MODE]))
+		{
+			_t[@ TWEEN.MODE] = global.TGMS.ShortCodesMode[? TGMS_StringStrip(_t[TWEEN.MODE], 0)];
+		}
+		else
+		if (is_array(_t[TWEEN.MODE]))
+		{
+			_t[@ TWEEN.CONTINUE_COUNT] = _t[TWEEN.MODE][1];
+			_t[@ TWEEN.MODE] = is_real(_t[TWEEN.MODE][0]) ? _t[TWEEN.MODE][0] : global.TGMS.ShortCodesMode[? TGMS_StringStrip(_t[TWEEN.MODE][0], 0)];
+		}
 	}
 
 	if (is_array(_t[TWEEN.DURATION]) && array_length(_t[TWEEN.DURATION]) == 2)
@@ -473,6 +513,18 @@ function TGMS_Tween(script, args, tweenID)
 			var _event = ds_queue_dequeue(_qCallbacks);
 			var _cbData = ds_queue_dequeue(_qCallbacks);
 			
+			// NEW --- working on this...
+			// Need to add to the pData array
+			// Insert if allowing for update_begin
+			// Do I want to do "-update" or "@update"
+			//TweenFire(id, "io", 0, true, 0, 1, "@update", DoThing, "x>", mouse_x, "@update", DoPostThing);
+			/*
+			if (_event == TWEEN_EV_UPDATE)
+			{
+				
+			}
+			else
+			*/
 			if (is_array(_cbData))
 			{
 				if (is_struct(_cbData[0]))
@@ -539,13 +591,6 @@ function TGMS_Tween(script, args, tweenID)
 	else // Start tween right away
 	if (_doStart)
 	{		
-		// Pre-process tween data
-		TGMS_TweenPreprocess(_t);
-		// Process tween
-		TGMS_TweenProcess(_t, _t[TWEEN.TIME], _t[TWEEN.PROPERTY_DATA],  is_real(_t[TWEEN.TARGET]) ? _t[TWEEN.TARGET] : _t[TWEEN.TARGET].ref); // TODO: Maybe allow this to be skipped ??
-		// Execute "On Play" event
-		TGMS_ExecuteEvent(_t, TWEEN_EV_PLAY, 0);
-		
 		if (_sharedTweener.inUpdateLoop)
 		{
 			ds_queue_enqueue(_sharedTweener.stateChanger, _t, _t[TWEEN.TARGET]);	
@@ -554,6 +599,13 @@ function TGMS_Tween(script, args, tweenID)
 		{
 			_t[@ TWEEN.STATE] = _t[TWEEN.TARGET]; // Set tween as active
 		}
+		
+		// Pre-process tween data
+		TGMS_TweenPreprocess(_t);
+		// Process tween
+		TGMS_TweenProcess(_t, _t[TWEEN.TIME], _t[TWEEN.PROPERTY_DATA],  is_real(_t[TWEEN.TARGET]) ? _t[TWEEN.TARGET] : _t[TWEEN.TARGET].ref); // TODO: Maybe allow this to be skipped ??
+		// Execute "On Play" event
+		TGMS_ExecuteEvent(_t, TWEEN_EV_PLAY, 0);
 	}
 
 	// Return tween id
@@ -561,10 +613,15 @@ function TGMS_Tween(script, args, tweenID)
 }
 
 
-/// @function TGMS_TweenPreprocess(rawTween)
-/// @description Preprocess raw tween data
 function TGMS_TweenPreprocess(_t) 
-{
+{	/// @func TGMS_TweenPreprocess(rawTween)
+	static STR_AT = "@";
+	static STR_AT_PLUS = "@+";
+	static STR_EMPTY = "";
+	static STR_SPACE = " ";
+	static STR_DOLLAR = "$";
+	static STR_DOT = ".";
+	
 	var _target = is_real(_t[TWEEN.TARGET]) ? _t[TWEEN.TARGET] : _t[TWEEN.TARGET].ref;
 	var _caller = is_real(_t[TWEEN.CALLER]) ? _t[TWEEN.CALLER] : _t[TWEEN.CALLER].ref;	
 
@@ -589,13 +646,13 @@ function TGMS_TweenPreprocess(_t)
 			// RELATIVE ARRAY VALUES [100]
 			if (is_array(_pValue))
 			{	// Add "+" for positive numbers ... No "-" needed for negative numbers.
-				_pValue = _pValue[0] >= 0 ? global.TGMS_STR_AT_PLUS+string(_pValue[0]) : global.TGMS_STR_AT+string(_pValue[0]);
+				_pValue = _pValue[0] >= 0 ? STR_AT_PLUS+string(_pValue[0]) : STR_AT+string(_pValue[0]);
 			}
 	
 			// STRING VALUES (START DEST)
 			if (is_string(_pValue))
 			{	// Remove any spaces in string
-				_pValue = string_replace_all(_pValue, global.TGMS_STR_SPACE, global.TGMS_STR_EMPTY); 
+				_pValue = string_replace_all(_pValue, STR_SPACE, STR_EMPTY); 
 
 				// Check for initial minus sign
 				var _preOp = 1;
@@ -618,13 +675,16 @@ function TGMS_TweenPreprocess(_t)
 					}
 				}
 			
+				// Update TWEEN_SELF macro
+				global.TGMS.tween_self = _t[TWEEN.ID];
+			
 				if (_op) // HANDLE MATH OPERATION
 				{		
 					var _pre = string_copy(_pValue, 1, _op-1);
 					var _post = string_copy(_pValue, _op+1, string_length(_pValue)-_op);
 	
-					_pre = _pre == global.TGMS_STR_AT ? TGMS_Variable_Get(_target, _variable, _caller) : TGMS_Variable_Get(_target, _pre, _caller);
-					_post = _post == global.TGMS_STR_AT ? TGMS_Variable_Get(_target, _variable, _caller) : TGMS_Variable_Get(_target, _post, _caller);
+					_pre = _pre == STR_AT ? TGMS_Variable_Get(_target, _variable, _caller) : TGMS_Variable_Get(_target, _pre, _caller);
+					_post = _post == STR_AT ? TGMS_Variable_Get(_target, _variable, _caller) : TGMS_Variable_Get(_target, _post, _caller);
 
 					// Perform operation
 					switch(string_byte_at(_pValue, _op)) // TODO: Add _postOp??
@@ -637,8 +697,11 @@ function TGMS_TweenPreprocess(_t)
 				}
 				else // NO MATH OPERATION
 				{	
-					_pData[i] = _pValue == global.TGMS_STR_AT ? _preOp*TGMS_Variable_Get(_target, _variable, _caller) : _preOp*TGMS_Variable_Get(_target, _pValue, _caller);
+					_pData[i] = _pValue == STR_AT ? _preOp*TGMS_Variable_Get(_target, _variable, _caller) : _preOp*TGMS_Variable_Get(_target, _pValue, _caller);
 				}
+				
+				// Clear TWEEN_SELF macro
+				global.TGMS.tween_self = undefined;
 			}
 		}
 		
@@ -648,9 +711,9 @@ function TGMS_TweenPreprocess(_t)
 		if (is_array(_variable)) // ADVANCED PROPERTY
 		{
 			// Track raw property setter method
-			_extData[_extIndex] = global.TGMS_PropertySetters[? _variable[0]];
+			_extData[_extIndex] = global.TGMS.PropertySetters[? _variable[0]];
 			
-			if (ds_map_exists(global.TGMS_PropertyNormals, _variable[0])) // NORMALIZED
+			if (ds_map_exists(global.TGMS.PropertyNormals, _variable[0])) // NORMALIZED
 			{	
 				_extData[1+_extIndex] = 0; // normalized start
 				_extData[2+_extIndex] = 1; // normalized change
@@ -667,22 +730,22 @@ function TGMS_TweenPreprocess(_t)
 			_extData[3+_extIndex] = _variable[1]; // data
 		}
 		else // METHOD PROPERTY
-		if (_target[$ global.TGMS_STR_DOLLAR+_variable] != undefined)
+		if (_target[$ STR_DOLLAR+_variable] != undefined)
 		{
-			_extData[  _extIndex] = _target[$ global.TGMS_STR_DOLLAR+_variable];
+			_extData[  _extIndex] = _target[$ STR_DOLLAR+_variable];
 			_extData[1+_extIndex] = _pData[i-1]; // start
 			_extData[2+_extIndex] = _pData[i] - _pData[i-1]; // change
 			_extData[3+_extIndex] = _variable; // data
 		}
 		else // OPTIMISED PROPERTY
-		if (ds_map_exists(global.TGMS_PropertySetters, _variable))
+		if (ds_map_exists(global.TGMS.PropertySetters, _variable))
 		{
-			//_variable = global.TGMS_PropertySetters[? _variable];
+			//_variable = global.TGMS.PropertySetters[? _variable];
 			//_extData[_extIndex] = _variable; // Track raw property
-			_extData[_extIndex] = global.TGMS_PropertySetters[? _variable]; // Track raw property
+			_extData[_extIndex] = global.TGMS.PropertySetters[? _variable]; // Track raw property
 			
-			//if (!is_method(_variable) && ds_map_exists(global.TGMS_PropertyNormals, _variable))
-			if (ds_map_exists(global.TGMS_PropertyNormals, _variable)) // NORMALIZED -- BUG IN HTML5 when checking method against a map
+			//if (!is_method(_variable) && ds_map_exists(global.TGMS.PropertyNormals, _variable))
+			if (ds_map_exists(global.TGMS.PropertyNormals, _variable)) // NORMALIZED -- BUG IN HTML5 when checking method against a map
 			{
 				_extData[1+_extIndex] = 0; // normalized start
 				_extData[2+_extIndex] = 1; // normalized change
@@ -698,7 +761,7 @@ function TGMS_TweenPreprocess(_t)
 		else // DYNAMIC PROPERTY
 		{
 			// NEW -- CHECK FOR STRUCTURE -- May need to extend this to support indexing object data
-			var _dotPos = string_pos(global.TGMS_STR_DOT, _variable);
+			var _dotPos = string_pos(STR_DOT, _variable);
 			
 			if (_dotPos) //
 			{
@@ -753,8 +816,27 @@ function TGMS_TweenPreprocess(_t)
 				_extData[2+_extIndex] = _pData[i] - _pData[i-1]; // change
 				_extData[3+_extIndex] = _variable; // data
 			}
+		}		
+	}
+	
+	// NEW!!! ---- Deal with magnitude!!!!
+	/*
+	if (!is_method(_t[TWEEN.EASE]))
+	{
+		static str_tgms_use_magnitude = "tgms_use_magnitude";
+		
+		if (variable_struct_exists(_t[TWEEN.EASE], str_tgms_use_magnitude))
+		{
+			var i = 2;
+			repeat(array_length(_extData) div 4)
+			{
+				_extData[i+1] += _extData[i]; // Convert to magnitude instead of destination
+				i += 4;
+			}
 		}
 	}
+	*/
+	
 
 	// Assign property data values
 	_t[@ TWEEN.PROPERTY_DATA] = _extData;
@@ -795,119 +877,139 @@ function TGMS_TweenPreprocess(_t)
 }
 
 
-/// @description Process tween data
-function TGMS_TweenProcess(tween, time, data, target) 
+function TGMS_TweenProcess(_t, time, data, target) 
 { 	
 	switch(data[0]) // Property Count
 	{
 	case 1:
-		if (is_method(tween[TWEEN.EASE]))
+		if (is_method(_t[TWEEN.EASE]))
 		{
-			data[@ 1](tween[@ TWEEN.EASE](time, data[2], data[3], tween[TWEEN.DURATION], tween), target, data[4], tween); 
+			data[1](_t[TWEEN.EASE](time, data[2], data[3], _t[TWEEN.DURATION], _t), target, data[4], _t);
 		}
 		else
 		{
-			data[@ 1](data[2] + data[3]*animcurve_channel_evaluate(tween[TWEEN.EASE], time/tween[TWEEN.DURATION]), target, data[4], tween); 
+			data[1](data[2] + data[3]*animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]), target, data[4], _t); 
 		}
 	break;
 	
 	case 2:
-		time = is_method(tween[TWEEN.EASE]) ? tween[@ TWEEN.EASE](time, 0, 1, tween[TWEEN.DURATION], tween) : animcurve_channel_evaluate(tween[TWEEN.EASE], time/tween[TWEEN.DURATION]);
-		data[@ 1](time*data[3]+data[2], target, data[4], tween);
-		data[@ 5](time*data[7]+data[6], target, data[8], tween);
+		time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]);
+		data[1](time*data[3]+data[2], target, data[4], _t);
+		data[5](time*data[7]+data[6], target, data[8], _t);
 	break;
 	
 	case 3:
-		time = is_method(tween[TWEEN.EASE]) ? tween[@ TWEEN.EASE](time, 0, 1, tween[TWEEN.DURATION], tween) : animcurve_channel_evaluate(tween[TWEEN.EASE], time/tween[TWEEN.DURATION]);
-	    data[@ 1](time*data[3]+data[2], target, data[4], tween);
-	    data[@ 5](time*data[7]+data[6], target, data[8], tween);
-	    data[@ 9](time*data[11]+data[10], target, data[12], tween);
+		time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]);
+	    data[1](time*data[3]+data[2], target, data[4], _t);
+	    data[5](time*data[7]+data[6], target, data[8], _t);
+	    data[9](time*data[11]+data[10], target, data[12], _t);
 	break;
 	
 	case 4:
-		time = is_method(tween[TWEEN.EASE]) ? tween[@ TWEEN.EASE](time, 0, 1, tween[TWEEN.DURATION], tween) : animcurve_channel_evaluate(tween[TWEEN.EASE], time/tween[TWEEN.DURATION]);
-	    data[@ 1](time*data[3]+data[2], target, data[4], tween);
-	    data[@ 5](time*data[7]+data[6], target, data[8], tween);
-	    data[@ 9](time*data[11]+data[10], target, data[12], tween);
-	    data[@ 13](time*data[15]+data[14], target, data[16], tween);
+		time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]);
+	    data[1](time*data[3]+data[2], target, data[4], _t);
+	    data[5](time*data[7]+data[6], target, data[8], _t);
+	    data[9](time*data[11]+data[10], target, data[12], _t);
+	    data[13](time*data[15]+data[14], target, data[16], _t);
 	break;
 	
 	case 5:
-		time = is_method(tween[TWEEN.EASE]) ? tween[@ TWEEN.EASE](time, 0, 1, tween[TWEEN.DURATION], tween) : animcurve_channel_evaluate(tween[TWEEN.EASE], time/tween[TWEEN.DURATION]);
-	    data[@ 1](time*data[3]+data[2], target, data[4], tween);
-	    data[@ 5](time*data[7]+data[6], target, data[8], tween);
-	    data[@ 9](time*data[11]+data[10], target, data[12], tween);
-	    data[@ 13](time*data[15]+data[14], target, data[16], tween);
-	    data[@ 17](time*data[19]+data[18], target, data[20], tween);
+		time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]);
+	    data[1](time*data[3]+data[2], target, data[4], _t);
+	    data[5](time*data[7]+data[6], target, data[8], _t);
+	    data[9](time*data[11]+data[10], target, data[12], _t);
+	    data[13](time*data[15]+data[14], target, data[16], _t);
+	    data[17](time*data[19]+data[18], target, data[20], _t);
 	break;
 	
 	case 6:
-		time = is_method(tween[TWEEN.EASE]) ? tween[@ TWEEN.EASE](time, 0, 1, tween[TWEEN.DURATION], tween) : animcurve_channel_evaluate(tween[TWEEN.EASE], time/tween[TWEEN.DURATION]);
-	    data[@ 1](time*data[3]+data[2], target, data[4], tween);
-	    data[@ 5](time*data[7]+data[6], target, data[8], tween);
-	    data[@ 9](time*data[11]+data[10], target, data[12], tween);
-	    data[@ 13](time*data[15]+data[14], target, data[16], tween);
-	    data[@ 17](time*data[19]+data[18], target, data[20], tween);
-	    data[@ 21](time*data[23]+data[22], target, data[24], tween);
+		time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]);
+	    data[1](time*data[3]+data[2], target, data[4], _t);
+	    data[5](time*data[7]+data[6], target, data[8], _t);
+	    data[9](time*data[11]+data[10], target, data[12], _t);
+	    data[13](time*data[15]+data[14], target, data[16], _t);
+	    data[17](time*data[19]+data[18], target, data[20], _t);
+	    data[21](time*data[23]+data[22], target, data[24], _t);
 	break;
 	
 	case 7:
-		time = is_method(tween[TWEEN.EASE]) ? tween[@ TWEEN.EASE](time, 0, 1, tween[TWEEN.DURATION], tween) : animcurve_channel_evaluate(tween[TWEEN.EASE], time/tween[TWEEN.DURATION]);
-	    data[@ 1](time*data[3]+data[2], target, data[4], tween);
-	    data[@ 5](time*data[7]+data[6], target, data[8], tween);
-	    data[@ 9](time*data[11]+data[10], target, data[12], tween);
-	    data[@ 13](time*data[15]+data[14], target, data[16], tween);
-	    data[@ 17](time*data[19]+data[18], target, data[20], tween);
-	    data[@ 21](time*data[23]+data[22], target, data[24], tween);
-	    data[@ 25](time*data[27]+data[26], target, data[28], tween);
+		time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]);
+	    data[1](time*data[3]+data[2], target, data[4], _t);
+	    data[5](time*data[7]+data[6], target, data[8], _t);
+	    data[9](time*data[11]+data[10], target, data[12], _t);
+	    data[13](time*data[15]+data[14], target, data[16], _t);
+	    data[17](time*data[19]+data[18], target, data[20], _t);
+	    data[21](time*data[23]+data[22], target, data[24], _t);
+	    data[25](time*data[27]+data[26], target, data[28], _t);
 	break;
 	
 	case 8:
-		time = is_method(tween[TWEEN.EASE]) ? tween[@ TWEEN.EASE](time, 0, 1, tween[TWEEN.DURATION], tween) : animcurve_channel_evaluate(tween[TWEEN.EASE], time/tween[TWEEN.DURATION]);
-	    data[@ 1](time*data[3]+data[2], target, data[4], tween);
-	    data[@ 5](time*data[7]+data[6], target, data[8], tween);
-	    data[@ 9](time*data[11]+data[10], target, data[12], tween);
-	    data[@ 13](time*data[15]+data[14], target, data[16], tween);
-	    data[@ 17](time*data[19]+data[18], target, data[20], tween);
-	    data[@ 21](time*data[23]+data[22], target, data[24], tween);
-	    data[@ 25](time*data[27]+data[26], target, data[28], tween);
-	    data[@ 29](time*data[31]+data[30], target, data[32], tween);
+		time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]);
+	    data[1](time*data[3]+data[2], target, data[4], _t);
+	    data[5](time*data[7]+data[6], target, data[8], _t);
+	    data[9](time*data[11]+data[10], target, data[12], _t);
+	    data[13](time*data[15]+data[14], target, data[16], _t);
+	    data[17](time*data[19]+data[18], target, data[20], _t);
+	    data[21](time*data[23]+data[22], target, data[24], _t);
+	    data[25](time*data[27]+data[26], target, data[28], _t);
+	    data[29](time*data[31]+data[30], target, data[32], _t);
 	break;
 	
 	case 9:
-		time = is_method(tween[TWEEN.EASE]) ? tween[@ TWEEN.EASE](time, 0, 1, tween[TWEEN.DURATION], tween) : animcurve_channel_evaluate(tween[TWEEN.EASE], time/tween[TWEEN.DURATION]);
-	    data[@ 1](time*data[3]+data[2], target, data[4], tween);
-	    data[@ 5](time*data[7]+data[6], target, data[8], tween);
-	    data[@ 9](time*data[11]+data[10], target, data[12], tween);
-	    data[@ 13](time*data[15]+data[14], target, data[16], tween);
-	    data[@ 17](time*data[19]+data[18], target, data[20], tween);
-	    data[@ 21](time*data[23]+data[22], target, data[24], tween);
-	    data[@ 25](time*data[27]+data[26], target, data[28], tween);
-	    data[@ 29](time*data[31]+data[30], target, data[32], tween);
-	    data[@ 33](time*data[35]+data[34], target, data[36], tween);
+		time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]);
+	    data[1](time*data[3]+data[2], target, data[4], _t);
+	    data[5](time*data[7]+data[6], target, data[8], _t);
+	    data[9](time*data[11]+data[10], target, data[12], _t);
+	    data[13](time*data[15]+data[14], target, data[16], _t);
+	    data[17](time*data[19]+data[18], target, data[20], _t);
+	    data[21](time*data[23]+data[22], target, data[24], _t);
+	    data[25](time*data[27]+data[26], target, data[28], _t);
+	    data[29](time*data[31]+data[30], target, data[32], _t);
+	    data[33](time*data[35]+data[34], target, data[36], _t);
 	break;
 	
 	case 10:
-		time = is_method(tween[TWEEN.EASE]) ? tween[@ TWEEN.EASE](time, 0, 1, tween[TWEEN.DURATION], tween) : animcurve_channel_evaluate(tween[TWEEN.EASE], time/tween[TWEEN.DURATION]);
-	    data[@ 1](time*data[3]+data[2], target, data[4], tween);
-	    data[@ 5](time*data[7]+data[6], target, data[8], tween);
-	    data[@ 9](time*data[11]+data[10], target, data[12], tween);
-	    data[@ 13](time*data[15]+data[14], target, data[16], tween);
-	    data[@ 17](time*data[19]+data[18], target, data[20], tween);
-	    data[@ 21](time*data[23]+data[22], target, data[24], tween);
-	    data[@ 25](time*data[27]+data[26], target, data[28], tween);
-	    data[@ 29](time*data[31]+data[30], target, data[32], tween);
-	    data[@ 33](time*data[35]+data[34], target, data[36], tween);
-	    data[@ 37](time*data[39]+data[38], target, data[40], tween);
+		time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]);
+	    data[1](time*data[3]+data[2], target, data[4], _t);
+	    data[5](time*data[7]+data[6], target, data[8], _t);
+	    data[9](time*data[11]+data[10], target, data[12], _t);
+	    data[13](time*data[15]+data[14], target, data[16], _t);
+	    data[17](time*data[19]+data[18], target, data[20], _t);
+	    data[21](time*data[23]+data[22], target, data[24], _t);
+	    data[25](time*data[27]+data[26], target, data[28], _t);
+	    data[29](time*data[31]+data[30], target, data[32], _t);
+	    data[33](time*data[35]+data[34], target, data[36], _t);
+	    data[37](time*data[39]+data[38], target, data[40], _t);
+	break;
+	
+	case 0: // Break out for tweens with no properties
+	break;
+	
+	default: // Handle "unlimited" properties
+		var i = 1;				
+		if (is_method(_t[TWEEN.EASE]))
+		{	repeat(data[0])
+			{
+				data[1](_t[TWEEN.EASE](time, data[2], data[3], _t[TWEEN.DURATION], _t), target, data[4], _t);
+				i += 4;
+			}
+		}
+		else
+		{	repeat(data[0])
+			{
+				data[i](data[i+1] + data[i+2]*animcurve_channel_evaluate(_t[TWEEN.EASE], time/_t[TWEEN.DURATION]), target, data[i+3], _t);	
+				i += 4;
+			}
+		}
 	break;
 	}
 }
 
 
-/// @description Executes tween callback events -- DO NOT CALL THIS DIRECTLY!!
-function TGMS_ExecuteEvent(_t, eventType, index) {
+function TGMS_ExecuteEvent(_t, eventType, index) 
+{	/// @desc Executes tween callback events -- DO NOT CALL THIS DIRECTLY!!
 	// Set events map for TweenIs*() checks
-	ds_map_set(global.TGMS_EventMaps[eventType], _t[TWEEN.ID], 0);
+	ds_map_set(global.TGMS.EventMaps[eventType], _t[TWEEN.ID], 0);
 
 	// IF events and event type initialized...
 	if (_t[TWEEN.EVENTS] != -1)
@@ -917,7 +1019,7 @@ function TGMS_ExecuteEvent(_t, eventType, index) {
 	        // Get event data
 	        eventType = _t[TWEEN.EVENTS][? eventType];
 			// Track Tween Self
-			TWEEN_SELF = _t[TWEEN.ID];
+			global.TGMS.tween_self = _t[TWEEN.ID];
 			
 	        // Iterate through all event callbacks (isEnabled * event list size)
 	        repeat(eventType[| 0] * (ds_list_size(eventType)-1))
@@ -934,30 +1036,56 @@ function TGMS_ExecuteEvent(_t, eventType, index) {
 				{
 					with(is_real(_t[TWEEN_CB.TARGET]) ? _t[TWEEN_CB.TARGET] : _t[TWEEN_CB.TARGET].ref)
 					{
-						switch(method_get_self(_t[TWEEN_CB.SCRIPT]))
+						switch(array_length(_t)-TWEEN_CB.ARG)
 						{
-						case undefined: _t = script_execute_ext(_t[TWEEN_CB.SCRIPT], _t, TWEEN_CB.ARG0); break;
-						case pointer_null: _t = script_execute_ext(method_get_index(_t[TWEEN_CB.SCRIPT]), _t, TWEEN_CB.ARG0); break;
-						default: with(method_get_self(_t[TWEEN_CB.SCRIPT])) _t = script_execute_ext(method_get_index(_t[TWEEN_CB.SCRIPT]), _t, TWEEN_CB.ARG0);
+						case 0: _t = _t[TWEEN_CB.SCRIPT](); break;
+						case 1: _t = _t[TWEEN_CB.SCRIPT](_t[TWEEN_CB.ARG]); break;
+						case 2: _t = _t[TWEEN_CB.SCRIPT](_t[TWEEN_CB.ARG], _t[TWEEN_CB.ARG+1]); break;
+						case 3: _t = _t[TWEEN_CB.SCRIPT](_t[TWEEN_CB.ARG], _t[TWEEN_CB.ARG+1], _t[TWEEN_CB.ARG+2]); break;
+						case 4: _t = _t[TWEEN_CB.SCRIPT](_t[TWEEN_CB.ARG], _t[TWEEN_CB.ARG+1], _t[TWEEN_CB.ARG+2], _t[TWEEN_CB.ARG+3]); break;
+						case 5: _t = _t[TWEEN_CB.SCRIPT](_t[TWEEN_CB.ARG], _t[TWEEN_CB.ARG+1], _t[TWEEN_CB.ARG+2], _t[TWEEN_CB.ARG+3], _t[TWEEN_CB.ARG+4]); break;
+						default:
+							switch(method_get_self(_t[TWEEN_CB.SCRIPT]))
+							{
+							case undefined:
+								if (_t[TWEEN_CB.SCRIPT] >= 100000) // User Function
+								{
+									_t = script_execute_ext(_t[TWEEN_CB.SCRIPT], _t, TWEEN_CB.ARG);
+								}
+								else // Built-in Function -- error
+								{
+									// script_execute_ext() not working properly with built-in functions
+									//with(method_get_self(_t[TWEEN_CB.SCRIPT])) _t = script_execute_ext(method_get_index(_t[TWEEN_CB.SCRIPT]), _t, TWEEN_CB.ARG0);
+									show_message("TweenGMS: Callback argument count (5) exceeded!\n\nPlease convert the built-in function into a custom function or method inorder to support more arguments.");
+								}
+							break;
+							case pointer_null: 
+								_t = script_execute_ext(method_get_index(_t[TWEEN_CB.SCRIPT]), _t, TWEEN_CB.ARG); 
+							break;
+							default: 
+								with(method_get_self(_t[TWEEN_CB.SCRIPT])) _t = script_execute_ext(method_get_index(_t[TWEEN_CB.SCRIPT]), _t, TWEEN_CB.ARG);
+							}
 						}
 					}
 					
-					// NOTE: Document this change... returning TGMS_REMOVE_CALLBACK from callback script will have the callback removed after first call
+					// NOTE: Document this change... 
+					// Returning TGMS_REMOVE_CALLBACK from callback script will have the callback removed here after being called above ^
 					if (is_string(_t) && _t == TGMS_REMOVE_CALLBACK)
 					{
 						ds_list_delete(eventType, index--);	
 					}
 				}
 	        }
+			
+			// Clear "TWEEN_SELF"
+			global.TGMS.tween_self = undefined;
 	    }
 	}
 }
 
 
-/// @function TGMS_TweensExecute(tweens, script, [args0, ...])
-/// @description Executes script for multiple tween ids
 function TGMS_TweensExecute() 
-{
+{	/// @func TGMS_TweensExecute(tweens, script, [args0, ...])
 	/*
 		INFO:
 		    Iterates through all relevant tweens and executes a specified script for each.
@@ -978,55 +1106,10 @@ function TGMS_TweensExecute()
 	}
 	
 	// TARGET SELECT
-	if (variable_struct_exists(_tStruct, "target"))
-	{	// SINGLE
-		if (is_real(_tStruct.target) || is_struct(_tStruct.target)) 
-		{	// ALL TARGETS
-			if (_tStruct.target == all) 
-			{
-				repeat(ds_list_size(_tweens))
-				{
-					var _t = _tweens[| ++_tIndex];
-		            
-					if (TGMS_TargetExists(_t[TWEEN.TARGET]))
-					{
-						_args[0] = _t;
-						script_execute_ext(_script, _args, 0, 1+_argCount);
-					}
-				}
-			}
-			else // SPECIFIC TARGET
-			{	
-				_selectionData = _tStruct.target;
-				
-				repeat(ds_list_size(_tweens))
-				{
-					var _t = _tweens[| ++_tIndex];
-			        var _target = _t[TWEEN.TARGET];
-				
-					if (TGMS_TargetExists(_target)) 
-					{
-						if (is_real(_target)) // instance target
-						{
-							if (_target == _selectionData || _target.object_index == _selectionData || object_is_ancestor(_target.object_index, _selectionData))
-							{
-								_args[0] = _t;
-								script_execute_ext(_script, _args, 0, 1+_argCount);
-							}
-						}
-						else // struct target
-						{
-							if (_target.ref == _selectionData)
-							{
-								_args[0] = _t;
-								script_execute_ext(_script, _args, 0, 1+_argCount);
-							}
-						}
-					}
-				}
-			}
-		}
-		else // ARRAY
+	static strTarget = "target";
+	if (variable_struct_exists(_tStruct, strTarget))
+	{	
+		if (is_array(_tStruct.target)) // ARRAY
 		{
 			repeat(ds_list_size(_tweens))
 			{
@@ -1038,10 +1121,28 @@ function TGMS_TweensExecute()
 					var i = -1;
 					repeat(array_length(_tStruct.target))
 					{
-						_selectionData = _tStruct.target[++i];
-									
+						var _selectionData = _tStruct.target[++i];
+						
+						if (_selectionData == _tStruct)
+						{
+							_selectionData = self;	
+						}
+								
 						if (is_real(_target)) // instance target
 						{
+							if (!is_real(_selectionData))
+							{
+								static verify = "path_positionprevious"; // Making sure its an instance!
+								if (_selectionData[$ verify] != undefined)
+								{
+									_selectionData = _selectionData.id; // Get the raw instance id
+								}
+								else
+								{
+									continue; // Exit out early if trying to compare against a struct target
+								}
+							}
+							
 							if (_target == _selectionData || _target.object_index == _selectionData || object_is_ancestor(_target.object_index, _selectionData))
 							{
 								_args[0] = _t;
@@ -1060,16 +1161,73 @@ function TGMS_TweensExecute()
 				}
 			}
 		}
-		
+		else
+		if (_tStruct.target == all) // All Targets
+		{	
+			repeat(ds_list_size(_tweens))
+			{
+				var _t = _tweens[| ++_tIndex];
+	            
+				if (TGMS_TargetExists(_t[TWEEN.TARGET]))
+				{
+					_args[0] = _t;
+					script_execute_ext(_script, _args, 0, 1+_argCount);
+				}
+			}
+		}
+		else // Specific Target
+		{
+			var _selectionData = (_tStruct == _tStruct.target) ? self : _tStruct.target;
+			
+			if (!is_real(_selectionData))
+			{
+				// Making sure its an instance!
+				static verify = "path_positionprevious"; 
+				if (_selectionData[$ verify] != undefined)
+				{
+					_selectionData = _selectionData.id; // Get the raw instance id
+				}
+			}
+			
+			repeat(ds_list_size(_tweens))
+			{
+				var _t = _tweens[| ++_tIndex];
+		        var _target = _t[TWEEN.TARGET];
+	
+				if (TGMS_TargetExists(_target)) 
+				{
+					if (is_real(_target)) // Instance Target
+					{
+						if (is_real(_selectionData))
+						{
+							if (_target == _selectionData || _target.object_index == _selectionData || object_is_ancestor(_target.object_index, _selectionData))
+							{
+								_args[0] = _t;
+								script_execute_ext(_script, _args, 0, 1+_argCount);
+							}
+						}
+					}
+					else // Struct Target
+					{
+						if (_target.ref == _selectionData)
+						{
+							_args[0] = _t;
+							script_execute_ext(_script, _args, 0, 1+_argCount);
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	// GROUP
-	if (variable_struct_exists(_tStruct, "group"))
+	static strGroup = "group";
+	if (variable_struct_exists(_tStruct, strGroup))
 	{	// SINGLE
 		if (is_real(_tStruct.group))
 		{
 			var _tIndex = -1;
-			_selectionData = _tStruct.group;
+			var _selectionData = _tStruct.group;
         
 			repeat(ds_list_size(_tweens))
 			{
@@ -1103,7 +1261,8 @@ function TGMS_TweensExecute()
 	}
 	
 	// TWEEN STRUCT IDS
-	if (variable_struct_exists(_tStruct, "tween"))
+	static strTween = "tween";
+	if (variable_struct_exists(_tStruct, strTween))
 	{
 		var _tIndex = -1;
 		var _tweens = _tStruct.tween;
@@ -1133,7 +1292,8 @@ function TGMS_TweensExecute()
 	}
 	
 	// TWEEN LISTS OR ARRAYS
-	if (variable_struct_exists(_tStruct, "list"))
+	static strList = "list";
+	if (variable_struct_exists(_tStruct, strList))
 	{
 		var _tIndex = -1;
 		var _tweens = _tStruct.list;
@@ -1146,7 +1306,7 @@ function TGMS_TweensExecute()
 		        if (is_array(_t) && TGMS_TargetExists(_t[TWEEN.TARGET]))
 				{
 					_args[0] = _t;
-					script_execute_ext(_script, _args, 0, 1+_argCount)
+					script_execute_ext(_script, _args, 0, 1+_argCount);
 				}
 			}
 		}
@@ -1158,7 +1318,7 @@ function TGMS_TweensExecute()
 		        if (is_array(_t) && TGMS_TargetExists(_t[TWEEN.TARGET]))
 				{
 					_args[0] = _t;
-					script_execute_ext(_script, _args, 0, 1+_argCount)
+					script_execute_ext(_script, _args, 0, 1+_argCount);
 				}
 			}
 		}

@@ -1,10 +1,91 @@
-===============
- Known Issues
-===============
 
-	*	Tweens with struct targets are not being automatically destroyed.
-	*	For now, please call TweenDestroy() manually for any tweens with struct targets.
-	*	This seems due to a bug with GameMaker's garbage collector.
+
+[7.0]
+- TweenEasyUseDelta() now returns current true/false state if no argument given
+- Updated TWEEN_SELF macro to be usuable inside property setter/getter functions
+- Updated handling of initial tween state when firing tween
+- Updated automatic cleanup for event callbacks
+- Fixed callbacks not being properly invalidated
+
+- Numbers 0-15 can now be used to call user events for callbacks
+	* TweenAddCallbackUser() is now deprecated and may be removed with a future update
+	* examples:
+		// Call user event 5 when finished
+		TweenAddCallback(tweenID, "finish", id, 5);
+		// Same as above but inlined with TweenFire
+		TweenFire("$60", "x", 0, 100", "@finish", 5);
+
+- TweenPlay() now supports multi-tween selection
+	* e.g. TweenPlay(self) .. TweenPlay({group: 5}) .. TweenPlay({tween: tween1, tween2, tween3})
+
+- Improved support for selecting tween instance targets with 'self'
+	* TweenPause({target: self})
+	* The 'other' keyword is not supported in this case
+	* You can still directly do TweenPause(self) or TweenPause(other)
+
+- Updated TweenCalc()
+	* Now supports animation curves
+	* Improved performance
+	* TweenCalcAmount() and TweenCalcTime() are now deprecated
+	
+- Removed option for null property strings ("") which broke the HTML5 target
+	* Please use "undefined" instead if needing null properties
+
+
+[6.1]
+- Fixed error with TweenFinishDelay() due to tween not being "preprocessed"
+- Fixed tweens with struct targets not cleared from memory when using TPFunc()
+- Fixed "reverse" event improperly calling TWEEN_EV_RESUME (oops!)
+- Reduced calling overhead for "Easy" tweens
+
+- TweenFinish() now affects delays by default ==> !BREAKING CHANGE! 
+	* This may require you to change existing code!!
+	* TweenFinish() now has 1 required and 3 optional parameters
+	* TweenFinish(tween[s], [call_event?, finish_delay?, call_delay_event?])
+	* [call_event] and [call_delay_event] are true by default
+
+- Updated TweenIsActive and TweenIsPlaying
+	* Returns true if no tween id is given and any tween is active/playing
+	* An array can be supplied to see if any given tween is playing
+	* example: var anyPlaying = TweenIsPlaying([tween1, tween2, tween3]);
+	
+- Improved support for the GMEdit code editor
+	* You might want to disable the following GMEdit setting...
+	* "Warn about mismatched argument counts on user-defined scripts/functions"
+	
+- Fixed issue from previous update which breaks "strings" using underscores
+	* TweenFire(..., "-time_scale", 0.5);
+	* Letter cases and underscores are now ignored
+	* "-time_scale", "-TimeScale", "-TIME_SCALE" are all valid examples
+
+- Added past tense versions of event strings ("@finished" "@paused" etc...)
+	* Also added interchangeable versions of delay event strings 
+	* "@finish_delay" and "@delay_finish" are both valid examples of the same event	
+
+- TweenGet() and TweenSet() now irrespective of case and underscores for strings
+	* "time_scale", "TimeScale", "TIME_SCALE" are all valid examples
+
+
+[6.0]
+- Tweens can now have an "unlimited" number of properties
+- Function ids can once again be used as valid ease types
+- Moved TweenGMS' global variables into a single global struct named "TGMS"
+- Improved performance by inlining TGMS_TweenProcess() into main update loop
+- Removed redundant "@" array accessors used as temp fix for HTML5 target (should improve performance)
+
+- Added macro optimisation settings for improving performance
+	* Located in script TGMS_X_Settings
+
+- Added optional "shorthand" string support for TweenSet()
+	* TweenSet(tweenID, "$100", "~ioQuad", "#patrol");
+
+- Extended "ease" string-handling to allow for optional underscores "_"
+	* The following are all acceptable examples...
+	* "InOutQuad", "InOut_Quad", "in_out_quad", "io_quad", "I_O_QUAD"
+	
+- Readded callback support for built-in GML functions
+	* Built-in functions only support up to 5 arguments
+	* User functions and methods still support an "unlimited" number of arguments
 
 
 ========================
@@ -60,7 +141,7 @@
 	* "ease" now supports animation curve ids
 	
 -Ease() now supports Animation Curve IDs and Channels
--Added string cache for TGMS_StringLower -- improves performance when initializing tweens
+-Added string cache for TGMS_StringStrip -- improves performance when initializing tweens
 -Fixed potential issue with TweenScript/TweenScriptMore caused by EaseNone
 -Fixed crash with TweenSystemClearRoom() -- caused by trying to destroy a list which is now an array
 -Fixed issue with ease swapping when using Ease* methods

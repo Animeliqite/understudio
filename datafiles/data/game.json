@@ -44,5 +44,10 @@
     "saveOption_0":"Save",
     "saveOption_1":"Return",
     "saveResult":"File saved.",
-    "saveInfo_LV":"LV"
+    "saveInfo_LV":"LV",
+
+    "battleFleeingMessage_0":"* Don't slow me down.",
+    "battleFleeingMessage_1":"* I've got better to do.",
+    "battleFleeingMessage_2":"* I'm outta here.",
+    "battleWinningMessage":"* YOU WON!`p1` &* You earned `$0` EXP and `$1` GOLD."
 }

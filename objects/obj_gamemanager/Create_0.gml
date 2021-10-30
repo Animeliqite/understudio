@@ -11,9 +11,11 @@ global.seconds = 0;
 global.minutes = 0;
 alarm[0] = room_speed;
 
+other_init();
 music_init();
 
 global.drawingSurface = -1;
+global.soulColor = c_red;
 global.flavor_sprites = false; // Flavors the monster sprites
 
 currentSprite = spr_border_line;
@@ -40,22 +42,21 @@ global.format = [];
 
 global.languages = ds_list_create();
 global.messages = ds_map_create();
-localization_load("game");
+localization_init();
+//localization_load("example");
 
 global.playerX = 0;
 global.playerY = 0;
 global.soulX = room_width / 2;
 global.soulY = room_height / 2;
 
-global.boxplacement = 0;
+global.board = 0;
+global.boardX1 = 32;
+global.boardY1 = 250;
+global.boardX2 = 602;
+global.boardY2 = 385;
 
-global.boxplacement_x[0] = 32;
-global.boxplacement_y[0] = 250;
-
-global.boxplacement_x[1] = 602;
-global.boxplacement_y[1] = 385;
-
-global.monster = noone;
+global.battleSettings = ds_map_create();
 
 global.currentroom = room_empty;
 global.currentsong = undefined;
@@ -65,21 +66,9 @@ global.spawn = -999;
 
 global.currentsave = 0;
 
-enum text_effect {
-	none,
-	shake,
-	partly_shake,
-	wave
-}
+bt_set([obj_battlemonster_parent]);
 
-#macro dir_up 0
-#macro dir_down 1
-#macro dir_left 2
-#macro dir_right 3
-
-#macro game_savename "undertale_engine"
-#macro game_name "Undertale Engine"
-#macro game_version "1.00"
-#macro game_owner "Animelici804"
-
-room_goto_next();
+if file_exists("crash.txt")
+	room_goto(room_crash);
+else
+	room_goto_next();

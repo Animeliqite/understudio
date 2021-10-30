@@ -1,2 +1,2 @@
 event_inherited();
-global.hp -= 9999;
+global.hp -= 4;

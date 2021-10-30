@@ -96,7 +96,7 @@ for (var i = 1; i <= len; i++)
 				face = newFace;
 				faceEmotion = real(cmdOperandAfter);
 				break;
-			case "F": // Face
+			case "F": // Font
 				var cmdOperand = string_char_at(drawString, ++i);
 				var newFont;
 				switch (cmdOperand)
@@ -233,18 +233,27 @@ for (var i = 1; i <= len; i++)
             if (c == "J")
                 _x -= 1;
         }
-			
+		
+		var isDiaOrSpeech = (font != fnt_dialogue && font != fnt_speech);
 		charSiner++;
 		switch (effect)
 		{
 			case 1:
-				draw_text_transformed(_x + (face != "" ? 104 : 0) + irandom(0.5) - 1, _y + irandom(0.5) - 1, c, (font != fnt_dialogue ? 2 : 1), (font != fnt_dialogue ? 2 : 1), 0);
+				draw_text_transformed(_x + (face != "" ? 104 : 0) + random_range(-0.5, 0.5) - 1, _y + random_range(-0.5, 0.5) - 1, c, (isDiaOrSpeech ? 2 : 1), (isDiaOrSpeech ? 2 : 1), 0);
 				break;
 			case 2:
-				draw_text_transformed(_x + (face != "" ? 104 : 0) + cos(charSiner) - 1, _y + sin(charSiner) - 1, c, (font != fnt_dialogue ? 2 : 1), (font != fnt_dialogue ? 2 : 1), 0);
+				draw_text_transformed(_x + (face != "" ? 104 : 0) + cos(charSiner) - 1, _y + sin(charSiner) - 1, c, (isDiaOrSpeech ? 2 : 1), (isDiaOrSpeech ? 2 : 1), 0);
+				break;
+			case 3:
+				randomize();
+				var chances = random(100);
+				if (chances > 99)
+					draw_text_transformed(_x + (face != "" ? 104 : 0) + random_range(-0.5, 0.5) - 1, _y + random_range(-0.5, 0.5) - 1, c, (isDiaOrSpeech ? 2 : 1), (isDiaOrSpeech ? 2 : 1), 0);
+				else
+					draw_text_transformed(_x + (face != "" ? 104 : 0), _y, c, (isDiaOrSpeech ? 2 : 1), (isDiaOrSpeech ? 2 : 1), 0);
 				break;
 			default:
-				draw_text_transformed(_x + (face != "" ? 104 : 0), _y, c, (font != fnt_dialogue ? 2 : 1), (font != fnt_dialogue ? 2 : 1), 0);
+				draw_text_transformed(_x + (face != "" ? 104 : 0), _y, c, (isDiaOrSpeech ? 2 : 1), (isDiaOrSpeech ? 2 : 1), 0);
 				break;
 		}
 		_x += charWidth * 2 * charSpaceX;

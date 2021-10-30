@@ -1,15 +1,15 @@
+var bm = obj_battlemanager;
 if (!surface_exists(surface)) {
-    surface = surface_create(1024, 1024);
+    surface = surface_create(1024, 512);
 }
 else {
 	surface_set_target(surface);
 	draw_clear_alpha(c_black, 0);
-	x -= (obj_uborder.x + 5);
-	y -= (obj_uborder.y + 5);
+	x -= (bm.boardX1 + 5);
+	y -= (bm.boardY1 + 5);
 	draw_self();
-	x += (obj_uborder.x + 5);
-	y += (obj_uborder.y + 5);
+	x += (bm.boardX1 + 5);
+	y += (bm.boardY1 + 5);
 	surface_reset_target();
-
-	draw_surface_part(surface, 0, 0, (obj_dborder.x - obj_uborder.x) - 10, (obj_dborder.y - obj_uborder.y) - 10, obj_uborder.x + 5, obj_uborder.y + 5);
+	draw_surface_part(surface, 0, 0, bm.boardX2 - bm.boardX1 - 10, bm.boardY2 - bm.boardY1 - 10, bm.boardX1 + 5, bm.boardY1 + 5);
 }

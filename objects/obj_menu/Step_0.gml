@@ -1,7 +1,7 @@
 if (cooldown > 0)
 	cooldown--;
 
-if (menuno == 0) && (cooldown == 0) {
+if (state == 0) && (cooldown == 0) {
 	if (!hasName)
 		global.name = "";
 	
@@ -20,7 +20,7 @@ if (menuno == 0) && (cooldown == 0) {
 	if (global.confirm) {
 		switch (sel[0]) {
 			case 0:
-				menuno = 1;
+				state = 1;
 				cooldown = 2;
 				break;
 			case 1:
@@ -30,7 +30,7 @@ if (menuno == 0) && (cooldown == 0) {
 		}
 	}
 }
-if (menuno == 1) && (cooldown == 0) {
+if (state == 1) && (cooldown == 0) {
 	hasName = true;
 	
 	if (global.left_press) {
@@ -98,7 +98,7 @@ if (menuno == 1) && (cooldown == 0) {
 				global.name += chr(65 + sel[1]);
 		}
 		else if (sel[1] == 53) {
-			menuno = 0;
+			state = 0;
 			cooldown = 2;
 		}
 		else if (sel[1] == 54) {
@@ -106,7 +106,7 @@ if (menuno == 1) && (cooldown == 0) {
 				global.name = string_delete(global.name, string_length(global.name), 1);
 		}
 		else if (sel[1] == 55) {
-			menuno = 2;
+			state = 2;
 			cooldown = 2;
 			
 			nameX = 0;
@@ -123,7 +123,7 @@ if (menuno == 1) && (cooldown == 0) {
 			global.name = string_delete(global.name, string_length(global.name), 1);
 	}
 }
-if (menuno == 2) && (cooldown == 0) {
+if (state == 2) && (cooldown == 0) {
 	if (global.right_press) && (nameChooseable) && (!fadingToWhite) {
 		if (sel[2] < 1)
 			sel[2]++;
@@ -139,7 +139,7 @@ if (menuno == 2) && (cooldown == 0) {
 	if (global.confirm) && (!fadingToWhite) {
 		switch (sel[2]) {
 			case 0:
-				menuno = (tempName != "" ? 3 : 1);
+				state = (tempName != "" ? 3 : 1);
 				cooldown = 2;
 				
 				nameChooseable = true;
@@ -151,7 +151,7 @@ if (menuno == 2) && (cooldown == 0) {
 					alarm[0] = room_speed * 5.5;
 				
 				fadingToWhite = true;
-				menuno = 999;
+				state = 999;
 				
 				mus_stop(0);
 				mus_play(0, "cymbal", 1, 0.95);
@@ -159,7 +159,7 @@ if (menuno == 2) && (cooldown == 0) {
 		}
 	}
 }
-if (menuno == 3) && (cooldown == 0) {
+if (state == 3) && (cooldown == 0) {
 	if (global.up_press) && (sel[3] == 2) {
 		sel[3] = 0;
 	}
@@ -196,7 +196,7 @@ if (menuno == 3) && (cooldown == 0) {
 				
 				nameTween = TweenFire(self, EaseLinear, TWEEN_MODE_ONCE, false, 0, room_speed * 4, "nameX", nameX, -60, "nameY", nameY, 80, "nameScale", nameScale, 3);
 				
-				menuno = 2;
+				state = 2;
 				cooldown = 2;
 				break;
 			case 2:

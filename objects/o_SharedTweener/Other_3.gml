@@ -1,5 +1,5 @@
 
-if (global.TGMS_SharedTweener != noone)
+if (global.TGMS.SharedTweener != noone)
 {
 	event_user(15);
 }

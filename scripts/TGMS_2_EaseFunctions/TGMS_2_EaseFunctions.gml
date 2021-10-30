@@ -1,30 +1,72 @@
-/*
-	It is safe to delete:
-		Ease
-		EaseToString
-*/
+
+//	It is safe to delete:
+//		Ease
+//		EaseToString
+
 
 // Make sure TGMS is intialized
 TGMS_Begin();
 
 
-/// @func Ease(value1, value2, amount, ease)
-/// @desc Interpolates two values by a given amount using specified ease algorithm
+//function CurveUseMagnitude(curve)
+//{
+//	if (is_real(curve))
+//	{
+//		curve = animcurve_get(curve);
+//	}
+
+//	if (curve[$ "channels"] != undefined)
+//	{
+//		curve = animcurve_get_channel(curve, 0);
+//	}
+	
+//	curve.tgms_use_magnitude = true;
+//}
+
+
+// TODO: Look into this... "solo" eases
+//function EaseSpring(time, start, change, duration)
+//{	
+//	// base = start
+//	// variance = start + change (destination)
+//	/*
+//		Minus half the variance max from the start,
+//		then add half the variance multiplied by the evaluated value
+	
+//		base = 1;
+//		variance = 1.5;
+//		TweenFire("$60", "~Spring", "image_scale", base, variance);
+	
+//	*/
+
+//	//change += start; // get magnitude
+	
+//	return start + change * animcurve_channel_evaluate(animcurve_get_channel(ac_Spring, 0), time/duration);
+//}
+
+
 function Ease(value1, value2, amount, ease) 
-{	/*
+{	/// @desc Interpolates two values by a given amount using specified ease algorithm
+	/*
 	value1		start value
 	value2		end value
 	amount		(0-1) amount to interpolate values
-	ease		ease algorithm function
+	ease			ease algorithm function
 	
-	    Example:
-	        x = Ease(x, mouse_x, 0.5, EaseInOutQuad);
+	Example:
+	    x = Ease(x, mouse_x, 0.5, EaseInOutQuad);
 	*/
 
-	// Animation Curve ID
 	if (is_real(ease))
 	{
-		return value1+(value2-value1)*animcurve_channel_evaluate(animcurve_get_channel(ease, 0), amount);
+		if (ease < 100000) // Animation Curve ID
+		{
+			return value1+(value2-value1)*animcurve_channel_evaluate(animcurve_get_channel(ease, 0), amount);
+		}
+		else // Function ID
+		{
+			return script_execute(ease, amount, value1, value2-value1, 1);
+		}
 	}
 
 	// Method
@@ -37,26 +79,29 @@ function Ease(value1, value2, amount, ease)
 	return value1+(value2-value1)*animcurve_channel_evaluate(ease, amount);
 }
 
-
-/// @func EaseToString(name, ease|curve|channel, [channel])
 function EaseToString(name, ease)
-{
+{	/// @func EaseToString(name, ease|curve|channel, [channel])
 	SharedTweener();
 
 	if (is_real(ease))
 	{
-		ease = animcurve_get_channel(animcurve_get(ease), argument_count == 3 ? argument[2] : 0);
+		if (ease < 100000)
+		{
+			ease = animcurve_get_channel(animcurve_get(ease), argument_count == 3 ? argument[2] : 0);
+		}
+		else
+		{
+			ease = method(undefined, ease);	
+		}
 	}
 	
-	name = TGMS_StringLower(name, 0);
-	global.TGMS_ShortCodesEase[? name] = ease;
-	global.TGMS_ShortCodesEase[? "~"+name] = ease;
+	name = TGMS_StringStrip(name, 0);
+	global.TGMS.ShortCodesEase[? name] = ease;
+	global.TGMS.ShortCodesEase[? "~"+name] = ease;
 }
 
-
-/// @func EaseToCurve(ease, [num_points])
 function EaseToCurve(ease)
-{
+{	/// @func EaseToCurve(ease, [num_points])
 	var _numPoints = argument_count == 2 ? argument[1] : 180;	
 	var _points = array_create(_numPoints+1);
 	var i = -1;
@@ -68,13 +113,18 @@ function EaseToCurve(ease)
 		_points[i].value = ease(_time, 0, 1, 1);
 	}
 
-	_channel = animcurve_channel_new();
+	var _channel = animcurve_channel_new();
 	_channel.type = animcurvetype_linear;
 	_channel.iterations = 1;
 	_channel.points = _points;
 	
 	return _channel;
 }
+
+
+
+
+
 
 
 //=============================
@@ -105,27 +155,23 @@ function EaseToCurve(ease)
 */
 
 // LINEAR
-#macro EaseLinear global.TGMS.EaseLinear_
-EaseLinear = function(time, start, change, duration) /// @func EaseLinear(time, start, change, duration);
+function EaseLinear(time, start, change, duration)
 {	
 	return change * time / duration + start;
 }
 
 // QUAD
-#macro EaseInQuad global.TGMS.EaseInQuad_
-EaseInQuad = function(time, start, change, duration) /// @func EaseInQuad(time, start, change, duration)
+function EaseInQuad(time, start, change, duration)
 {	
 	return change * time/duration * time/duration + start;
 }
 
-#macro EaseOutQuad global.TGMS.EaseOutQuad_
-EaseOutQuad = function(time, start, change, duration) /// @func EaseOutQuad(time, start, change, duration)
+function EaseOutQuad(time, start, change, duration)
 {
 	return -change * time/duration * (time/duration-2) + start;
 }
 
-#macro EaseInOutQuad global.TGMS.EaseInOutQuad_
-EaseInOutQuad = function(time, start, change, duration) /// @func EaseInOutQuad(time, start, change, duration)
+function EaseInOutQuad(time, start, change, duration)
 {
 	time = 2*time/duration;
 	return time < 1 ? change * 0.5 * time * time + start
@@ -133,20 +179,17 @@ EaseInOutQuad = function(time, start, change, duration) /// @func EaseInOutQuad(
 }
 
 // CUBIC
-#macro EaseInCubic global.TGMS.EaseInCubic_
-EaseInCubic = function(time, start, change, duration) /// @func EaseInCubic(time, start, change, duration)
+function EaseInCubic(time, start, change, duration)
 {
 	return change * power(time/duration, 3) + start;
 }
 
-#macro EaseOutCubic global.TGMS.EaseOutCubic_
-EaseOutCubic = function(time, start, change, duration) /// @func EaseOutCubic(time, start, change, duration)
+function EaseOutCubic(time, start, change, duration)
 {
 	return change * (power(time/duration - 1, 3) + 1) + start;
 }
 
-#macro EaseInOutCubic global.TGMS.EaseInOutCubic_
-EaseInOutCubic = function(time, start, change, duration) /// @func EaseInOutCubic(time, start, change, duration)
+function EaseInOutCubic(time, start, change, duration)
 {
 	time = 2 * time / duration;
 	return time < 1 ? change * 0.5 * power(time, 3) + start
@@ -154,20 +197,17 @@ EaseInOutCubic = function(time, start, change, duration) /// @func EaseInOutCubi
 }
 
 // QUART
-#macro EaseInQuart global.TGMS.EaseInQuart_
-EaseInQuart = function(time, start, change, duration) /// @func EaseInQuart(time, start, change, duration)
+function EaseInQuart(time, start, change, duration)
 {
 	return change * power(time/duration, 4) + start;
 }
 
-#macro EaseOutQuart global.TGMS.EaseOutQuart_
-EaseOutQuart = function(time, start, change, duration) /// @func EaseOutQuart(time, start, change, duration)
+function EaseOutQuart(time, start, change, duration)
 {
 	return -change * (power(time/duration - 1, 4) - 1) + start;
 }
 
-#macro EaseInOutQuart global.TGMS.EaseInOutQuart_
-EaseInOutQuart = function(time, start, change, duration) /// @func EaseInOutQuart(time, start, change, duration)
+function EaseInOutQuart(time, start, change, duration)
 {
 	time = 2*time/duration;
 	return time < 1 ? change * 0.5 * power(time, 4) + start
@@ -175,20 +215,17 @@ EaseInOutQuart = function(time, start, change, duration) /// @func EaseInOutQuar
 }
 
 // QUINT
-#macro EaseInQuint global.TGMS.EaseInQuint_
-EaseInQuint = function(time, start, change, duration) /// @func EaseInQuint(time, start, change, duration)
+function EaseInQuint(time, start, change, duration)
 {
 	return change * power(time/duration, 5) + start;
 }
 
-#macro EaseOutQuint global.TGMS.EaseOutQuint_
-EaseOutQuint = function(time, start, change, duration) /// @func EaseOutQuint(time, start, change, duration)
+function EaseOutQuint(time, start, change, duration)
 {
 	return change * (power(time/duration - 1, 5) + 1) + start;
 }
 
-#macro EaseInOutQuint global.TGMS.EaseInOutQuint_
-EaseInOutQuint = function(time, start, change, duration) /// @func EaseInOutQuint(time, start, change, duration)
+function EaseInOutQuint(time, start, change, duration)
 {
 	time = 2*time/duration;
 	return time < 1 ? change * 0.5 * power(time, 5) + start
@@ -196,40 +233,34 @@ EaseInOutQuint = function(time, start, change, duration) /// @func EaseInOutQuin
 }
 
 // SINE
-#macro EaseInSine global.TGMS.EaseInSine_
-EaseInSine = function(time, start, change, duration) /// @func EaseInSine(time, start, change, duration)
+function EaseInSine(time, start, change, duration)
 {
 	return change * (1 - cos(time/duration * (pi/2))) + start;
 }
 
-#macro EaseOutSine global.TGMS.EaseOutSine_
-EaseOutSine = function(time, start, change, duration) /// @func EaseOutSine(time, start, change, duration)
+function EaseOutSine(time, start, change, duration)
 {
 	return change * sin(time/duration * (pi/2)) + start;
 }
 
-#macro EaseInOutSine global.TGMS.EaseInOutSine_
-EaseInOutSine = function(time, start, change, duration) /// @func EaseInOutSine(time, start, change, duration)
+function EaseInOutSine(time, start, change, duration)
 {
 	return change * 0.5 * (1 - cos(pi*time/duration)) + start;
 }
 
 // CIRC
-#macro EaseInCirc global.TGMS.EaseInCirc_
-EaseInCirc = function(time, start, change, duration) /// @func EaseInCirc(time, start, change, duration)
+function EaseInCirc(time, start, change, duration)
 {
 	return change * (1 - sqrt(1 - time/duration * time/duration)) + start;
 }
 
-#macro EaseOutCirc global.TGMS.EaseOutCirc_
-EaseOutCirc = function(time, start, change, duration) /// @func EaseOutCirc(time, start, change, duration)
+function EaseOutCirc(time, start, change, duration)
 {
 	time = time/duration - 1;
 	return change * sqrt(abs(1 - time * time)) + start;
 }
 
-#macro EaseInOutCirc global.TGMS.EaseInOutCirc_
-EaseInOutCirc = function(time, start, change, duration) /// @func EaseInOutCirc(time, start, change, duration)
+function EaseInOutCirc(time, start, change, duration)
 {
 	time = 2*time/duration;
 	return time < 1 ? change * 0.5 * (1 - sqrt(abs(1 - time * time))) + start
@@ -237,20 +268,17 @@ EaseInOutCirc = function(time, start, change, duration) /// @func EaseInOutCirc(
 }
 
 // EXPO
-#macro EaseInExpo global.TGMS.EaseInExpo_
-EaseInExpo = function(time, start, change, duration) /// @func EaseInExpo(time, start, change, duration)
+function EaseInExpo(time, start, change, duration)
 {
 	return change * power(2, 10 * (time/duration - 1)) + start;
 }
 
-#macro EaseOutExpo global.TGMS.EaseOutExpo_
-EaseOutExpo = function(time, start, change, duration) /// @func EaseOutExpo(time, start, change, duration)
+function EaseOutExpo(time, start, change, duration)
 {
 	return change * (-power(2, -10 * time / duration) + 1) + start;
 }
 
-#macro EaseInOutExpo global.TGMS.EaseOutExpo_
-EaseInOutExpo = function(time, start, change, duration) /// @func EaseInOutExpo(time, start, change, duration)
+function EaseInOutExpo(time, start, change, duration)
 {
 	time = 2 * time / duration;
 	return time < 1 ? change * 0.5 * power(2, 10 * (time-1)) + start
@@ -258,24 +286,21 @@ EaseInOutExpo = function(time, start, change, duration) /// @func EaseInOutExpo(
 }
 	
 // BACK
-#macro EaseInBack global.TGMS.EaseInBack_
-EaseInBack = function(time, start, change, duration) /// @func EaseInBack(time, start, change, duration)
+function EaseInBack(time, start, change, duration)
 {
 	time /= duration;
 	duration = 1.70158; // repurpose duration as Penner's "s" value -- You can hardcode this into wherever you see 'duration' in the next line
 	return change * time * time * ((duration + 1) * time - duration) + start;
 }
 	
-#macro EaseOutBack global.TGMS.EaseOutBack_
-EaseOutBack = function(time, start, change, duration) /// @func EaseOutBack(time, start, change, duration)
+function EaseOutBack(time, start, change, duration)
 {
 	time = time/duration - 1;
 	duration = 1.70158; // "s"
 	return change * (time * time * ((duration + 1) * time + duration) + 1) + start;
 }	
 	
-#macro EaseInOutBack global.TGMS.EaseInOutBack_
-EaseInOutBack = function(time, start, change, duration) /// @func EaseInOutBack(time, start, change, duration)
+function EaseInOutBack(time, start, change, duration)
 {
 	time = time/duration*2;
 	duration = 1.70158; // "s"
@@ -293,14 +318,12 @@ EaseInOutBack = function(time, start, change, duration) /// @func EaseInOutBack(
 }
 
 // BOUNCE
-#macro EaseInBounce global.TGMS.EaseInBounce_
-EaseInBounce = function(time, start, change, duration) /// @func EaseInBounce(time, start, change, duration)
+function EaseInBounce(time, start, change, duration)
 {
 	return change - EaseOutBounce(duration - time, 0, change, duration) + start;
 }
 	
-#macro EaseOutBounce global.TGMS.EaseOutBounce_
-EaseOutBounce = function(time, start, change, duration) /// @func EaseOutBounce(time, start, change, duration)
+function EaseOutBounce(time, start, change, duration)
 {
 	time /= duration;
 
@@ -327,16 +350,14 @@ EaseOutBounce = function(time, start, change, duration) /// @func EaseOutBounce(
 	}
 }
 	
-#macro EaseInOutBounce global.TGMS.EaseInOutBounce_
-EaseInOutBounce = function(time, start, change, duration) /// @func EaseInOutBounce(time, start, change, duration)
+function EaseInOutBounce(time, start, change, duration)
 {
 	return time < duration*0.5 ? EaseInBounce(time*2, 0, change, duration)*0.5 + start
 							   : EaseOutBounce(time*2 - duration, 0, change, duration)*0.5 + change*0.5 + start;
 }
 	
 // ELASTIC
-#macro EaseInElastic global.TGMS.EaseInElastic_
-EaseInElastic = function(time, start, change, duration) /// @func EaseInElastic(time, start, change, duration)
+function EaseInElastic(time, start, change, duration)
 {
 	var _s = 1.70158;
 	var _p = 0;
@@ -367,8 +388,7 @@ EaseInElastic = function(time, start, change, duration) /// @func EaseInElastic(
 	return -(_a * power(2,10 * (_val-1)) * sin(((_val-1) * duration - _s) * (2*pi) / _p)) + start;
 }
 	
-#macro EaseOutElastic global.TGMS.EaseOutElastic_
-EaseOutElastic = function(time, start, change, duration) /// @func EaseOutElastic(time, start, change, duration)
+function EaseOutElastic(time, start, change, duration)
 {
 	var _s = 1.70158;
 	var _p = 0;
@@ -399,8 +419,7 @@ EaseOutElastic = function(time, start, change, duration) /// @func EaseOutElasti
 	return _a * power(2, -10 * _val) * sin((_val * duration - _s) * (2*pi) / _p ) + change + start;
 }
 
-#macro EaseInOutElastic global.TGMS.EaseInOutElastic_
-EaseInOutElastic = function(time, start, change, duration) /// @func EaseInOutElastic(time, start, change, duration)
+function EaseInOutElastic(time, start, change, duration)
 {
 	var _s = 1.70158;
 	var _p = 0;
@@ -514,8 +533,8 @@ global.TGMS.CurveInOutElastic_ = EaseToCurve(EaseInOutElastic);
 //======================
 // EASING "SHORT CODES"
 //======================
-global.TGMS_ShortCodesEase = ds_map_create();
-_= global.TGMS_ShortCodesEase;
+global.TGMS.ShortCodesEase = ds_map_create();
+_= global.TGMS.ShortCodesEase;
 	
 _[? ""] = CurveLinear;
 _[? "none"] = CurveLinear;
@@ -600,9 +619,6 @@ _[? "~inoutbounce"] = CurveInOutBounce;		_[? "inoutbounce"] = CurveInOutBounce;
 _[? "~ibounce"] = CurveInBounce;			_[? "ibounce"] = CurveInBounce;
 _[? "~obounce"] = CurveOutBounce;			_[? "obounce"] = CurveOutBounce;
 _[? "~iobounce"] = CurveInOutBounce;		_[? "iobounce"] = CurveInOutBounce;
-
-
-
 
 
 

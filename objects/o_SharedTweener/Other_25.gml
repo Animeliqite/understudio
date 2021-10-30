@@ -6,21 +6,21 @@
 	he exists and that he rewards those who seek him.
 */
 
-if (global.TGMS_SharedTweener != noone)
+if (global.TGMS.SharedTweener != noone)
 {
 	// Remove self as shared tweener singleton
-    global.TGMS_SharedTweener = noone;
+    global.TGMS.SharedTweener = noone;
     // Destroy Tweens and Delays for Persistent Rooms
     TweenSystemClearRoom(all);
     // Clear id reference map
-    ds_map_clear(global.TGMS_TweenIndexMap);
+    ds_map_clear(global.TGMS.TweenIndexMap);
 	// Clear Group Scales
-	ds_map_clear(global.TGMS_GroupScales);
+	ds_map_clear(global.TGMS.GroupScales);
 	// Clear Event Maps
 	var i = -1;
 	repeat(TWEEN_EV_COUNT)
 	{
-		ds_map_clear(global.TGMS_EventMaps[++i]);
+		ds_map_clear(global.TGMS.EventMaps[++i]);
 	}
 
 	//---------------------------------------------

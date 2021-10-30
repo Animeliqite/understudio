@@ -92,4 +92,4 @@ if (pauseTimer == 0)
 }
 
 for (var i = 0; i < array_length(messages); i++)
-	messages[i] = format_text_basic(messages[i], true, true);
+	messages[i] = format_text_basic(messages[i], true, asteriskCheck);

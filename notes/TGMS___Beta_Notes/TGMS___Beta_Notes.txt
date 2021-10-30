@@ -3,15 +3,18 @@ The documentation is not finished yet. This is pretty much all you get for now!
 Please use documentation from the previous version of TweenGMS to supplement what is mentioned here.
 Update notes can be found in [Docs] -> [TGMS_Update_Log].
 
-
 #0
-===============
- Known Issues
-===============
-
-	*	Tweens with struct targets are not being automatically destroyed.
-	*	For now, please call TweenDestroy() manually for any tweens with struct targets.
-	*	This seems due to a bug with GameMaker's garbage collector.
+========================
+ Recent Breaking Change
+========================
+	
+	TweenFinish() now affects delays by default 
+	and has 1 required and 3 optional parameters
+	
+		TweenFinish(tween[s], [call_event?, finish_delay?, call_delay_event?])
+	
+	[call_event] and [call_delay_event] are true by default.
+	TweenFinishDelay() still exists for those only wanting to affect delayed tweens.
 
 
 #1 
@@ -70,7 +73,7 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 	
 		TweenFire("-ease", EaseLinear, "-delta", 1, "-dur", 1, "x", 0, 100);
 		
-	That is better, but we can do better! We can actually set a global default for "delta" as well...
+	That is better, but we can do even better! We can actually set a global default for "delta" as well...
 	
 		//This only needs to be set once
 		TweenSet(TWEEN_DEFAULT, "delta", true);
@@ -84,7 +87,7 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 	
 		TweenFire("~", EaseLinear, "-dur", 1, "x", 0, 100);
 		
-	Likewise, we can replace "-dur" with "$"
+	Likewise, we can replace "-dur" with "$" (time is money)
 	
 		TweenFire("~", EaseLinear, "$", 1, "x", 0, 100);
 		
@@ -99,7 +102,7 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 		"|" : "-rest"
 		">" : "-continue_count" / "-count" / "-cc"
 		"&" : "-group"
-		"=" : "-time" ***Not to be conused with duration
+		"=" : "-time" ***Not to be confused with duration
 		"%" : "-time_amount" / "-amount"
 		"*" : "-time_scale" / "-scale"
 		"!" : "-destroy
@@ -113,7 +116,7 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 	
 		TweenFire("$1", "x", 0, 100);
 		
-	If we wanted to make this even shorter, we could use a to "x>" property...
+	If we wanted to make this even shorter, we could use a to ("x>") property...
 	
 		TweenFire("$1", "x>", 100);
 		
@@ -121,7 +124,7 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 	
 	Now, I will cover other supported conventions for shorthand tags.
 	
-	*** Note that upper/lower case does NOT matter -- inQuad/INQUAD/iNqUaD all work the same***
+	*** Note that upper/lower case and underscores do NOT matter -- inQuad/IN_QUAD/iNqUaD all work the same***
 	
 	[EASE] Special Shorthand Tags
 	
@@ -189,20 +192,21 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 		TweenFire("$1", "x>", 100, "@finish", ShowFireworks);
 		
 	All callback shorthand tags start with "@". Here is a list of them...
+	(letters in [] are optional)
 	
-		"@finish" / "@" -- ** Note that these 2 are the same **
-		"@continue"
-		"@pause"
-		"@play"
-		"@resume"
-		"@stop"
-		"@rest"
-		"@resting"
-		"@reverse"
-		"@finish_delay"
-		"@pause_delay"
-		"@resume_delay"
-		"@stop_delay"
+		"@finish[ed]" / "@" -- ** Note that these 2 are the same **
+		"@continue[d]" 	
+		"@pause[d]"		
+		"@play[ed]"			
+		"@resume[d]"		
+		"@stop[ped]"			
+		"@rest[ed]"			
+		"@resting"		
+		"@reverse[d]"		
+		"@finish[ed]_delay"	
+		"@pause[d]_delay"	
+		"@resume[d]_delay"	
+		"@stop[pped]_delay"	
 		
 	If arguments need to be passed to the script, we can pass the callback as an array with additional arguments...
 	
@@ -355,7 +359,7 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 		TweenFire("$60", "x>", "x+100");
 	
 	The above example will move x to the *current* x position plus 100.
-	Now, this isn't very useful in this case, as we, instead, could directly do...
+	Now, this isn't very useful in this case as we, instead, could directly do...
 	
 		TweenFire("$60", "x>", x+100);
 		
@@ -383,9 +387,19 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 		TweenFire("$60", "+30", "x>", "@+value; "y>", "@+gValue");
 		
 	The above example will add 'value' and 'gvalue' to the respective properties.
-	The 'global.' prefix is not to be used for string values. If TweenGMS does not detect an
-	instance variable, it will automatically check for a global variable with the same name.
-	**NOTE: LOCAL VARIABLES ARE NOT SUPPORTED (e.g. var _someVar) **
+	If TweenGMS does not detect an instance variable, it will automatically check
+	for a global variable with the same name. You can still explicitly use global
+	variables by supplying the "global." prefix.
+	
+	You can also reference values from other instances using an object id prefix...
+	
+		TweenFire("$60", "+30", "x>", "obj_SomeDude.x + 100");
+	
+	**NOTE: LOCAL VARIABLES ARE NOT SUPPORTED**
+	
+		// This will cause an error!
+		var _someVar = 100;
+		TweenFire("$60", "+30", "x>", "_someVar+100");
 	
 	Now, the use of string values are quite limited.
 	You can only have 2 values added, subtracted, multiplied, or divided.
@@ -486,13 +500,13 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 				function(target)	   { return target.x }						// GETTER
 			  )
 
-		// The ">" syntax is now supported because of 'getter'
+		// The ">" syntax is now supported because of the 'getter'
 		TweenFire("$60", "shake_x>", mouse_x);
 	
 	TPFunc can also be used directly inside of a tween function like so...
 	
 		// Use TPFunc directly inside tween call
-		TweenFire("$60", TPFunc(self,"myXYZ",v,t){ t.xzy = v }), 0, 100);
+		TweenFire("$60", TPFunc(self,"myXYZ", function(v,t){ t.xzy = v }), 0, 100);
 		
 		// Additional calls can simply use the previous "myXYZ" string instead of calling TPFunc again.
 		// '0' in the following example points to the previously created tween above.
@@ -620,7 +634,7 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 ========================================
 
 	This is bit of a hack at the moment which might not work in certain situations but
-	it does remain as a cool nifty thing if you knot it's there!
+	it does remain as a cool nifty thing if you know it's there!
 	
 	Using a negative delay value will cause the tween properties to jump to the initial
 	values of the tween, however, the tween will still be delayed by the absolute value of the delay.
@@ -631,7 +645,7 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 	In the above example, the 'x' variable will immediately jump to the start value right away,
 	however, the tween will still be delayed for 30 steps.
 	This is in contrast to regular delays which will not automatically jump values to the start
-	until the delay has finished.
+	until the delay has first finished.
 	
 	This is still buggy for some use cases but should be fine for basic needs.
 	
@@ -650,7 +664,7 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 	But, we can also use a struct as a target and directly supply it's given variables...
 	
 		aStruct = {val1:0, val2:0}
-		TweenFire("$60", "-target", aStruct, "val1>", 200, "val2>", 1200);
+		TweenFire("-target", aStruct, "$60", "val1>", 200, "val2>", 1200);
 		
 	If a tween is created within a struct, the structs "self" will be used as the default target.
 		
@@ -716,12 +730,12 @@ Update notes can be found in [Docs] -> [TGMS_Update_Log].
 		TweenFire("$", [[100],[200]], "#patrol", "x", 0, 100);
 		
 		
+
 		
 		
 		
-
-
-
+		
+		
 
 
 

@@ -6,9 +6,9 @@
 var i = -1;
 repeat(TWEEN_EV_COUNT)
 {
-	if (!ds_map_empty(global.TGMS_EventMaps[++i])) 
+	if (!ds_map_empty(global.TGMS.EventMaps[++i])) 
 	{
-		ds_map_clear(global.TGMS_EventMaps[i]);
+		ds_map_clear(global.TGMS.EventMaps[i]);
 	}
 }
 
@@ -49,7 +49,7 @@ if (isEnabled)
     {   
         tick -= updateInterval; // Decrement step tick by update interval value
 		
-		var _groupScales = global.TGMS_GroupScales;
+		var _groupScales = global.TGMS.GroupScales;
 		var _timeScale = timeScale; // Cache time scale
 		var _timeScaleDelta = _timeScale*deltaTime; // Cache time scale affected by delta time
 		
@@ -62,44 +62,171 @@ if (isEnabled)
             var _tIndex = -1; // Tween index iterator
 			repeat(tweensProcessNumber)
             {
-                var _t = _tweens[| ++_tIndex]; // Get tween and increment index
+				 // Get next tween 
+                var _t = _tweens[| ++_tIndex];
                 
                 // Process tween if target/state exists/active
 				var _target = _t[TWEEN.STATE];
 				
-				if (is_numeric(_target)) // is instance id
+				if (TGMS_USE_TARGETS == TGMS_TARGETS_DYNAMIC)
+				{
+					if (is_numeric(_target)) // is instance id
+					{
+						if (!instance_exists(_target)) { continue; }
+					}
+					else // is struct
+					{
+						if (!weak_ref_alive(_target)) { continue; }
+						_target = _target.ref;
+					}
+				}
+				
+				if (TGMS_USE_TARGETS == TGMS_TARGETS_INSTANCE)
 				{
 					if (!instance_exists(_target)) { continue; }
 				}
-				else // is struct
+				
+				if (TGMS_USE_TARGETS == TGMS_TARGETS_STRUCT)
 				{
 					if (!weak_ref_alive(_target)) { continue; }
 					_target = _target.ref;
 				}
 							
 				// Cache updated time value for tween (multiply by relevant scale types (per / global/ group)
-				var _time = _t[TWEEN.TIME] + _t[TWEEN.SCALE] * (_t[TWEEN.DELTA] ? _timeScaleDelta : _timeScale) * _groupScales[? _t[TWEEN.GROUP]];
+				// MACROS are used here for optimisation branches.
+				// This will be optimised down to a single expression
+				//		_time = ...
+				var _time;
+				if (TGMS_USE_GROUP_SCALES)
+				{
+					if (TGMS_USE_TIMING == TGMS_TIMING_DYNAMIC) 
+						_time = _t[TWEEN.TIME] + _t[TWEEN.SCALE] * (_t[TWEEN.DELTA] ? _timeScaleDelta : _timeScale) * _groupScales[? _t[TWEEN.GROUP]];
+					if (TGMS_USE_TIMING == TGMS_TIMING_DELTA) 
+						_time = _t[TWEEN.TIME] + _t[TWEEN.SCALE] * _timeScaleDelta * _groupScales[? _t[TWEEN.GROUP]];
+					if (TGMS_USE_TIMING == TGMS_TIMING_STEP)
+						_time = _t[TWEEN.TIME] + _t[TWEEN.SCALE] * _timeScale * _groupScales[? _t[TWEEN.GROUP]];
+				}
+				else
+				{
+					if (TGMS_USE_TIMING == TGMS_TIMING_DYNAMIC)
+						_time = _t[TWEEN.TIME] + _t[TWEEN.SCALE] * (_t[TWEEN.DELTA] ? _timeScaleDelta : _timeScale);
+					if (TGMS_USE_TIMING == TGMS_TIMING_DELTA)
+						_time = _t[TWEEN.TIME] + _t[TWEEN.SCALE] * _timeScaleDelta;
+					if (TGMS_USE_TIMING == TGMS_TIMING_STEP)
+						_time = _t[TWEEN.TIME] + _t[TWEEN.SCALE] * _timeScale;
+				}
 				
                 // IF tween is within start/destination
                 if (_time > 0 && _time < _t[TWEEN.DURATION])
                 {
 					// Assign updated time
                     _t[@ TWEEN.TIME] = _time;
+					
 					// Process tween
-					TGMS_TweenProcess(_t, _time, _t[TWEEN.PROPERTY_DATA], _target);
+					// TGMS_TweenProcess(_t, _time, _t[TWEEN.PROPERTY_DATA], _target);
+					//continue;
+					// Inline version of TGMS_TweenProcess() for improved performance
+					var data = _t[TWEEN.PROPERTY_DATA];
+					switch(data[0]) // Property Count
+					{
+					case 1:
+						if (is_method(_t[TWEEN.EASE])) data[1](_t[TWEEN.EASE](_time, data[2], data[3], _t[TWEEN.DURATION], _t), _target, data[4], _t); // data[4] is variable string name
+						else						   data[1](data[2] + data[3]*animcurve_channel_evaluate(_t[TWEEN.EASE], _time/_t[TWEEN.DURATION]), _target, data[4], _t); 
+					break;
+					
+					case 2:
+						_time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](_time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], _time/_t[TWEEN.DURATION]);
+						data[1](_time*data[3]+data[2], _target, data[4], _t);
+						data[5](_time*data[7]+data[6], _target, data[8], _t);
+					break;
+					
+					case 3:
+						_time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](_time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], _time/_t[TWEEN.DURATION]);
+					    data[1](_time*data[3]+data[2], _target, data[4], _t);
+					    data[5](_time*data[7]+data[6], _target, data[8], _t);
+					    data[9](_time*data[11]+data[10], _target, data[12], _t);
+					break;
+					
+					case 4:
+						_time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](_time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], _time/_t[TWEEN.DURATION]);
+					    data[1](_time*data[3]+data[2], _target, data[4], _t);
+					    data[5](_time*data[7]+data[6], _target, data[8], _t);
+					    data[9](_time*data[11]+data[10], _target, data[12], _t);
+						data[13](_time*data[15]+data[14], _target, data[16], _t);
+					break;
+					
+					case 5:
+						_time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](_time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], _time/_t[TWEEN.DURATION]);
+					    data[1](_time*data[3]+data[2], _target, data[4], _t);
+					    data[5](_time*data[7]+data[6], _target, data[8], _t);
+					    data[9](_time*data[11]+data[10], _target, data[12], _t);
+					    data[13](_time*data[15]+data[14], _target, data[16], _t);
+					    data[17](_time*data[19]+data[18], _target, data[20], _t);
+					break;
+					
+					case 6:
+						_time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](_time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], _time/_t[TWEEN.DURATION]);
+					    data[1](_time*data[3]+data[2], _target, data[4], _t);
+					    data[5](_time*data[7]+data[6], _target, data[8], _t);
+					    data[9](_time*data[11]+data[10], _target, data[12], _t);
+					    data[13](_time*data[15]+data[14], _target, data[16], _t);
+					    data[17](_time*data[19]+data[18], _target, data[20], _t);
+					    data[21](_time*data[23]+data[22], _target, data[24], _t);
+					break;
+					
+					case 7:
+						_time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](_time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], _time/_t[TWEEN.DURATION]);
+					    data[1](_time*data[3]+data[2], _target, data[4], _t);
+					    data[5](_time*data[7]+data[6], _target, data[8], _t);
+					    data[9](_time*data[11]+data[10], _target, data[12], _t);
+					    data[13](_time*data[15]+data[14], _target, data[16], _t);
+					    data[17](_time*data[19]+data[18], _target, data[20], _t);
+					    data[21](_time*data[23]+data[22], _target, data[24], _t);
+					    data[25](_time*data[27]+data[26], _target, data[28], _t);
+					break;
+					
+					case 8:
+						_time = is_method(_t[TWEEN.EASE]) ? _t[TWEEN.EASE](_time, 0, 1, _t[TWEEN.DURATION], _t) : animcurve_channel_evaluate(_t[TWEEN.EASE], _time/_t[TWEEN.DURATION]);
+					    data[1](_time*data[3]+data[2], _target, data[4], _t);
+					    data[5](_time*data[7]+data[6], _target, data[8], _t);
+					    data[9](_time*data[11]+data[10], _target, data[12], _t);
+					    data[13](_time*data[15]+data[14], _target, data[16], _t);
+					    data[17](_time*data[19]+data[18], _target, data[20], _t);
+					    data[21](_time*data[23]+data[22], _target, data[24], _t);
+					    data[25](_time*data[27]+data[26], _target, data[28], _t);
+						data[29](_time*data[31]+data[30], _target, data[32], _t);
+					break;
+					
+					case 0: // Break out for tween with no properties
+					break;
+					
+					default: // Handle "unlimited" property count
+						var i = 1;
+						var data = _t[TWEEN.PROPERTY_DATA];
+						
+						if (is_method(_t[TWEEN.EASE]))
+						{	repeat(data[0])
+							{	
+								data[1](_t[TWEEN.EASE](_time, data[2], data[3], _t[TWEEN.DURATION], _t), _target, data[4], _t);
+								i += 4;
+							}
+						}
+						else
+						{	repeat(data[0])
+							{
+								data[i](data[i+1] + data[i+2]*animcurve_channel_evaluate(_t[TWEEN.EASE], _time/_t[TWEEN.DURATION]), _target, data[i+3], _t);	
+								i += 4;
+							}
+						}
+					break;
+					}
+					
 				}
                 else // Tween has reached start or destination
 				{
 					TweenHasReachedBounds(_t, _target, _time, _timeScaleDelta, _groupScales);
 				}
             }
-			
-			
-			//===================================
-			// Clear any reference to a struct!!
-			//===================================
-			// Failing to do this could prevent tweens from being cleared from memory because of structs and GC
-			_target = -1; 
 			
 			
 			//==================================
@@ -150,9 +277,8 @@ if (isEnabled)
 
 
 //==================================
-// Event Cleaner
+// Event Cleaner -- This needs to stay above "Passive Tween Cleaner" to prevent errors
 //==================================
-// This needs to stay above "Passive Tween Cleaner" to prevent errors
 if (ds_priority_size(eventCleaner))
 {
     var _event = ds_priority_delete_min(eventCleaner); // Get event to check for cleaning
@@ -168,9 +294,29 @@ if (ds_priority_size(eventCleaner))
 			ds_list_delete(_event, _cbCheckIndex); 
 		}
 		else
-		//if (_cb[TWEEN_CB.TARGET
 		{
-			
+			var _cbTarget = _cb[TWEEN_CB.TARGET];
+			if (is_real(_cbTarget)) // Instance Target
+			{	// Check if target doesn't exist
+				if (!instance_exists(_cbTarget))
+			    {	// Attempt to activate instance
+					instance_activate_object(_cbTarget);
+		    
+				    if (instance_exists(_cbTarget))
+					{	// Put instance back to deactivated state
+				        instance_deactivate_object(_cbTarget);
+				    }
+				    else
+				    {	// Remove callback from event
+						ds_list_delete(_event, _cbCheckIndex); 
+			    	}
+			    }
+			}
+			else // Struct Target
+			if (!weak_ref_alive(_cbTarget))
+			{
+				ds_list_delete(_event, _cbCheckIndex);
+			}
 		}
     }
 }
@@ -220,9 +366,9 @@ repeat(_cleanIterations)
 				_t[@ TWEEN.STATE] = TWEEN_STATE.DESTROYED;
 	            
 				// Invalidate tween handle
-	            if (ds_map_exists(global.TGMS_TweenIndexMap, _t[TWEEN.ID]))
+	            if (ds_map_exists(global.TGMS.TweenIndexMap, _t[TWEEN.ID]))
 	            {
-	                ds_map_delete(global.TGMS_TweenIndexMap, _t[TWEEN.ID]);
+	                ds_map_delete(global.TGMS.TweenIndexMap, _t[TWEEN.ID]);
 				}
 	            
 				// Destroy tween events if events map exists
@@ -234,7 +380,7 @@ repeat(_cleanIterations)
 	    }
 	}
 	else
-	{
+	{	// Let's see if the struct is 'dead'
 		if (!weak_ref_alive(_t[TWEEN.TARGET]))
 		{
 			// Remove tween from tweens list
@@ -243,9 +389,9 @@ repeat(_cleanIterations)
 			_t[@ TWEEN.STATE] = TWEEN_STATE.DESTROYED; 
             
 			// Invalidate tween handle
-            if (ds_map_exists(global.TGMS_TweenIndexMap, _t[TWEEN.ID]))
+            if (ds_map_exists(global.TGMS.TweenIndexMap, _t[TWEEN.ID]))
             {
-                ds_map_delete(global.TGMS_TweenIndexMap, _t[TWEEN.ID]);
+                ds_map_delete(global.TGMS.TweenIndexMap, _t[TWEEN.ID]);
 			}
             
 			// Destroy tween events if events map exists

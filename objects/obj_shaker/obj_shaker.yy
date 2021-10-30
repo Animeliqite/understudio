@@ -24,8 +24,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Effects",
-    "path": "folders/General Objects/Core Engine/Battles/Effects.yy",
+    "name": "System",
+    "path": "folders/General Objects/Core Engine/System.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_shaker",

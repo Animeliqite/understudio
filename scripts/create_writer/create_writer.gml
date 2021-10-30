@@ -9,6 +9,7 @@
 /// @args textSpeed
 /// @args skippable
 /// @args confirmable
+/// @args asterisk
 
 function create_writer(){
 	var xx = argument0;
@@ -22,6 +23,7 @@ function create_writer(){
 	var textSpeed = 1;
 	var skippable = true;
 	var confirmable = true;
+	var asterisk = true;
 	
 	if (!is_undefined(argument3)) {
 		var formatList = argument3;
@@ -47,6 +49,9 @@ function create_writer(){
 	if (!is_undefined(argument10)) {
 		var confirmable = argument10;
 	}
+	if (!is_undefined(argument11)) {
+		var asterisk = argument11;
+	}
 	
     var w = instance_create(xx, yy, obj_writer);
             
@@ -65,4 +70,12 @@ function create_writer(){
 	w.textSpeed = textSpeed;
 	w.skippable = skippable;
 	w.confirmable = confirmable;
+	w.asteriskCheck = asterisk;
+	
+	switch (font) {
+		case fnt_speech:
+			w.charWidth = 4.5;
+			w.charHeight = 8;
+			break;
+	}
 }

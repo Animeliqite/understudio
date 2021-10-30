@@ -7,22 +7,21 @@
 		TweenDefine	
 */
 
-
-/// @func TweenFire(target, ease, mode, delta, delay, duration, prop, start, dest, ...)
-/// @desc Tween a property between start/destination values (auto-destroyed)
 function TweenFire()
-{
-	// target		instance to associate with tween (id or object index)
-	// ease			easing script index id (e.g. EaseInQuad, EaseLinear)
-	// mode			tween mode (0=ONCE, 1=BOUNCE, 2=PATROL, 3=LOOP, 4=REPEAT)
-	// delta		whether or not to use delta(seconds) timing -- false will use step timing
-	// delay		amount of time to delay tween before playing
-	// dur			duration of time to play tween
-	// prop			property setter string (e.g. "x") or TP*() script
-	// start		starting value for eased property
-	// dest			destination value for eased property
-	// ...			(optional) additional properties ("direction", 0, 360) or advanced actions ("-group", 2)
+{	/// @desc Tween a property between start/destination values (auto-destroyed)
+	/// @func TweenFire(target, ease, mode, delta, delay, duration, prop, start, dest, [...])
 	/*
+		target		instance to associate with tween (id or object index)
+		ease		easing script index id (e.g. EaseInQuad, EaseLinear)
+		mode		tween mode (0=ONCE, 1=BOUNCE, 2=PATROL, 3=LOOP, 4=REPEAT)
+		delta		whether or not to use delta(seconds) timing -- false will use step timing
+		delay		amount of time to delay tween before playing
+		dur			duration of time to play tween
+		prop		property setter string (e.g. "x") or TP*() script
+		start		starting value for eased property
+		dest		destination value for eased property
+		...			(optional) additional properties ("direction", 0, 360) or advanced actions ("-group", 2)
+
 		Info:
 		    Eases one or more variables/properties between a specified start and destination value over a set duration of time.
 		    Additional properties can be added as optional arguments. Additional properties must use (property,start,dest) order.
@@ -54,7 +53,7 @@ function TweenFire()
 		// I could speed this up with a special case supplying all min amount of elements as its own array
 		//_args[0] = [""];
 		//_args[1] = [argument[0], argument[1], argument[2], argument[3], argument[4], argument[5]];
-		
+
 		_args = [];
 		array_push(_args, 
 			TWEEN.TARGET, argument[0],
@@ -64,7 +63,7 @@ function TweenFire()
 			TWEEN.DELAY, argument[4],
 			TWEEN.DURATION, argument[5]
 		);
-		
+
 		i = 5;
 		repeat(argument_count-6)
 		{
@@ -75,23 +74,23 @@ function TweenFire()
 	return TGMS_Tween(TweenFire, _args, 0); // 3rd argument is not used here...
 }
 
-/// @function		TweenCreate(target, [ease, mode, delta, delay, dur, prop, start, dest, [...])
-/// @description	Creates a tween to be started with TweenPlay*() (not auto-destroyed)
-/// @return			Tween id
+
 function TweenCreate() 
-{
-	// target	instance or struct to associate with tween
-	// [Optional]
-	// ease		easing script index id (e.g. EaseInQuad, EaseLinear)
-	// mode		tween mode (0=ONCE, 1=BOUNCE, 2=PATROL, 3=LOOP, 4=REPEAT)
-	// delta	whether or not to use delta(seconds) timing -- false will use step timing
-	// delay	amount of time to delay tween before playing
-	// dur		duration of time to play tween
-	// prop		property setter string or TP*() script
-	// start	starting value for eased property
-	// dest		destination value for eased property
-	// ...		(optional) additional properties ("direction", 0, 360)
+{	/// @desc	Creates a tween to be started with TweenPlay*() (not auto-destroyed)
+	/// @func	TweenCreate(target, [ease, mode, delta, delay, dur, prop, start, dest, [...])
 	/*
+		target		instance or struct to associate with tween
+			[Optional]
+		ease		easing script index id (e.g. EaseInQuad, EaseLinear)
+		mode		tween mode (0=ONCE, 1=BOUNCE, 2=PATROL, 3=LOOP, 4=REPEAT)
+		delta		whether or not to use delta(seconds) timing -- false will use step timing
+		delay		amount of time to delay tween before playing
+		dur			duration of time to play tween
+		prop		property setter string or TP*() script
+		start		starting value for eased property
+		dest		destination value for eased property
+		...			(optional) additional properties ("direction", 0, 360)
+	
 		Creates and returns a new tween. The tween does not start right away, but must
 		be played with the TweenPlay*() scripts.
 		Unlike TwenFire*(), tweens created with TweenCreate() will exist in memory until either
@@ -138,27 +137,27 @@ function TweenCreate()
 		}
 	}
 	
-	
 	return TGMS_Tween(TweenCreate, _args, 0);
 }
 
-/// @func	TweenPlay(tween,[ease,mode,delta,delay,dur,prop,start,dest,...])
-/// @desc	Plays a tween previously created with TweenCreate()
+
 function TweenPlay() 
-{
-	// tween	tween[s] id of previously created tween
-	// [ease	easing script index id (e.g. EaseInQuad, EaseLinear)
-	// mode		tween mode (0=ONCE, 1=BOUNCE, 2=PATROL, 3=LOOP, 4=REPEAT)
-	// delta	whether or not to use delta/seconds timing(true) or step timing(false)
-	// delay	amount of time to delay tween before playing
-	// dur		duration of time to play tween
-	// prop		property setter string or TP*() script
-	// start	starting value for eased property
-	// dest		destination value for eased property
-	// ...		(optional) additional properties ("direction", 0, 360)
+{	/// @desc	Plays a tween previously created with TweenCreate()
+	/// @func	TweenPlay(tween,[ease,mode,delta,delay,dur,prop,start,dest,...])
 	/*
+		tween		tween id of previously created tween
+			[optional]
+		ease		easing script index id (e.g. EaseInQuad, EaseLinear)
+		mode		tween mode (0=ONCE, 1=BOUNCE, 2=PATROL, 3=LOOP, 4=REPEAT)
+		delta		whether or not to use delta/seconds timing(true) or step timing(false)
+		delay		amount of time to delay tween before playing
+		dur			duration of time to play tween
+		prop		property setter string or TP*() script
+		start		starting value for eased property
+		dest		destination value for eased property
+		...			(optional) additional properties ("direction", 0, 360)
+	
 		Defining a tween at creation is optional. Both of the following are valid:
-		
 			tween1 = TweenCreate(id);
 			tween2 = TweenCreate(id, EaseLinear, TWEEN_MODE_ONCE, true, 0, 1, "x", 0, 100);
 		
@@ -166,52 +165,61 @@ function TweenPlay()
 			TweenPlay(tween2);
 	*/
 	
-	var _args;
+	var _tween = TGMS_FetchTween(argument[0]);
+	
+	if (is_struct(_tween))
+	{
+		TGMS_TweensExecute(_tween, TweenPlay);
+	}
+	else
+	{
+		var _args;
 
-	if (argument_count == 1)
-	{
-		_args = [];
-	}
-	else
-	if ((is_string(argument[1]) && global.TGMS_ShorthandTable[string_byte_at(argument[1], 1)]) || is_array(argument[1]))
-	{
-		_args = array_create(argument_count-1);
-		var i = -1;
-		repeat(argument_count-1)
+		if (argument_count == 1)
 		{
-			++i;
-			_args[i] = argument[i+1];
+			_args = [];
 		}
-	}
-	else
-	{
-		_args = array_create(argument_count-1);
-		_args[0] = TWEEN.EASE; _args[1] = argument[1];
-		_args[2] = TWEEN.MODE; _args[3] = argument[2];
-		_args[4] = TWEEN.DELTA; _args[5] = argument[3];
-		_args[6] = TWEEN.DELAY; _args[7] = argument[4];
-		_args[8] = TWEEN.DURATION; _args[9] = argument[5];
-	
-		var i = 9;
-		repeat(argument_count-6)
+		else
+		if ((is_string(argument[1]) && global.TGMS.ShorthandTable[string_byte_at(argument[1], 1)]) || is_array(argument[1]))
 		{
-			++i;
-			_args[i] = argument[i-4];
+			_args = array_create(argument_count-1);
+			var i = -1;
+			repeat(argument_count-1)
+			{
+				++i;
+				_args[i] = argument[i+1];
+			}
 		}
-	}
+		else
+		{
+			_args = array_create(argument_count-1);
+			_args[0] = TWEEN.EASE; _args[1] = argument[1];
+			_args[2] = TWEEN.MODE; _args[3] = argument[2];
+			_args[4] = TWEEN.DELTA; _args[5] = argument[3];
+			_args[6] = TWEEN.DELAY; _args[7] = argument[4];
+			_args[8] = TWEEN.DURATION; _args[9] = argument[5];
 	
-	return TGMS_Tween(TweenPlay, _args, argument[0]);
+			var i = 9;
+			repeat(argument_count-6)
+			{
+				++i;
+				_args[i] = argument[i-4];
+			}
+		}
+	
+		return TGMS_Tween(TweenPlay, _args, argument[0]);
+	}
 }
 
 
-/// @func	TweenPlayDelay(tween[s], delay)
-/// @desc	Plays tween[s] defined with TweenCreate*() after a set delay
-/// @return n/a
 function TweenPlayDelay(_t, delay) 
-{
-	// @param tween[s]	id of previously created/defined tween[s]
-	// @param delay		amount of time to delay start
-
+{	/// @desc	Plays tween[s] defined with TweenCreate*() after a set delay
+	/// @func	TweenPlayDelay(tween[s], delay)
+	/*
+		tween[s]	id of previously created/defined tween[s]
+		delay		amount of time to delay start
+	*/
+	
 	_t = TGMS_FetchTween(_t);
 
 	if (is_array(_t))
@@ -219,7 +227,7 @@ function TweenPlayDelay(_t, delay)
 	    _t[@ TWEEN.DELAY] = delay;
 		TGMS_Tween(TweenPlay, [], _t[TWEEN.ID]);
 	}
-    
+    else
 	if (is_struct(_t))
 	{
 	    TGMS_TweensExecute(_t, TweenPlayDelay, delay);
@@ -227,23 +235,22 @@ function TweenPlayDelay(_t, delay)
 }
 
 
-/// @func	TweenMore(tween, target, ease, mode, delta, delay, dur, prop, start, dest, [...])
-/// @desc	Allows for chaining of tweens by adding a tween to be fired after the indicated tween finishes	
-/// @return	Tween id
 function TweenMore() 
-{
-	/// @param tween	tween id
-	/// @param target	instance to associate with tween (id or object index)
-	/// @param ease		easing script index id (e.g. EaseInQuad, EaseLinear)
-	/// @param mode		tween mode (0=ONCE, 1=BOUNCE, 2=PATROL, 3=LOOP, 4=REPEAT)
-	/// @param delta	whether or not to use delta(seconds) timing -- false will use step timing
-	/// @param delay	amount of time to delay tween before playing
-	/// @param dur		duration of time to play tween
-	/// @param prop		property setter string or TP*() script
-	/// @param start	starting value for eased property
-	/// @param dest		destination value for eased property
-	/// @param [...]	(optional) additional properties ("direction", 0, 360)
+{	/// @desc	Allows for chaining of tweens by adding a tween to be fired after the indicated tween finishes	
+	/// @func	TweenMore(tween, target, ease, mode, delta, delay, dur, prop, start, dest, [...])
 	/*
+		tween		tween id
+		target		instance to associate with tween (id or object index)
+		ease		easing script index id (e.g. EaseInQuad, EaseLinear)
+		mode		tween mode (0=ONCE, 1=BOUNCE, 2=PATROL, 3=LOOP, 4=REPEAT)
+		delta		whether or not to use delta(seconds) timing -- false will use step timing
+		delay		amount of time to delay tween before playing
+		dur			duration of time to play tween
+		prop		property setter string or TP*() script
+		start		starting value for eased property
+		dest		destination value for eased property
+		[...]		(optional) additional properties ("direction", 0, 360)
+	    
 	    Info:
 			Allows for chaining of tweens by adding a tween to be fired after the indicated tween finishes.
 			Multiple new tweens can be added to the same tween, allowing for branching chains.
@@ -307,17 +314,16 @@ function TweenMore()
 }
 
 
-/// @func	TweenScript(target, delta, dur, script, [arg0,...])
-/// @desc	Schedules a script to be executed after a set duration of time
-/// @return	Tween id
 function TweenScript() 
-{
-	/// target		target instance id
-	/// delta		use seconds timing? (true=seconds | false = steps)
-	/// dur			duration of time before script is called
-	/// script		script to execute when timer expires
-	/// [arg0,...]	(optional) arguments to pass to script
+{	/// @desc	Schedules a script to be executed after a set duration of time
+	/// @func	TweenScript(target, delta, dur, script, [arg0,...])
 	/*
+		target		target instance id
+		delta		use seconds timing? (true=seconds | false = steps)
+		dur			duration of time before script is called
+		script		script to execute when timer expires
+		[arg0,...]	(optional) arguments to pass to script
+
 	    Info:
 	        Schedules a script to be executed after a set duration of time.
 	        Since this uses the tweening system, the returned tween script works with any regular tweening scripts,
@@ -336,10 +342,11 @@ function TweenScript()
 
 	static _args = 0;
 	static i = 0; 
+	static _strTarget = "?";
 	
 	_args = array_create(argument_count);
 	// Using "?" to make sure "off-rails" tween fire is used...
-	_args[0] = TweenFire("?", argument[0], TWEEN.DELTA, argument[1], TWEEN.DURATION, argument[2]); 
+	_args[0] = TweenFire(_strTarget, argument[0], TWEEN.DELTA, argument[1], TWEEN.DURATION, argument[2]); 
 	_args[1] = TWEEN_EV_FINISH;
 	_args[2] = argument[0]; // target
 	_args[3] = argument[3]; // script
@@ -356,18 +363,17 @@ function TweenScript()
 }
 
 
-/// @func	TweenMoreScript(tween,target,delta,dur,script,[arg0,...])
-/// @desc	Allows for the chaining of script scheduling
-/// @return	Tween id
 function TweenMoreScript() 
-{
-	// tween		tween id
-	// target		target instance
-	// delta		use seconds timing? (true=seconds | false = steps)
-	// dur			duration of time before script is called
-	// script		script to execute when timer expires
-	// [arg0,...]	(optional) arguments to pass to script
+{	/// @desc	Allows for the chaining of script scheduling
+	/// @func	TweenMoreScript(tween,target,delta,dur,script,[arg0,...])
 	/*
+		tween		tween id
+		target		target instance
+		delta		use seconds timing? (true=seconds | false = steps)
+		dur			duration of time before script is called
+		script		script to execute when timer expires
+		[arg0,...]	(optional) arguments to pass to script
+
 	    Info:
 	        Allows for the chaining of script scheduling.
 	        Since this uses the tweening system, the returned tween script works with any regular tweening scripts,
@@ -414,21 +420,21 @@ function TweenMoreScript()
 }
 
 
-/// @func	TweenDefine(tween,[ease,mode,delta,delay,dur,prop,start,dest,...])
-/// @desc	Allows you to redefine a tween
 function TweenDefine() 
-{
-	// tween	tween[s] id of previously created tween
-	// [ease	easing script index id (e.g. EaseInQuad, EaseLinear)
-	// mode		tween mode (0=ONCE, 1=BOUNCE, 2=PATROL, 3=LOOP, 4=REPEAT)
-	// delta	whether or not to use delta/seconds timing(true) or step timing(false)
-	// delay	amount of time to delay tween before playing
-	// dur		duration of time to play tween
-	// prop		property setter string or TP*() script
-	// start	starting value for eased property
-	// dest		destination value for eased property
-	// ...		(optional) additional properties ("direction", 0, 360)
+{	/// @desc	Redefines a tween
+	/// @func	TweenDefine(tween,[ease,mode,delta,delay,dur,prop,start,dest,...])
 	/*
+		tween	tween[s] id of previously created tween
+		[ease	easing script index id (e.g. EaseInQuad, EaseLinear)
+		mode		tween mode (0=ONCE, 1=BOUNCE, 2=PATROL, 3=LOOP, 4=REPEAT)
+		delta	whether or not to use delta/seconds timing(true) or step timing(false)
+		delay	amount of time to delay tween before playing
+		dur		duration of time to play tween
+		prop		property setter string or TP*() script
+		start	starting value for eased property
+		dest		destination value for eased property
+		...		(optional) additional properties ("direction", 0, 360)
+	
 		Defining a tween at creation is optional. Both of the following are valid:
 		
 			tween1 = TweenCreate(id);
@@ -451,7 +457,7 @@ function TweenDefine()
 	var _ogDestroyState = _curTween[TWEEN.DESTROY];
 	
 	// Set tween values to defautls
-	array_copy(_curTween, 0, global.TGMS_TweenDefault, 0, TWEEN.DATA_SIZE);
+	array_copy(_curTween, 0, global.TGMS.TweenDefault, 0, TWEEN.DATA_SIZE);
 	
 	// Reassign the original values we want to carry over
 	_curTween[@ TWEEN.ID] = _ogID;
@@ -470,7 +476,7 @@ function TweenDefine()
 		_args = [];
 	}
 	else
-	if ((is_string(argument[1]) && global.TGMS_ShorthandTable[string_byte_at(argument[1], 1)]) || is_array(argument[1]))
+	if ((is_string(argument[1]) && global.TGMS.ShorthandTable[string_byte_at(argument[1], 1)]) || is_array(argument[1]))
 	{
 		_args = array_create(argument_count-1);
 		var i = -1;
@@ -499,6 +505,4 @@ function TweenDefine()
 	
 	return TGMS_Tween(TweenDefine, _args, argument[0]);
 }
-
-
 
