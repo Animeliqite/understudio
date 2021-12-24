@@ -1,4 +1,5 @@
 function enumerates(){
+	#macro Music new MusicUtil()
 	enum WINDOW_TYPE {
 		NORMAL,
 		FULLSCREEN

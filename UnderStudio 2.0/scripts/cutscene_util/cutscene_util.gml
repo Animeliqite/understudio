@@ -7,7 +7,7 @@ function cutscene_add_order(scriptToExecute, arguments) {
 }
 
 // This script changes things up for the X order
-function cutscene_add_order(orderNo, scriptToExecute, arguments) {
+function cutscene_change_order(orderNo, scriptToExecute, arguments) {
 	global.cutsceneOrder[orderNo][0] = scriptToExecute; // Set the script in the X order
 	for (var n = 0; n < array_length(arguments); n++)
 		global.cutsceneOrder[orderNo][n + 1] = arguments[n]; // Spread the arguments near the script of the X order
@@ -69,20 +69,20 @@ function cutscene_set_instance_variable(instance, variable, newValue) {
 
 // This script initializes and plays a music from a filename
 function cutscene_play_music(fname, volume = 1, pitch = 1, time = 0) {
-	var stream = music_load(fname);
-	music_play(stream, volume, pitch, time);
+	var stream = Music.Load(fname);
+	Music.Play(stream, volume, pitch, time);
 	cutscene_end_order();
 }
 
 // This script stops a music stream
 function cutscene_stop_music(stream) {
-	music_stop(stream);
+	Music.Unload(stream);
 	cutscene_end_order();
 }
 
 // This script changes the volume of a sound ID
-function cutscene_set_music_volume(soundid, volume = 1, volTargetTime = 0) {
-	music_set_volume(soundid, volume, volTargetTime);
+function cutscene_set_music_volume(soundid, volume = 1, time = 0) {
+	Music.SetVolume(soundid, volume, time);
 	cutscene_end_order();
 }
 
@@ -90,7 +90,7 @@ function cutscene_set_music_volume(soundid, volume = 1, volTargetTime = 0) {
 // This script changes the pitch of a sound ID
 function cutscene_set_music_pitch(soundid, pitch = 1, duration = 0, tween = "linear", relative = false) {
 	if (duration == 0)
-		music_set_pitch(soundid, pitch);
+		Music.SetPitch(soundid, pitch);
 	else {
 		with (instance_create_depth(0, 0, 0, obj_audiopitcher)) {
 			audioStream = soundid;

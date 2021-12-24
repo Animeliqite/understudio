@@ -1,5 +1,5 @@
-mus = music_load("spamton_battle");
-musID = music_play(mus, 1, 0.95, 0);
+mus = Music.Load("spamton_battle");
+musID = Music.Play(mus, 1, 0.95, 0);
 
 cutscene_add_order(cutscene_sleep, [1]);
 cutscene_add_order(cutscene_play_sfx, [snd_test, 1, 1, 0]);
