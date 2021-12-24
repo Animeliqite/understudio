@@ -1,1 +1,0 @@
-bt_soul_hurtevent();
