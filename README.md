@@ -7,12 +7,12 @@
 
 <hr>
 
-<h3 align="center">Important Aspects</h3>
-<p>1. UnderStudio has different types of folder names, which the "Core Engine" being the API, and "The Game" being the folder that can be used for the desired fan-game.</p>
-<p>2. UnderStudio uses small portion of assets from TS!US (Monster Particle, Writing System, etc.) with the help from <a href="https://github.com/colinator27" target="_blank">Colinator27</a>.</p>
-<p>3. UnderStudio currently has several outdated features that are going to be replaced with newer and optimized codes.</p>
-<p>4. It is currently supported for the beta version of Game Maker: Studio 2.3.x and is recommended to wait for support for older versions of Game Maker: Studio</p>
-<p>5. The engine is public to anyone unless a majority of people don't give any credit to our hard work.
+<h3 align="center">Important Rules</h3>
+<p>1. This is a brand new branch, aiming to recreate UnderStudio into something robust to all the developers.</p>
+<p>2. UnderStudio might use external assets later on. Thanks to <a href="https://github.com/colinator27" target="_blank">Colinator27</a> for helping with all the problems.</p>
+<p>3. You'll have to credit the people behind this project upon using it on your project. Legal action will be taken otherwise.</p>
+<p>4. UnderStudio uses the latest beta version of Game Maker Studio 2. Only people with beta releases access will be able to use it.</p>
+<p>5. The engine will stay public to everyone as long as this gets credited by all the users.</p>
 
 <hr>
 
