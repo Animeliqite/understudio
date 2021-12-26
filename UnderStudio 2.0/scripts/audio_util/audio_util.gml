@@ -1,6 +1,24 @@
 // This script plays a sound on a specific emitter
-function sfx_play(soundid) {
-	return audio_play_sound_on(global.sfxEmitter, soundid, false, 8);
+
+function SFXUtil() constructor {
+	Play = function (soundid) {
+		return audio_play_sound_on(global.sfxEmitter, soundid, false, 8);
+	}
+	
+	Stop = function (soundid) {
+		return audio_stop_sound(soundid);
+	}
+	
+	TweenPitch = function (soundid, pitch = 1, duration = 0, tween = "linear", relative = false) {
+		with (instance_create_depth(0, 0, 0, obj_audiopitcher)) {
+			audioStream = soundid;
+			currentPitch = audio_sound_get_pitch(soundid);
+			targetPitch = pitch;
+			self.duration = duration;
+			self.relative = relative;
+			self.tween = tween;
+		}
+	}
 }
 
 function MusicUtil() constructor {
@@ -10,16 +28,27 @@ function MusicUtil() constructor {
 	}
 	
 	// This script deinitializes an external music file and destroys the stream
-	Unload = function (fname) {
-		return audio_destroy_stream(fname);
+	Unload = function (streamid) {
+		return audio_destroy_stream(streamid);
 	}
 	
-	SetPitch = function (fname, pitch = 1) {
-		return audio_sound_pitch(fname, pitch);
+	SetPitch = function (streamid, pitch = 1) {
+		return audio_sound_pitch(streamid, pitch);
 	}
 	
-	SetVolume = function (fname, volume = 1, time = 0) {
-		return audio_sound_gain(fname, volume, time * 1000);
+	SetVolume = function (streamid, volume = 1, time = 0) {
+		return audio_sound_gain(streamid, volume, time * 1000);
+	}
+	
+	TweenPitch = function (streamid, pitch = 1, duration = 0, tween = "linear", relative = false) {
+		with (instance_create_depth(0, 0, 0, obj_audiopitcher)) {
+			audioStream = streamid;
+			currentPitch = audio_sound_get_pitch(streamid);
+			targetPitch = pitch;
+			self.duration = duration;
+			self.relative = relative;
+			self.tween = tween;
+		}
 	}
 	
 	Play = function (fname, volume = 1, pitch = 1, time = 0) {

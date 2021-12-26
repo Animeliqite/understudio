@@ -1,8 +1,4 @@
 /// @description Initialize animation
 
 // Initialize the animation
-create_instance_animation(
-							id, "currentPitch", 
-							targetPitch, tween, 
-							duration, relative
-							);
+execute_tween(id, "currentPitch", targetPitch, tween, duration, relative);

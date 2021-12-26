@@ -1,5 +1,5 @@
 // This script creates an animation on an instance relatively to the variable's value
-function create_instance_animation(instance, variable, targetValue, curveSubName, seconds, relative) {
+function execute_tween(instance, variable, targetValue, curveSubName, seconds, relative) {
 	// Set the values
 	with (instance_create_depth(0, 0, 0, obj_animationhandler)) {
 		curveTimer = 0;
