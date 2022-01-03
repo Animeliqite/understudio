@@ -1,5 +1,4 @@
-mus = Music.Load("spamton_battle");
-musID = Music.Play(mus, 1, 0.95, 0);
+musID = Music.Play(Music.Load("spamton_battle"), 1, 0.95, 0);
 
 c_add_order(c_sleep, [1]);
 c_add_order(c_play_sfx, [snd_test, 1, 1, 0]);

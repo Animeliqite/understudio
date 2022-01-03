@@ -114,7 +114,7 @@ function c_create_window_animation(effect = 0, intensity = 1, seconds = 1, posX 
 		// Is the timer less than given amount of seconds?
 		if (sleepTimer < seconds * room_speed) {
 			// Create the animation for a few seconds
-			window_create_animation(effect, intensity, posX, posY);
+			Window.ExecuteTween(effect, intensity, posX, posY);
 		}
 		else c_end_order();
 	}

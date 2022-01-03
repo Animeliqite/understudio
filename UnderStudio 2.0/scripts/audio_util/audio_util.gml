@@ -28,7 +28,7 @@ function MusicUtil() constructor {
 	}
 	
 	// This script deinitializes an external music file and destroys the stream
-	Unload = function (streamid) {
+	Stop = function (streamid) {
 		return audio_destroy_stream(streamid);
 	}
 	

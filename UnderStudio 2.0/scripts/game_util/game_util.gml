@@ -11,7 +11,7 @@ function game_util(){
 	
 	// WINDOW
 	global.windowType = WINDOW_TYPE.NORMAL; // The current window type
-	global.windowSize = window_get_size(); // The current window size
+	global.windowSize = Window.GetSize(); // The current window size
 	global.windowX = window_get_x(); // The current window X
 	global.windowY = window_get_y(); // The current window Y
 	
@@ -42,5 +42,7 @@ function game_util(){
 	// OTHER
 	window_set_color(c_black); // Set the window color
 	surface_resize(application_surface, 640, 480); // Resize the application surface
+	application_surface_draw_enable(false); // Disable automatically drawing the application surface
 	display_set_gui_size(640, 480); // Set the GUI size
+	Window.UpdateSize();
 }

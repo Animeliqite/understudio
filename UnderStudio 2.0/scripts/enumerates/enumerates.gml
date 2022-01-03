@@ -1,4 +1,5 @@
 function enumerates(){
+	#macro Window new WindowUtil()
 	#macro Music new MusicUtil()
 	#macro SFX new SFXUtil()
 	
