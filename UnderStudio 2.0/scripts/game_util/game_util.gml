@@ -51,4 +51,8 @@ function game_util(){
 	application_surface_draw_enable(false); // Disable automatically drawing the application surface
 	display_set_gui_size(640, 480); // Set the GUI size
 	global.windowManager.UpdateSize();
+	
+	// FONT
+	global.mainFontWidth = 16; // The main font width (8-Bit Operator JVE)
+	global.mainFontHeight = 36; // The main font height (8-Bit Operator JVE)
 }

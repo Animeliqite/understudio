@@ -37,4 +37,3 @@ else {
 
 // Draw GUI settings
 display_set_gui_maximize(screenWidth, screenHeight, screenOffsetX, screenOffsetY);
-display_set_gui_size(640 * screenWidth, 480 * screenHeight);

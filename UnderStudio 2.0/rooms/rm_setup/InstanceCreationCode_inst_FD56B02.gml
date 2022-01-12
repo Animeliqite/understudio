@@ -1,0 +1,1 @@
+text = "* This is a writer test.`p1``e1`#* Shaky text!`p1``e2`#* Wavy text!`p1``e0``cY`#* Colors!"

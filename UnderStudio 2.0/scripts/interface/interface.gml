@@ -1,4 +1,4 @@
-function RPGText(_x, _y, text, scaleX = 1, scaleY = 1, charWidth = string_width("A") * 1.1, charHeight = string_height("A") * 1.1) constructor {
+function draw_rpgtext(_x, _y, text, scaleX = 1, scaleY = 1, charWidth = global.mainFontWidth, charHeight = global.mainFontHeight) {
 	var color = c_white;
 	var font = fnt_main;
 	var effect = 0;
@@ -9,7 +9,7 @@ function RPGText(_x, _y, text, scaleX = 1, scaleY = 1, charWidth = string_width(
 		var c = string_char_at(text, i);
 		
 		switch (c) {
-			case "=":
+			case "`":
 				i++;
 				var cNext = string_char_at(text, i);
 				switch (cNext) {
@@ -27,6 +27,9 @@ function RPGText(_x, _y, text, scaleX = 1, scaleY = 1, charWidth = string_width(
 					case "e":
 						i++;
 						effect = string_char_at(text, i);
+						break;
+					default:
+						i--;
 						break;
 				}
 				break;
