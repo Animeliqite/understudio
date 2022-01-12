@@ -1,3 +1,4 @@
 /// @description Draw Text
 
-draw_rpgtext(x, y, written, scaleX, scaleY, charWidth, charHeight);
+if (!drawText) exit;
+draw_rpgtext(x, y, written, font, alpha, charWidth, charHeight, scaleX, scaleY);

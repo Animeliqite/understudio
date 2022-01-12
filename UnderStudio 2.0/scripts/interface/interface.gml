@@ -1,6 +1,5 @@
-function draw_rpgtext(_x, _y, text, scaleX = 1, scaleY = 1, charWidth = global.mainFontWidth, charHeight = global.mainFontHeight) {
+function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = global.mainFontWidth, charHeight = global.mainFontHeight, scaleX = 1, scaleY = 1) {
 	var color = c_white;
-	var font = fnt_main;
 	var effect = 0;
 	var siner = 0;
 	
@@ -40,6 +39,7 @@ function draw_rpgtext(_x, _y, text, scaleX = 1, scaleY = 1, charWidth = global.m
 			default:
 				siner++;
 				draw_set_color(color);
+				draw_set_alpha(alpha);
 				draw_set_font(font);
 				
 				switch (effect) {

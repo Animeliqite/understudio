@@ -11,8 +11,9 @@ voice = [snd_defaultvoice];
 alpha = 1;
 
 drawText = true;
-holdTimer = 0;
+skipText = false;
 completed = false;
+holdTimer = 0;
 
 scaleX = 1;
 scaleY = 1;
