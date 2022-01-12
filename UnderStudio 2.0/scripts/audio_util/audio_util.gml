@@ -1,6 +1,6 @@
 // This script plays a sound on a specific emitter
 
-function SFXUtil() constructor {
+function SFXManager() constructor {
 	Play = function (soundid) {
 		return audio_play_sound_on(global.sfxEmitter, soundid, false, 8);
 	}
@@ -21,7 +21,7 @@ function SFXUtil() constructor {
 	}
 }
 
-function MusicUtil() constructor {
+function MusicManager() constructor {
 	// This script initializes an external music file and creates a stream
 	Load = function (fname) {
 		return audio_create_stream(global.musicFilePath + fname + ".ogg");

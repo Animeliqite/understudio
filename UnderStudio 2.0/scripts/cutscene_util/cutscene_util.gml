@@ -53,7 +53,7 @@ function c_sleep(seconds) {
 
 // This script plays a sound with certain options (Used during cutscenes)
 function c_play_sfx(soundid, volume = 1, pitch = 1, time = 0) {
-	var snd = SFX.Play(soundid);
+	var snd = global.sfxManager.Play(soundid);
 	
 	audio_sound_gain(snd, 0, 0);
 	audio_sound_gain(snd, volume, time * 1000);
@@ -63,7 +63,7 @@ function c_play_sfx(soundid, volume = 1, pitch = 1, time = 0) {
 
 // This script changes the pitch of a sound ID
 function c_tween_sfx_pitch(soundid, pitch = 1, duration = 0, tween = "linear", relative = false) {
-	SFX.TweenPitch(soundid, pitch, duration, tween, relative);
+	global.sfxManager.TweenPitch(soundid, pitch, duration, tween, relative);
 	c_end_order();
 }
 
@@ -76,20 +76,20 @@ function c_set_instance_variable(instance, variable, newValue) {
 
 // This script initializes and plays a music from a filename
 function c_play_music(fname, volume = 1, pitch = 1, time = 0) {
-	var stream = Music.Load(fname);
-	Music.Play(stream, volume, pitch, time);
+	var stream = global.musicManager.Load(fname);
+	global.musicManager.Play(stream, volume, pitch, time);
 	c_end_order();
 }
 
 // This script stops a music stream
 function c_stop_music(stream) {
-	Music.Unload(stream);
+	global.musicManager.Unload(stream);
 	c_end_order();
 }
 
 // This script changes the volume of a sound ID
 function c_set_music_volume(soundid, volume = 1, time = 0) {
-	Music.SetVolume(soundid, volume, time);
+	global.musicManager.SetVolume(soundid, volume, time);
 	c_end_order();
 }
 
@@ -97,8 +97,8 @@ function c_set_music_volume(soundid, volume = 1, time = 0) {
 // This script changes the pitch of a sound ID
 function c_set_music_pitch(soundid, pitch = 1, duration = 0, tween = "linear", relative = false) {
 	if (duration == 0)
-		Music.SetPitch(soundid, pitch);
-	else Music.TweenPitch(soundid, pitch, duration, tween, relative);
+		global.musicManager.SetPitch(soundid, pitch);
+	else global.musicManager.TweenPitch(soundid, pitch, duration, tween, relative);
 	c_end_order();
 }
 
@@ -114,7 +114,7 @@ function c_create_window_animation(effect = 0, intensity = 1, seconds = 1, posX 
 		// Is the timer less than given amount of seconds?
 		if (sleepTimer < seconds * room_speed) {
 			// Create the animation for a few seconds
-			Window.ExecuteTween(effect, intensity, posX, posY);
+			global.windowManager.ExecuteTween(effect, intensity, posX, posY);
 		}
 		else c_end_order();
 	}

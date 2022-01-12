@@ -11,14 +11,14 @@ global.chapter = 0; // The current chapter
 global.language = "en"; // The current language
 global.debug = false; // Debug menu
 
-borderOffsetX = 0;
-borderOffsetY = 0;
-borderWidth = 1;
-borderHeight = 1;
+borderOffsetX = 0; // X Offset of the border
+borderOffsetY = 0; // Y Offset of the border
+borderWidth = 1; // Width of the border
+borderHeight = 1; // Height of the border
 
-screenOffsetX = 0;
-screenOffsetY = 0;
-screenWidth = 1;
-screenHeight = 1;
+screenOffsetX = 0; // X Offset of the screen
+screenOffsetY = 0; // Y Offset of the screen
+screenWidth = 1; // Width of the screen
+screenHeight = 1; // Height of the screen
 
 game_util(); // Execute the utilization script

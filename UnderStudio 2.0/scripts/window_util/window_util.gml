@@ -1,5 +1,5 @@
 // This script returns a struct by checking the current window type.
-function WindowUtil() constructor {
+function WindowManager() constructor {
 	ExecuteTween = function (type = ANIMATION_TYPE.SHAKY, intensity = 1, posX = window_get_x(), posY ) {
 		if (!obj_cutscenehandler.gotOnce) {
 			var finalPosX = posX, finalPosY = posY;
