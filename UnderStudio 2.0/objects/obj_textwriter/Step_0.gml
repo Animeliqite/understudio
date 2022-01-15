@@ -1,6 +1,8 @@
 /// @description Hold Timer
 
+// Check whether the writer has completed writing
 if (!completed) {
+	// Skip the entire writing process if skipping is set to true
 	if (skipText) {
 		repeat (string_length(text) + 2 - currentPos) {
 			currentPos++;
@@ -8,6 +10,7 @@ if (!completed) {
 		}
 	}
 	
+	// Wait for the timer to end
 	if (holdTimer > 0)
 		holdTimer--;
 	else {

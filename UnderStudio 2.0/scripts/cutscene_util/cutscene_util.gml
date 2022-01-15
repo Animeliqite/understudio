@@ -93,6 +93,19 @@ function c_set_music_volume(soundid, volume = 1, time = 0) {
 	c_end_order();
 }
 
+// This script create a writer
+function c_run_text(_x, _y, text, color = c_white, voice = [snd_defaultvoice], alpha = 1, scaleX = 1, scaleY = 1) {
+	var inst = instance_create_depth(_x, _y, -1000, obj_textwriter);
+	inst.text = text;
+	inst.voice = voice;
+	inst.color = color;
+	inst.alpha = alpha;
+	inst.scaleX = scaleX;
+	inst.scaleY = scaleY;
+	
+	c_end_order();
+}
+
 
 // This script changes the pitch of a sound ID
 function c_set_music_pitch(soundid, pitch = 1, duration = 0, tween = "linear", relative = false) {

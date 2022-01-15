@@ -7,7 +7,7 @@
 	
 	- c_add_order(scriptName, [argument0, argument1, ...]);
 	This script above adds an action with the order being the last than the specified action before.
-	Be warned that using an imcompatible script (normally scripts without the "c_" at the start) will softlock the cutscene.
+	Be warned that using an incompatible script (normally scripts without the "c_" at the start) will softlock the cutscene.
 	
 	- c_begin();
 	This script above starts the cutscene. It is set to automatically end upon executing all the remaining orders.
