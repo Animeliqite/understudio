@@ -1,1 +1,0 @@
-text = new RPGText(20, 20, "This is a test.#And this is a test too.#=e1Shaky text#=e2Wavy text#=cYC=cRo=cBl=cYo=cRr=cBs");

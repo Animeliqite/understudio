@@ -77,7 +77,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/mus","resourceVersion":"1.0","name":"alarm_titlescreen.ogg","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "23.1.1.457",
+    "IDEVersion": "2022.1.0.465",
   },
   "resourceVersion": "1.4",
   "name": "UnderStudio 2.0",

@@ -3,13 +3,11 @@ function execute_tween(instance, variable, targetValue, curveSubName, seconds, r
 	// Set the values
 	with (instance_create_depth(0, 0, 0, obj_animationhandler)) {
 		curveTimer = 0;
-		animationData = {
-			curveName : curveSubName,
-			targetInstance : instance,
-			targetVariable : variable,
-			oldValue : variable_instance_get(instance, variable),
-			newValue : targetValue - (relative ? 0 : variable_instance_get(instance, variable)),
-			duration : seconds
-		};
+		curveName = curveSubName;
+		targetInstance = instance;
+		targetVariable = variable;
+		oldValue = variable_instance_get(instance, variable);
+		newValue = targetValue - (relative ? 0 : variable_instance_get(instance, variable));
+		duration = seconds;
 	}
 }
