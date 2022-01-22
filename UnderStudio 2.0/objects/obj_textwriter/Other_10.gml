@@ -11,6 +11,11 @@ if (currentPos < string_length(text) + 2) {
 					holdTimer = real(pauseCheck) * 10;
 					currentPos++;
 					break;
+				case "E":
+					var eventCheck = string_char_at(text, ++currentPos);
+					global.writerEvent = real(eventCheck);
+					currentPos++;
+					break;
 				default:
 					written += "`" + cNext;
 					while (string_char_at(text, currentPos + 1) != "`" && !completed)

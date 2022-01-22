@@ -3,7 +3,7 @@
 // Check whether the writer has completed writing
 if (!completed) {
 	// Skip the entire writing process if skipping is set to true
-	if (skipText) {
+	if (skipText && skippable) {
 		repeat (string_length(text) + 2 - currentPos) {
 			currentPos++;
 			event_user(0);

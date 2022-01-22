@@ -52,6 +52,9 @@ function game_util(){
 	display_set_gui_size(640, 480); // Set the GUI size
 	global.windowManager.UpdateSize();
 	
+	// EVENTS
+	global.writerEvent = undefined; // The event number caused by the writer
+	
 	// FONT
 	global.mainFontWidth = 16; // The main font width (8-Bit Operator JVE)
 	global.mainFontHeight = 36; // The main font height (8-Bit Operator JVE)

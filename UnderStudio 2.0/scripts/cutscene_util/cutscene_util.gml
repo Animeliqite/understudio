@@ -42,6 +42,12 @@ function c_end_order() {
 	}
 }
 
+function c_sleep_until(object, event) {
+	with (object) {
+		if (event_type == event)
+			c_end_order();
+	}
+}
 
 // This script makes the cutscene wait for a certain amount of seconds (Used during cutscenes)
 function c_sleep(seconds) {
@@ -94,9 +100,10 @@ function c_set_music_volume(soundid, volume = 1, time = 0) {
 }
 
 // This script create a writer
-function c_run_text(_x, _y, text, color = c_white, voice = [snd_defaultvoice], alpha = 1, scaleX = 1, scaleY = 1) {
+function c_run_text(_x, _y, text, color = c_white, voice = [snd_defaultvoice], draw = true, alpha = 1, scaleX = 1, scaleY = 1) {
 	var inst = instance_create_depth(_x, _y, -1000, obj_textwriter);
 	inst.text = text;
+	inst.drawText = draw;
 	inst.voice = voice;
 	inst.color = color;
 	inst.alpha = alpha;
