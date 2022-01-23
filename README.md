@@ -24,4 +24,4 @@
 <h6>  for helping me go through several obstacles of development.</h6>
 
 <hr>
-<h6 align="center">UnderStudio by Animelici804 (2021-2022)</h6>
+<h6 align="center">UnderStudio by Animeliqite (2021-2022)</h6>
