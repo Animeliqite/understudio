@@ -2,7 +2,7 @@
 
 draw_self();
 switch (textNo) {
-	case 10:
+	case 11:
 		if (fading) exit;
 		if (finalPanelTimer == 0) {
 			execute_tween(id, "finalPanelY", sprite_get_height(spr_intropanels_final) - 110, "linear", 7, true, 3);
