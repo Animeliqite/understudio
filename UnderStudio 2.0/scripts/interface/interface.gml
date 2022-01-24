@@ -60,3 +60,29 @@ function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = glob
 		}
 	}
 }
+
+function draw_ftext(_x, _y, text, font = fnt_main, color = c_white, alpha = 1, xscale = 1, yscale = 1, angle = 0, halign = fa_left, valign = fa_top) {
+	// Initialize the variables
+	var prevFont = draw_get_font(),
+		prevAlpha = draw_get_alpha(),
+		prevColor = draw_get_color(),
+		prevHAlign = draw_get_halign(),
+		prevVAlign = draw_get_valign();
+	
+	// Initialize everything
+	draw_set_font(font);
+	draw_set_halign(halign);
+	draw_set_valign(valign);
+	draw_set_alpha(alpha);
+	draw_set_color(color);
+	
+	// Draw the text
+	draw_text_transformed(_x, _y, text, xscale, yscale, angle);
+	
+	// Reset values
+	draw_set_font(prevFont);
+	draw_set_halign(prevHAlign);
+	draw_set_valign(prevVAlign);
+	draw_set_alpha(prevAlpha);
+	draw_set_color(prevColor);
+}

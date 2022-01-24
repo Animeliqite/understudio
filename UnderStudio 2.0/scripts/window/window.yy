@@ -6,7 +6,7 @@
     "path": "folders/Scripts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "audio_util",
+  "name": "window",
   "tags": [],
   "resourceType": "GMScript",
 }

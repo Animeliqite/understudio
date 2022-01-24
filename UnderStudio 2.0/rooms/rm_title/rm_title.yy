@@ -46,8 +46,8 @@
     "PhysicsWorldPixToMetres": 0.1,
   },
   "parent": {
-    "name": "Rooms",
-    "path": "folders/Rooms.yy",
+    "name": "In-Game Elements",
+    "path": "folders/Rooms/In-Game Elements.yy",
   },
   "resourceVersion": "1.0",
   "name": "rm_title",

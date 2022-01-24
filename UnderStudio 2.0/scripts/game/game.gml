@@ -1,4 +1,4 @@
-function game_util(){
+function game_init(){
 	/*
 		In here, like in the initialization object, we can change some variables for quick access to
 		testing newly made stuff. Changing some variables might break the game, so be careful!
@@ -24,7 +24,11 @@ function game_util(){
 	// LOCALIZATION
 	global.localizationFilePath = "lang/"; // The path to get all the JSON's from
 	global.localizationData = language_util(); // The entire localization data
-
+	
+	// INPUT
+	input_init(); // Initialize the input system
+	input_update(); // Update the input system once
+	
 	// CUTSCENE
 	global.cutscene = false; // Is the cutscene enabled?
 	global.cutsceneOrder = []; // The order to execute one by one while a cutscene is playing

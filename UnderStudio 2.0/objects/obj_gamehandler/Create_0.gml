@@ -21,5 +21,5 @@ screenOffsetY = 0; // Y Offset of the screen
 screenWidth = 1; // Width of the screen
 screenHeight = 1; // Height of the screen
 
-game_util(); // Execute the utilization script
+game_init(); // Execute the utilization script
 room_goto_next(); // Go to the next room

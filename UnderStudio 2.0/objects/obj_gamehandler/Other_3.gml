@@ -3,3 +3,4 @@
 delete global.windowManager;
 delete global.musicManager;
 delete global.sfxManager;
+delete global.inputKeys;

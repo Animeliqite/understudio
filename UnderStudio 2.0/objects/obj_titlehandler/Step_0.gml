@@ -1,6 +1,6 @@
 /// @description Functionality
 
-if (keyboard_check_pressed(ord("Z"))) {
+if (bt_enter_p) {
 	if (showTitle) {
 		audio_stop_all();
 		room_goto_next();
