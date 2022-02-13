@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_gpbuttons_confirm","path":"sprites/spr_gpbuttons_confirm/spr_gpbuttons_confirm.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_gpbuttons_confirm",
     "tags": [],
     "resourceType": "GMSequence",

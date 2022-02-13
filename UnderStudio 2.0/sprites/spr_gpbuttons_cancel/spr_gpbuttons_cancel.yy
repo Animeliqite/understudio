@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_gpbuttons_cancel","path":"sprites/spr_gpbuttons_cancel/spr_gpbuttons_cancel.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_gpbuttons_cancel",
     "tags": [],
     "resourceType": "GMSequence",

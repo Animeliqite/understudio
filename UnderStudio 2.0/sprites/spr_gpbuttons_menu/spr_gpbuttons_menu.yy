@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_gpbuttons_menu","path":"sprites/spr_gpbuttons_menu/spr_gpbuttons_menu.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_gpbuttons_menu",
     "tags": [],
     "resourceType": "GMSequence",
