@@ -1,5 +1,4 @@
-function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = global.mainFontWidth, charHeight = global.mainFontHeight, scaleX = 1, scaleY = 1) {
-	var color = c_white;
+function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = global.mainFontWidth, charHeight = global.mainFontHeight, scaleX = 1, scaleY = 1, color = c_white) {
 	var effect = 0;
 	var siner = 0;
 	
@@ -27,6 +26,16 @@ function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = glob
 						i++;
 						effect = string_char_at(text, i);
 						break;
+					case "s":
+						i++;
+						var spriteCheck = string_char_at(text, i);
+						switch (spriteCheck) {
+							case "Z": draw_sprite_ext(spr_gpbuttons_confirm, 0, cx, cy + 5, scaleX * 2, scaleY * 2, 0, c_white, 1); break;
+							case "X": draw_sprite_ext(spr_gpbuttons_cancel, 0, cx, cy + 5, scaleX * 2, scaleY * 2, 0, c_white, 1); break;
+							case "C": draw_sprite_ext(spr_gpbuttons_menu, 0, cx, cy + 5, scaleX * 2, scaleY * 2, 0, c_white, 1); break;
+						}
+						cx += (charWidth != -1 ? charWidth : string_width(c)) + (24 * scaleX);
+						break;
 					default:
 						i--;
 						break;
@@ -34,7 +43,7 @@ function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = glob
 				break;
 			case "#":
 				cx = _x;
-				cy += charHeight;
+				cy += (charHeight != -1 ? charHeight : string_height(c));
 				break;
 			default:
 				siner++;
@@ -55,7 +64,7 @@ function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = glob
 						break;
 				}
 				
-				cx += charWidth;
+				cx += (charWidth != -1 ? charWidth : string_width(c));
 				break;
 		}
 	}

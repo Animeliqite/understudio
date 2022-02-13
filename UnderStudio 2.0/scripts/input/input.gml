@@ -1,4 +1,8 @@
 function input_init() {
+	global.inputKeys[0] = ord("Z");
+	global.inputKeys[1] = ord("X");
+	global.inputKeys[2] = ord("C");
+	
 	global.inputConfirm = undefined;
 	global.inputConfirmPress = undefined;
 	global.inputConfirmRelease = undefined;
@@ -13,10 +17,6 @@ function input_init() {
 }
 
 function input_update() {
-	global.inputKeys[0] = ord("Z");
-	global.inputKeys[1] = ord("X");
-	global.inputKeys[2] = ord("C");
-	
 	keyboard_set_map(vk_enter, global.inputKeys[0]);
 	keyboard_set_map(vk_shift, global.inputKeys[1]);
 	keyboard_set_map(vk_control, global.inputKeys[2]);

@@ -23,3 +23,4 @@ screenHeight = 1; // Height of the screen
 
 game_init(); // Execute the utilization script
 room_goto_next(); // Go to the next room
+
