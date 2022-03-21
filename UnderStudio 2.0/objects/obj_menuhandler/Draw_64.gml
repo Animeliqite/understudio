@@ -1,12 +1,22 @@
 /// @description Draw necessary things
 
-var w = display_get_gui_width(), h = display_get_gui_height();
+var w = display_get_gui_width(), h = display_get_gui_height(), sx = w / 640, sy = h / 480;
 var gp_connected = gamepad_is_connected(0);
 switch (state) {
 	case 0:
-		draw_ftext(170, 40, " -- Instructions --", fnt_main, c_silver, 1, 1, 1, 0, fa_left, fa_top);
-		draw_rpgtext(170, 100, (gp_connected ? "`sZ`" : "[Z or ENTER]") + " - Confirm", fnt_main, 1, -1, -1, 1, 1, c_silver);
-		draw_rpgtext(170, 140, (gp_connected ? "`sX`" : "[X or SHIFT]") + " - Cancel", fnt_main, 1, -1, -1, 1, 1, c_silver);
-		draw_rpgtext(170, 180, (gp_connected ? "`sC`" : "[C or CTRL]") + " - Menu (In-game)", fnt_main, 1, -1, -1, 1, 1, c_silver);
+		// Draw the instructions
+		draw_ftext(170 * sx, 41 * sy, " --- Instruction ---", fnt_main, c_silver, 1, 1, 1, 0, fa_left, fa_top);
+		draw_rpgtext(170 * sx, 102 * sy, (gp_connected ? "`sZ`" : "[Z or ENTER]") + " - Confirm", fnt_main, 1, -1, -1, 1, 1, c_silver);
+		draw_rpgtext(170 * sx, 137 * sy, (gp_connected ? "`sX`" : "[X or SHIFT]") + " - Cancel", fnt_main, 1, -1, -1, 1, 1, c_silver);
+		draw_rpgtext(170 * sx, 172 * sy, (gp_connected ? "`sC`" : "[C or CTRL]") + " - Menu (In-game)", fnt_main, 1, -1, -1, 1, 1, c_silver);
+		draw_rpgtext(170 * sx, 207 * sy, "[F4] - Fullscreen", fnt_main, 1, -1, -1, 1, 1, c_silver);
+		draw_rpgtext(170 * sx, 242 * sy, "[Hold ESC] - Quit", fnt_main, 1, -1, -1, 1, 1, c_silver);
+		draw_rpgtext(170 * sx, 277 * sy, "When HP is 0, you lose.", fnt_main, 1, -1, -1, 1, 1, c_silver);
+		
+		// Draw the selectable texts
+		draw_rpgtext(170 * sx, 345 * sy, "Begin Game", fnt_main, 1, -1, -1, 1, 1, selection == 0 ? c_yellow : c_white);
+		draw_rpgtext(170 * sx, 385 * sy, "Settings", fnt_main, 1, -1, -1, 1, 1, selection == 1 ? c_yellow : c_white);
+		
+		draw_ftext(w / 2, 476 * sy, "UNDERTALE ENGINE v1.00 BY ANIMELIQITE 2021-2022", fnt_crypt, c_gray, 1, 0.5, 0.5, 0, fa_center, fa_bottom);
 		break;
 }
