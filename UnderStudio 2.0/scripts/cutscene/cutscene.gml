@@ -1,4 +1,4 @@
-// This script sets things up for the X order
+/*// This script sets things up for the X order
 function c_add_order(scriptToExecute, arguments) {
 	var orderLength = array_length(global.cutsceneOrder);
 	global.cutsceneOrder[orderLength][0] = scriptToExecute; // Set the script in the X order

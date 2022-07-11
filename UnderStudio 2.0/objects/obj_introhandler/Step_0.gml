@@ -25,7 +25,7 @@ switch (state) {
 				subState++;
 			case 1:
 				if (timer < 0.4)
-					timer += 0.5 / room_speed;
+					timer += 0.5 / game_get_speed(gamespeed_fps);
 				else {
 					execute_tween(id, "image_alpha", 1, "linear", 0.5, false);
 					runText(text[textNo]);
@@ -42,14 +42,14 @@ switch (state) {
 		switch (subState) {
 			case 0:
 				execute_tween(id, "image_alpha", 0, "linear", 1, false);
-				musManager.SetVolume(music, 0, 1);
+				song_set_volume(music, 0, 1);
 				instance_destroy(writer);
 				subState++;
 			case 1:
 				if (timer < 0.9)
-					timer += 1 / room_speed;
+					timer += 1 / game_get_speed(gamespeed_fps);
 				else {
-					musManager.Stop(music);
+					song_stop(music);
 					room_goto_next();
 				}
 				break;

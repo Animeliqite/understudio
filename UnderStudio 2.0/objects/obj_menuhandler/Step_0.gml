@@ -16,4 +16,6 @@ switch (state) {
 		
 		prevSelection = selection;
 		break;
+	case 0.5:
+		break;
 }

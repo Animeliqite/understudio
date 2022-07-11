@@ -30,7 +30,7 @@ if (currentPos < string_length(text) + 2) {
 			if (c != " ") {
 				for (var n = 0; n < array_length(voice); n++) {
 					audio_stop_sound(voice[n]);
-					global.sfxManager.Play(voice[random(n)]);
+					sfx_play(voice[random(n)]);
 				}
 			}
 			break;

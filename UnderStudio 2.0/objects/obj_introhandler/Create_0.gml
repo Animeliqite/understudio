@@ -41,9 +41,8 @@ runText					= function (text) {
 // MISC
 writer			= noone;				// The writer object
 fading			= false;				// Is the object fading?
-musManager		= global.musicManager;	// The music manager
 finalPanelX		= x;					// The X coordinate of the final panel
 finalPanelY		= y + 138;				// The Y coordinate of the final panel
 finalPanelTimer	= 0;					// The timer of the final panel
 runText(text[textNo]);
-music = musManager.Play(musManager.Load("story"), 1, 0.91);
+music = song_play(song_load("story"), 1, 0.91);

@@ -8,6 +8,7 @@ prevSelection		= undefined;
 namingHeader		= "Name the fallen human."
 namingLetters		= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-musManager			= new MusicManager();
-musicFile			= musManager.Load("menu0");
-menuMusic			= musManager.Play(musicFile, 1, 1);
+musicFile			= song_load("menu0");
+menuMusic			= song_play(musicFile, 1, 1);
+
+settingsCurtainX	= [320, 320]; 

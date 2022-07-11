@@ -2,6 +2,7 @@
   "resources": [
     {"id":{"name":"spr_gpbuttons_confirm","path":"sprites/spr_gpbuttons_confirm/spr_gpbuttons_confirm.yy",},"order":0,},
     {"id":{"name":"spr_titletext","path":"sprites/spr_titletext/spr_titletext.yy",},"order":0,},
+    {"id":{"name":"newcutscene","path":"scripts/newcutscene/newcutscene.yy",},"order":7,},
     {"id":{"name":"snd_titlenoise","path":"sounds/snd_titlenoise/snd_titlenoise.yy",},"order":0,},
     {"id":{"name":"obj_tiledsprite_parent","path":"objects/obj_tiledsprite_parent/obj_tiledsprite_parent.yy",},"order":0,},
     {"id":{"name":"obj_titlehandler","path":"objects/obj_titlehandler/obj_titlehandler.yy",},"order":2,},
@@ -44,7 +45,7 @@
     {"name":"Windows","path":"options/windows/options_windows.yy",},
     {"name":"operagx","path":"options/operagx/options_operagx.yy",},
   ],
-  "isDnDProject": false,
+  "defaultScriptType": 1,
   "isEcma": false,
   "configs": {
     "name": "Default",
@@ -104,7 +105,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/mus","resourceVersion":"1.0","name":"menu0.ogg","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.300.0.496",
+    "IDEVersion": "2022.600.0.147",
   },
   "resourceVersion": "1.5",
   "name": "UnderStudio 2.0",

@@ -19,4 +19,7 @@ switch (state) {
 		
 		draw_ftext(w / 2, 476 * sy, "UNDERTALE ENGINE v1.00 BY ANIMELIQITE 2021-2022", fnt_crypt, c_gray, 1, 0.5, 0.5, 0, fa_center, fa_bottom);
 		break;
+	case 1:
+		
+		break;
 }
