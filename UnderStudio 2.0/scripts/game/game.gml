@@ -24,6 +24,7 @@ function game_init(){
 	input_update(); // Update the input system once
 	
 	// CUTSCENE
+	global.currCutscenePhase = 0;
 	global.cutscene = array_create(128);
 	for (var i = 0; i <= 128; i++)
 		global.cutscene[i] = [[],[]];
@@ -58,8 +59,8 @@ function game_init(){
 	global.mainFontWidth = 16; // The main font width (8-Bit Operator JVE)
 	global.mainFontHeight = 36; // The main font height (8-Bit Operator JVE)
 	
-	c_add_event(0, show_message, ["YES"]);
-	c_add_event(0, show_message, ["YESSSS"]);
-	c_add_event(1, show_message, ["YESSSSSSS"]);
-	c_add_event(2, show_message, ["YESSSSSSSSSS"]);
+	c_set_event(0, show_message, ["YES"]);
+	c_set_event(0, show_message, ["YESSSS"]);
+	c_set_event(1, show_message, ["YESSSSSSS"]);
+	c_set_event(2, show_message, ["YESSSSSSSSSS"]);
 }
