@@ -1,10 +1,13 @@
 function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = global.mainFontWidth, charHeight = global.mainFontHeight, scaleX = 1, scaleY = 1, color = c_white) {
 	var effect = 0;
 	var siner = 0;
+	var line_count = 0;
+	var c_prev = "";
 	
 	var cx = _x, cy = _y;
 	for (var i = 1; i < string_length(text) + 1; ++i) {
 		var c = string_char_at(text, i);
+		c_prev += c;
 		
 		switch (c) {
 			case "`":
@@ -86,6 +89,8 @@ function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = glob
 				break;
 		}
 	}
+	
+	return { lines : line_count, length : string_length(c_prev) };
 }
 
 function draw_ftext(_x, _y, text, font = fnt_main, color = c_white, alpha = 1, xscale = 1, yscale = 1, angle = 0, halign = fa_left, valign = fa_top) {
