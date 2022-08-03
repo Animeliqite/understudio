@@ -53,6 +53,10 @@ function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = glob
 					}
 					cx += (charWidth != -1 ? charWidth : string_width(c)) + (24 * scaleX);
 				}
+				else if (string_copy(text, i, 1) == "$") {
+					i += 1;
+					text = string_replace(text, string_char_at(text, i), global.textFormat[string_char_at(text, i)]);
+				}
 				i--;
 				break;
 			case "#":

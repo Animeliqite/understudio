@@ -1,7 +1,7 @@
 /// @description Draw necessary things
 
 var w = display_get_gui_width(), h = display_get_gui_height(), sx = w / 640, sy = h / 480;
-var gpConnected = !gamepad_is_connected(0);
+var gpConnected = gamepad_is_connected(0);
 switch (state) {
 	case 0:
 		// Draw the instructions
