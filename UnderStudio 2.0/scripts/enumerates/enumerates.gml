@@ -10,32 +10,32 @@ function enumerates(){
 		WAVY
 	}
 	
-	#macro bt_enter global.inputConfirm
-	#macro bt_enter_p global.inputConfirmPress
-	#macro bt_enter_r global.inputConfirmRelease
+	#macro BT_ENTER global.inputConfirm
+	#macro BT_ENTER_P global.inputConfirmPress
+	#macro BT_ENTER_R global.inputConfirmRelease
 	
-	#macro bt_shift global.inputCancel
-	#macro bt_shift_p global.inputCancelPress
-	#macro bt_shift_r global.inputCancelRelease
+	#macro BT_SHIFT global.inputCancel
+	#macro BT_SHIFT_P global.inputCancelPress
+	#macro BT_SHIFT_R global.inputCancelRelease
 	
-	#macro bt_control global.inputMenu
-	#macro bt_control_p global.inputMenuPress
-	#macro bt_control_r global.inputMenuRelease
+	#macro BT_CONTROL global.inputMenu
+	#macro BT_CONTROL_P global.inputMenuPress
+	#macro BT_CONTROL_R global.inputMenuRelease
 	
-	#macro bt_left global.inputLeft
-	#macro bt_left_p global.inputLeftPress
-	#macro bt_left_r global.inputLeftRelease
+	#macro BT_LEFT global.inputLeft
+	#macro BT_LEFT_P global.inputLeftPress
+	#macro BT_LEFT_R global.inputLeftRelease
 	
-	#macro bt_right global.inputRight
-	#macro bt_right_p global.inputRightPress
-	#macro bt_right_r global.inputRightRelease
+	#macro BT_RIGHT global.inputRight
+	#macro BT_RIGHT_P global.inputRightPress
+	#macro BT_RIGHT_R global.inputRightRelease
 	
-	#macro bt_up global.inputUp
-	#macro bt_up_p global.inputUpPress
-	#macro bt_up_r global.inputUpRelease
+	#macro BT_UP global.inputUp
+	#macro BT_UP_P global.inputUpPress
+	#macro BT_UP_R global.inputUpRelease
 	
-	#macro bt_down global.inputDown
-	#macro bt_down_p global.inputDownPress
-	#macro bt_down_r global.inputDownRelease
+	#macro BT_DOWN global.inputDown
+	#macro BT_DOWN_P global.inputDownPress
+	#macro BT_DOWN_R global.inputDownRelease
 	
 }

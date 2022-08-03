@@ -3,7 +3,7 @@
 switch (state) {
 	case 0:
 		if (instance_exists(writer)) {
-			if (bt_enter_p)
+			if (BT_ENTER_P)
 				state = 2;
 			
 			if (writer.completed) {

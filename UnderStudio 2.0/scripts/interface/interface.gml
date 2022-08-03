@@ -9,37 +9,51 @@ function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = glob
 		switch (c) {
 			case "`":
 				i++;
-				var cNext = string_char_at(text, i);
-				switch (cNext) {
-					case "c":
-						i++;
-						var colorCheck = string_char_at(text, i);
-						switch (colorCheck) {
-							case "W": color = c_white; break;
-							case "X": color = c_black; break;
-							case "B": color = c_blue; break;
-							case "Y": color = c_yellow; break;
-							case "R": color = c_red; break;
-						}
-						break;
-					case "e":
-						i++;
-						effect = string_char_at(text, i);
-						break;
-					case "s":
-						i++;
-						var spriteCheck = string_char_at(text, i);
-						switch (spriteCheck) {
-							case "Z": draw_sprite_ext(spr_gpbuttons_confirm, 0, cx, cy + 5, scaleX * 2, scaleY * 2, 0, c_white, 1); break;
-							case "X": draw_sprite_ext(spr_gpbuttons_cancel, 0, cx, cy + 5, scaleX * 2, scaleY * 2, 0, c_white, 1); break;
-							case "C": draw_sprite_ext(spr_gpbuttons_menu, 0, cx, cy + 5, scaleX * 2, scaleY * 2, 0, c_white, 1); break;
-						}
-						cx += (charWidth != -1 ? charWidth : string_width(c)) + (24 * scaleX);
-						break;
-					default:
-						i--;
-						break;
+				if (string_copy(text, i, 5) == "color") {
+					i += 6;
+					if (string_copy(text, i, 5) == "white") {
+						color = c_white;
+						i += 5;
+					}
+					if (string_copy(text, i, 5) == "black") {
+						color = c_black;
+						i += 5;
+					}
+					if (string_copy(text, i, 4) == "blue") {
+						color = c_blue;
+						i += 4;
+					}
+					if (string_copy(text, i, 6) == "yellow") {
+						color = c_yellow;
+						i += 6;
+					}
+					if (string_copy(text, i, 3) == "red") {
+						color = c_red;
+						i += 3;
+					}
 				}
+				else if (string_copy(text, i, 6) == "effect") {
+					i += 7;
+					effect = real(string_char_at(text, i));
+					i++;
+				}
+				else if (string_copy(text, i, 6) == "sprite") {
+					i += 7;
+					if (string_copy(text, i, 8) == "button_z") {
+						i += 8;
+						draw_sprite_ext(spr_gpbuttons_confirm, 0, cx, cy + 5, scaleX * 2, scaleY * 2, 0, c_white, 1);
+					}
+					if (string_copy(text, i, 8) == "button_x") {
+						i += 8;
+						draw_sprite_ext(spr_gpbuttons_cancel, 0, cx, cy + 5, scaleX * 2, scaleY * 2, 0, c_white, 1);
+					}
+					if (string_copy(text, i, 8) == "button_c") {
+						i += 8;
+						draw_sprite_ext(spr_gpbuttons_menu, 0, cx, cy + 5, scaleX * 2, scaleY * 2, 0, c_white, 1);
+					}
+					cx += (charWidth != -1 ? charWidth : string_width(c)) + (24 * scaleX);
+				}
+				i--;
 				break;
 			case "#":
 				cx = _x;

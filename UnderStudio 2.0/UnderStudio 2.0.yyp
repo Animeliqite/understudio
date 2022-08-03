@@ -105,9 +105,9 @@
     {"CopyToMask":-1,"filePath":"datafiles/mus","resourceVersion":"1.0","name":"menu0.ogg","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.600.0.147",
+    "IDEVersion": "2022.800.0.180",
   },
-  "resourceVersion": "1.5",
+  "resourceVersion": "1.6",
   "name": "UnderStudio 2.0",
   "tags": [],
   "resourceType": "GMProject",
