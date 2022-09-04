@@ -8,12 +8,8 @@ switch (state) {
 			
 			if (writer.completed) {
 				instance_destroy(writer);
-				if (textNo < array_length(text) - 1) {
-					fading = true;
-					textNo++;
-					state = 1;
-				}
-				else state = 2;
+				if (global.writerEvent == 0) state = 2;
+				else state = 1;
 			}
 		}
 		
@@ -28,7 +24,7 @@ switch (state) {
 					timer += 0.5 / game_get_speed(gamespeed_fps);
 				else {
 					execute_tween(id, "image_alpha", 1, "linear", 0.5, false);
-					runText(text[textNo]);
+					c_next_phase();
 					image_index++;
 					fading = false;
 					subState = 0;

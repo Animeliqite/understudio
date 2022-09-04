@@ -24,10 +24,18 @@ function game_init(){
 	input_update(); // Update the input system once
 	
 	// CUTSCENE
+	global.inCutscene = false;
 	global.currCutscenePhase = 0;
+	global.currCutsceneEditingPhase = 0;
+	global.cutsceneWaitingForNextPhase = false;
+	global.cutsceneExecutedFromObject = array_create(128, noone);
+	global.cutsceneIncrementationWaitTime = array_create(128, 0);
+	global.cutsceneConditionResult = array_create(128, "NEXT");
+	global.cutsceneConditionResultAsSet = array_create(128, 0);
+	global.cutsceneCondition = array_create(128, undefined);
 	global.cutscene = array_create(128);
 	for (var i = 0; i <= 128; i++)
-		global.cutscene[i] = [[],[]];
+		global.cutscene[i] = [[],[]]
 	
 	// AUDIO
 	audio_channel_num(128); // Set the maximum audio channel number
@@ -58,9 +66,4 @@ function game_init(){
 	// FONT
 	global.mainFontWidth = 16; // The main font width (8-Bit Operator JVE)
 	global.mainFontHeight = 36; // The main font height (8-Bit Operator JVE)
-	
-	c_set_event(0, show_message, ["YES"]);
-	c_set_event(0, show_message, ["YESSSS"]);
-	c_set_event(1, show_message, ["YESSSSSSS"]);
-	c_set_event(2, show_message, ["YESSSSSSSSSS"]);
 }

@@ -1,7 +1,7 @@
 // This script plays a sound on a specific emitter
 
-function sfx_play(soundid) {
-	return audio_play_sound_on(global.sfxEmitter, soundid, false, 8);
+function sfx_play(soundid, pitch = 1, volume = 1, offset = 0) {
+	return audio_play_sound_on(global.sfxEmitter, soundid, false, 8, volume, offset, pitch);
 }
 	
 function sfx_stop(soundid) {
