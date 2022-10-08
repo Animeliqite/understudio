@@ -8,8 +8,12 @@ prevSelection			= undefined;
 namingName				= "";
 namingHeader			= "Name the fallen human."
 namingLetters			= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-namingOptions			= [{text: "Exit", action: "EXIT"}, {text: "Backspace", action: "BACKSPACE"}, {text: "Done", action: "DONE"}];
+namingOptions			= ["Exit", "Backspace", "Done"];
 namingRows				= 7;
+
+namingNameXOffset		= 0;
+namingNameYOffset		= 0;
+namingNameScale			= 0;
 
 musicFile				= song_load("menu0");
 menuMusic				= song_play(musicFile, 1, 1);

@@ -29,8 +29,8 @@ switch (state) {
 			} else width++;
 			
 			// Draw the letter
-			draw_rpgtext(120 + (64 * width), 110 + (28 * height), "`effect:1`" + string_upper(string_char_at(namingLetters, i + 1)), fnt_main, 1, -1, -1, 1, 1, selection == i ? c_yellow : c_white);
-			draw_rpgtext(120 + (64 * width), 230 + (28 * height), "`effect:1`" + string_lower(string_char_at(namingLetters, i + 1)), fnt_main, 1, -1, -1, 1, 1, selection == i + string_length(namingLetters) ? c_yellow : c_white);
+			draw_rpgtext(120 + (64 * width), 110 + (28 * height), "`effect:1`" + string_upper(string_char_at(namingLetters, i + 1)), fnt_main, 1, -1, -1, 1, 1, selection == i && subState != 2 ? c_yellow : c_white);
+			draw_rpgtext(120 + (64 * width), 230 + (28 * height), "`effect:1`" + string_lower(string_char_at(namingLetters, i + 1)), fnt_main, 1, -1, -1, 1, 1, selection == i + string_length(namingLetters) && subState != 2 ? c_yellow : c_white);
 		}
 		
 		// Draw the naming header
@@ -38,8 +38,13 @@ switch (state) {
 		draw_ftext(320, 100, namingName, fnt_main, c_white, 1, 1, 1, 0, fa_center);
 		
 		// Draw the naming options
-		draw_ftext(120, 400, namingOptions[0].text, fnt_main, c_white);
-		draw_ftext(240, 400, namingOptions[1].text, fnt_main, c_white);
-		draw_ftext(440, 400, namingOptions[2].text, fnt_main, c_white);
+		draw_ftext(120, 400, namingOptions[0], fnt_main, selection == 0 && subState == 2 ? c_yellow : c_white);
+		draw_ftext(240, 400, namingOptions[1], fnt_main, selection == 1 && subState == 2 ? c_yellow : c_white);
+		draw_ftext(440, 400, namingOptions[2], fnt_main, selection == 2 && subState == 2 ? c_yellow : c_white);
+		break;
+	case 2:
+		draw_ftext(320 + namingNameXOffset, 100 + namingNameYOffset, namingName, fnt_main, c_white, 1, 1 + namingNameScale, 1 + namingNameScale, random(2), fa_center);
 		break;
 }
+
+draw_ftext(10, 10, selection);
