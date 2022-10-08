@@ -5,6 +5,7 @@ subState				= 0;
 selection				= 0;
 prevSelection			= undefined;
 
+namingName				= "";
 namingHeader			= "Name the fallen human."
 namingLetters			= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 namingOptions			= [{text: "Exit", action: "EXIT"}, {text: "Backspace", action: "BACKSPACE"}, {text: "Done", action: "DONE"}];

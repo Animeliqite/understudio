@@ -35,6 +35,7 @@ switch (state) {
 		
 		// Draw the naming header
 		draw_ftext(320, 60, namingHeader, fnt_main, c_white, 1, 1, 1, 0, fa_center);
+		draw_ftext(320, 100, namingName, fnt_main, c_white, 1, 1, 1, 0, fa_center);
 		
 		// Draw the naming options
 		draw_ftext(120, 400, namingOptions[0].text, fnt_main, c_white);

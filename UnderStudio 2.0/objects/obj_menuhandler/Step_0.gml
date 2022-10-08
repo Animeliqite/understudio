@@ -22,6 +22,14 @@ switch (state) {
 		// Initialize the variables
 		var charLength = string_length(namingLetters);
 		
+		if (subState == 0 || subState == 1) {
+			if (BT_ENTER_P) {
+				if (string_length(namingName) < 6)
+					namingName += string_char_at((subState == 0 ? string_upper(namingLetters) : string_lower(namingLetters)), (subState == 0 ? selection : selection - charLength) + 1);
+			}
+			if (BT_SHIFT_P) namingName = string_delete(namingName, string_length(namingName), 1);
+		}
+		
 		// Adjust the sub states
 		switch (subState) {
 			case 0:
