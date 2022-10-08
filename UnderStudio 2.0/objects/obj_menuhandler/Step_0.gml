@@ -112,6 +112,7 @@ switch (state) {
 								state = 2;
 								subState = 0;
 								selection = 0;
+								tweenExecutedOnce = false;
 							}
 							break;
 					}
@@ -120,6 +121,11 @@ switch (state) {
 		}
 		break;
 	case 2:
-		
+		if (!tweenExecutedOnce) {
+			execute_tween(id, "namingNameXOffset", 20, "linear", 4, false);
+			execute_tween(id, "namingNameYOffset", 60, "linear", 4, false);
+			execute_tween(id, "namingNameScale", 2, "linear", 4, false);
+			tweenExecutedOnce = true;
+		}
 		break;
 }

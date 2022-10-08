@@ -17,5 +17,6 @@ namingNameScale			= 0;
 
 musicFile				= song_load("menu0");
 menuMusic				= song_play(musicFile, 1, 1);
+tweenExecutedOnce		= false;
 
-settingsCurtainX		= [320, 320]; 
+settingsCurtainX		= [320, 320];

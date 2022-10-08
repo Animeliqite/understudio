@@ -43,7 +43,7 @@ switch (state) {
 		draw_ftext(440, 400, namingOptions[2], fnt_main, selection == 2 && subState == 2 ? c_yellow : c_white);
 		break;
 	case 2:
-		draw_ftext(320 + namingNameXOffset, 100 + namingNameYOffset, namingName, fnt_main, c_white, 1, 1 + namingNameScale, 1 + namingNameScale, random(2), fa_center);
+		draw_ftext(320 + namingNameXOffset - (string_width(namingName) / 2), 100 + namingNameYOffset, namingName, fnt_main, c_white, 1, 1 + namingNameScale, 1 + namingNameScale, random(2), fa_left);
 		break;
 }
 
