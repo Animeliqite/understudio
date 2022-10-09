@@ -35,7 +35,7 @@ switch (state) {
 		
 		// Draw the naming header
 		draw_ftext(320, 60, namingHeader, fnt_main, c_white, 1, 1, 1, 0, fa_center);
-		draw_ftext(320, 100, namingName, fnt_main, c_white, 1, 1, 1, 0, fa_center);
+		draw_ftext(280, 100, namingName, fnt_main, c_white, 1, 1, 1, 0);
 		
 		// Draw the naming options
 		draw_ftext(120, 400, namingOptions[0], fnt_main, selection == 0 && subState == 2 ? c_yellow : c_white);
@@ -43,8 +43,15 @@ switch (state) {
 		draw_ftext(440, 400, namingOptions[2], fnt_main, selection == 2 && subState == 2 ? c_yellow : c_white);
 		break;
 	case 2:
-		draw_ftext(320 + namingNameXOffset - (string_width(namingName) / 2), 100 + namingNameYOffset, namingName, fnt_main, c_white, 1, 1 + namingNameScale, 1 + namingNameScale, random(2), fa_left);
+	case 3:
+		// Draw the naming header
+		draw_ftext(320, 60, namingHeaderConfirm, fnt_main, c_white, 1, 1, 1, 0, fa_center);
+		
+		// Draw the naming options
+		draw_ftext(146, 400, namingOptionsConfirm[0], fnt_main, selection == 0 ? c_yellow : c_white);
+		draw_ftext(460, 400, namingOptionsConfirm[1], fnt_main, selection == 1 ? c_yellow : c_white);
+		
+		// Draw the naming text
+		draw_ftext(280 + namingNameXOffset, 100 + namingNameYOffset, namingName, fnt_main, c_white, 1, 1 + namingNameScale, 1 + namingNameScale, -random(2));
 		break;
 }
-
-draw_ftext(10, 10, selection);
