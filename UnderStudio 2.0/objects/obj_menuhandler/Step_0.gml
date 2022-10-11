@@ -132,7 +132,7 @@ switch (state) {
 		if (BT_ENTER_P) {
 			switch (selection) {
 				case 0: state = 1; subState = 0; selection = 0; break;
-				case 1: state = 3; subState = 0; selection = 0; break;
+				case 1: state = 3; subState = 0; selection = 1; break;
 			}
 		}
 		

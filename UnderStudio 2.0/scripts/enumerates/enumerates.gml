@@ -38,4 +38,9 @@ function enumerates(){
 	#macro BT_DOWN_P global.inputDownPress
 	#macro BT_DOWN_R global.inputDownRelease
 	
+	#macro DIR_LEFT 180
+	#macro DIR_RIGHT 0
+	#macro DIR_UP 90
+	#macro DIR_DOWN 270
+	
 }

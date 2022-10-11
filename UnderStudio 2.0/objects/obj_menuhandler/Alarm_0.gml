@@ -2,5 +2,5 @@
 
 instance_destroy(cymbalFader);
 global.playerName = namingName;
-song_stop(menuMusic);
+song_stop(musicFile);
 room_goto_next();
