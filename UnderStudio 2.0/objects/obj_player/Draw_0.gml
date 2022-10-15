@@ -15,4 +15,13 @@ switch (currDir) {
 		break;
 }
 
+var sprWidth = sprite_width, sprHeight = sprite_height;
+if (BT_ENTER_P) {
+	draw_set_color(c_red);
+	draw_line(x, y, x, y - sprHeight + 5);
+	draw_line(x, y, x, y + sprHeight - 5);
+	draw_line(x, y, x - sprHeight + 5, y);
+	draw_line(x, y, x + sprHeight - 5, y);
+}
+
 draw_self();;

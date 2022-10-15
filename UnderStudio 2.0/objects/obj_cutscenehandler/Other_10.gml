@@ -1,5 +1,6 @@
 /// @description Execute Cutscene Action
 
+if (!global.inCutscene) exit;
 var scriptName = global.cutscene[global.currCutscenePhase][0];
 var argumentArray = global.cutscene[global.currCutscenePhase][1];
 for (var i = 0; i < array_length(scriptName); i++) {

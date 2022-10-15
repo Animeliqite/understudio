@@ -52,6 +52,6 @@ switch (state) {
 		draw_ftext(460, 400, namingOptionsConfirm[1], fnt_main, selection == 1 ? c_yellow : c_white);
 		
 		// Draw the naming text
-		draw_ftext(280 + namingNameXOffset, 100 + namingNameYOffset, namingName, fnt_main, c_white, 1, 1 + namingNameScale, 1 + namingNameScale, -random(2));
+		draw_ftext(280 + namingNameXOffset + random(1), 100 + namingNameYOffset + random(1), namingName, fnt_main, c_white, 1, 1 + namingNameScale, 1 + namingNameScale, -random(2));
 		break;
 }

@@ -50,16 +50,16 @@ c_add_event(method_get_index(runText), ["Many years later..."]);
 c_next_editing_phase();
 c_add_event(method_get_index(runText), ["      MT. EBOTT#         201X"]);
 c_next_editing_phase();
-c_add_event(method_get_index(runText), ["Legends say that those#who climb the mountain#never return."]);	// Add a text-typing event.
-c_next_editing_phase();															// Wait for the writer to be completed.
-c_add_event(method_get_index(runText), ["`p6`"]);															// Add a text-typing event.
-c_next_editing_phase();															// Wait for the writer to be completed.
-c_add_event(method_get_index(runText), ["`p6`"]);															// Add a text-typing event.
-c_next_editing_phase();															// Wait for the writer to be completed.
-c_add_event(method_get_index(runText), ["`p6`"]);															// Add a text-typing event.
-c_next_editing_phase();															// Wait for the writer to be completed.
-c_add_event(method_get_index(runText), ["`p6`"]);															// Add a text-typing event.
-c_next_editing_phase();															// Wait for the writer to be completed.
-c_add_event(method_get_index(runText), ["`E1``p9``p9``p9``p9``p9``p8``E0`"]);										// Add a text-typing event.
-c_next_editing_phase();															// Wait for the writer to be completed.
+c_add_event(method_get_index(runText), ["Legends say that those#who climb the mountain#never return."]);
+c_next_editing_phase();
+c_add_event(method_get_index(runText), ["`p6`"]);
+c_next_editing_phase();
+c_add_event(method_get_index(runText), ["`p6`"]);
+c_next_editing_phase();
+c_add_event(method_get_index(runText), ["`p6`"]);
+c_next_editing_phase();				
+c_add_event(method_get_index(runText), ["`p6`"]);
+c_next_editing_phase();
+c_add_event(method_get_index(runText), ["`E1``p9``p9``p9``p9``p9``p8``E0`"]);
+c_next_editing_phase();
 c_begin();

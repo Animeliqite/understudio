@@ -1,14 +1,20 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_solidparent",
-  "spriteId": null,
+  "name": "obj_slope_br",
+  "spriteId": {
+    "name": "spr_slope_br",
+    "path": "sprites/spr_slope_br/spr_slope_br.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "obj_slopeparent",
+    "path": "objects/obj_slopeparent/obj_slopeparent.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -25,7 +31,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Ancestors",
-    "path": "folders/Objects/In-Game Elements/Overworld/Technical/Ancestors.yy",
+    "name": "Slopes",
+    "path": "folders/Objects/In-Game Elements/Overworld/Technical/Slopes.yy",
   },
 }

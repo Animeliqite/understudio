@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_solidparent",
+  "name": "obj_slopeparent",
   "spriteId": null,
   "solid": false,
   "visible": true,

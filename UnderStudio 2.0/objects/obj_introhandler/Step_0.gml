@@ -12,7 +12,6 @@ switch (state) {
 				else state = 1;
 			}
 		}
-		
 		break;
 	case 1:
 		switch (subState) {
