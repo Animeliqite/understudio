@@ -37,7 +37,7 @@ music = song_play(song_load("story"), 1, 0.91);
 
 // CUTSCENE
 // Change it to however you want the object to execute, whether if it's some screen shaking or literally anything else.
-c_reset_phase();
+/*c_reset_phase();
 c_add_event(method_get_index(runText), ["Long ago, two races#ruled over EARTH:#HUMANS and MONSTERS."]);
 c_next_editing_phase();	
 c_add_event(method_get_index(runText), ["One day, war broke#out between the#two races."]);
@@ -63,3 +63,4 @@ c_next_editing_phase();
 c_add_event(method_get_index(runText), ["`E1``p9``p9``p9``p9``p9``p8``E0`"]);
 c_next_editing_phase();
 c_begin();
+*/

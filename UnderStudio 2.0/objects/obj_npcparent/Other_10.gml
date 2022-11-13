@@ -1,5 +1,7 @@
 /// @description Interaction
 
-c_end();
-cutsceneOnInteraction();
-c_begin();
+if (!global.inCutscene) {
+	c_end();
+	cutsceneOnInteraction();
+	c_begin();
+}

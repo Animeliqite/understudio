@@ -8,3 +8,6 @@ canMove			= true;		// Can the player move?
 // Advanced settings
 stepsTaken		= 0;		// Encounters are executed if it reaches a certain amount
 animateObject	= true;		// Should the player be animated?
+
+// Other functions
+alarm[0]		= 1;		// Set an alarm to adjust the camera

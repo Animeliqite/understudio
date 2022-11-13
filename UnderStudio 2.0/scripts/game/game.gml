@@ -28,10 +28,12 @@ function game_init(){
 	global.currCutscenePhase = 0;
 	global.currCutsceneEditingPhase = 0;
 	global.cutsceneWaitingForNextPhase = false;
+	global.cutsceneWaitingForConditionResult = false;
 	global.cutsceneExecutedFromObject = array_create(128, noone);
 	global.cutsceneIncrementationWaitTime = array_create(128, 0);
 	global.cutsceneConditionResult = array_create(128, "NEXT");
 	global.cutsceneConditionResultAsSet = array_create(128, 0);
+	global.cutsceneConditionIsGlobal = array_create(128, false);
 	global.cutsceneCondition = array_create(128, undefined);
 	global.cutscene = array_create(128);
 	for (var i = 0; i <= 128; i++)
@@ -66,4 +68,34 @@ function game_init(){
 	// FONT
 	global.mainFontWidth = 16; // The main font width (8-Bit Operator JVE)
 	global.mainFontHeight = 36; // The main font height (8-Bit Operator JVE)
+}
+
+function dialogue_simple(text, face = undefined, voice = snd_defaultvoice, font = fnt_main) {
+	with (obj_overworldui) {
+		state = 0;
+		dialogueText = text;
+		dialogueFace = face;
+		dialogueVoice = voice;
+		dialogueFont = font;
+	}
+}
+
+function camera_set_target(target = noone) {
+	obj_camerahandler.currTarget = target;
+}
+
+function camera_set_scale(_scaleX, _scaleY) {
+	obj_camerahandler.camScaleX = _scaleX;
+	obj_camerahandler.camScaleY = _scaleY;
+}
+
+function camera_set_pos(_posX, _posY) {
+	obj_camerahandler.posX = _posX;
+	obj_camerahandler.posY = _posY;
+}
+
+function camera_move_pos_to(posXTo, posYTo, tween = "linear", seconds = 1, relative = false, delay = 0) {
+	obj_camerahandler.currTarget = noone;
+	execute_tween(obj_camerahandler, "posCenterX", posXTo, "linear", seconds, relative, delay);
+	execute_tween(obj_camerahandler, "posCenterY", posYTo, "linear", seconds, relative, delay);
 }

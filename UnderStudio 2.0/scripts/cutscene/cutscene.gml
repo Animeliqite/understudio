@@ -32,15 +32,17 @@ function c_prev_editing_phase(){
 	global.currCutsceneEditingPhase--;
 }
 
-function c_next_editing_phase(condition = undefined){
-	global.cutsceneCondition[global.currCutsceneEditingPhase] = (condition);
+function c_next_editing_phase(conditionInstance = undefined, conditionVariable = "", condition = true){
+	global.cutsceneConditionIsGlobal[global.currCutsceneEditingPhase] = (conditionInstance == "global" ? true : false);
+	global.cutsceneCondition[global.currCutsceneEditingPhase] = [conditionInstance, conditionVariable, condition];
 	global.cutsceneExecutedFromObject[global.currCutsceneEditingPhase] = object_index;
 	global.cutsceneConditionResult[global.currCutsceneEditingPhase] = "NEXT";
 	global.currCutsceneEditingPhase++;
 }
 
-function c_set_editing_phase(phase, condition = undefined){
-	global.cutsceneCondition[global.currCutsceneEditingPhase] = (condition);
+function c_set_editing_phase(phase, conditionInstance = undefined, conditionVariable = "", condition = true){
+	global.cutsceneConditionIsGlobal[global.currCutsceneEditingPhase] = (conditionInstance == "global" ? true : false);
+	global.cutsceneCondition[global.currCutsceneEditingPhase] = [conditionInstance, conditionVariable, condition];
 	global.cutsceneExecutedFromObject[global.currCutsceneEditingPhase] = object_index;
 	global.cutsceneConditionResult[global.currCutsceneEditingPhase] = "SET";
 	global.cutsceneConditionResultAsSet[global.currCutsceneEditingPhase] = phase;
@@ -66,4 +68,7 @@ function c_reset_phase(){
 	global.currCutscenePhase = 0;
 	global.currCutsceneEditingPhase = 0;
 	global.cutsceneWaitingForNextPhase = false;
+}
+
+function c_event_empty(){
 }
