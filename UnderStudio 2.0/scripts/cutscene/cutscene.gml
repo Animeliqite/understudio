@@ -68,6 +68,7 @@ function c_reset_phase(){
 	global.currCutscenePhase = 0;
 	global.currCutsceneEditingPhase = 0;
 	global.cutsceneWaitingForNextPhase = false;
+	global.cutsceneWaitingForConditionResult = false;
 }
 
 function c_event_empty(){

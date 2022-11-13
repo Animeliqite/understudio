@@ -3,7 +3,7 @@
 // Initialize the variables
 var cam = obj_camerahandler;
 
-if (dialogueIsOnTop == undefined)
+if (dialogueIsOnTop == undefined && instance_exists(cam.currTarget))
 	dialogueAlignY = cam.posCenterY > cam.currTarget.y ? 310 : 0;
 else dialogueAlignY = dialogueIsOnTop ? 0 : 310;
 

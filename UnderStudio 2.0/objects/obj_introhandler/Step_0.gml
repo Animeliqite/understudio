@@ -1,7 +1,8 @@
 /// @description Functionality
 
 switch (state) {
-	case 0:
+	case 0: // Writing State
+		beginWriting = false;
 		if (instance_exists(writer)) {
 			if (BT_ENTER_P)
 				state = 2;
@@ -13,7 +14,7 @@ switch (state) {
 			}
 		}
 		break;
-	case 1:
+	case 1: // On Writer Complete
 		switch (subState) {
 			case 0:
 				execute_tween(id, "image_alpha", 0, "linear", 0.5, false);
@@ -23,8 +24,8 @@ switch (state) {
 					timer += 0.5 / game_get_speed(gamespeed_fps);
 				else {
 					execute_tween(id, "image_alpha", 1, "linear", 0.5, false);
-					c_next_phase();
 					image_index++;
+					beginWriting = true;
 					fading = false;
 					subState = 0;
 					timer = 0;
@@ -33,7 +34,7 @@ switch (state) {
 				break;
 		}
 		break;
-	case 2:
+	case 2: // On Skip
 		switch (subState) {
 			case 0:
 				execute_tween(id, "image_alpha", 0, "linear", 1, false);
