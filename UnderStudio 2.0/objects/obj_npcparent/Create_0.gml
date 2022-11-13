@@ -11,3 +11,9 @@ currDir = DIR_DOWN;
 cutsceneOnInteraction = function () {
 	
 }
+
+cutsceneWaitForDialogueEnd = function () {
+	c_next_editing_phase(obj_overworldui, "dialogueCompleted", true);
+	c_add_event(c_event_empty);
+	c_next_editing_phase("global", "inputConfirmPress", true);
+}
