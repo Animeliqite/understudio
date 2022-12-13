@@ -103,8 +103,10 @@ if (canMove && !global.inCutscene) {
 		if (BT_ENTER_P) {
 			if (!is_undefined(dirAsResponse))
 				with (instance_nearest(x, y, obj_npcparent)) {
-					currDir = dirAsResponse;
-					event_user(0);
+					if (!obj_overworldmenu.active) {
+						currDir = dirAsResponse;
+						event_user(0);
+					}
 				}
 		}
 	}
