@@ -54,6 +54,13 @@ function game_init(){
 	global.playerNEXT = 10; // The player's amount of EXP to get to the next level
 	global.playerAT = 10; // The player's attacking strength
 	global.playerDF = 10; // The player's defending strength
+	global.playerGold = 0; // The player's gold
+	global.playerWeapon = WEAPON.STICK; // The player's current weapon
+	global.playerArmor = ARMOR.BANDAGE; // The player's current armor
+	global.playerATWeapon = 0; // The player's weapon attacking strength
+	global.playerDFArmor = 0; // The player's armor defending strength
+	global.playerInventory = ds_list_create(); // The player's inventory
+	
 	
 	// OTHER
 	window_set_color(c_black); // Set the window color
@@ -68,6 +75,9 @@ function game_init(){
 	// FONT
 	global.mainFontWidth = 16; // The main font width (8-Bit Operator JVE)
 	global.mainFontHeight = 36; // The main font height (8-Bit Operator JVE)
+	
+	item_add(ITEM.MONSTER_CANDY);
+	item_add(ITEM.BUTTERSCOTCH_PIE);
 }
 
 function dialogue_simple(text, face = undefined, voice = snd_defaultvoice, font = fnt_main) {
@@ -78,6 +88,11 @@ function dialogue_simple(text, face = undefined, voice = snd_defaultvoice, font 
 		dialogueVoice = voice;
 		dialogueFont = font;
 	}
+}
+
+function camera_is_on_top() {
+	var cam = obj_camerahandler;
+	return cam.posCenterY > cam.currTarget.y ? true : false;
 }
 
 function camera_set_target(target = noone) {

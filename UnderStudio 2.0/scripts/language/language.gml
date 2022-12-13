@@ -23,5 +23,5 @@ function language_util() {
 
 // This script gets a raw value of a struct name from a .json file
 function language_raw(key, languageData) {
-	return variable_struct_get(!is_undefined(languageData) ? languageData : global.languageData, key);
+	return variable_struct_get(!is_undefined(languageData) ? languageData : global.localizationData, key);
 }

@@ -10,6 +10,21 @@ function enumerates(){
 		WAVY
 	}
 	
+	enum WEAPON {
+		STICK,
+		TOY_KNIFE
+	}
+
+	enum ARMOR {
+		BANDAGE,
+		FADED_RIBBON
+	}
+
+	enum ITEM {
+		MONSTER_CANDY,
+		BUTTERSCOTCH_PIE
+	}
+	
 	#macro BT_ENTER global.inputConfirm
 	#macro BT_ENTER_P global.inputConfirmPress
 	#macro BT_ENTER_R global.inputConfirmRelease

@@ -65,6 +65,13 @@ if (canMove && !global.inCutscene) {
 		}
 	}
 	
+	// Overworld Menu
+	if (BT_CONTROL_P) {
+		obj_overworldmenu.active = true;
+		canMove = false;
+	}
+	
+	// Interaction
 	if (collision_rectangle(x - (sprWidth / 2) - 5, y - (sprHeight / 2) - 5, x + (sprWidth / 2) + 5, y + (sprWidth / 2) + 5, obj_npcparent, false, false)) {
 		var dirAsResponse = undefined;
 		
@@ -105,6 +112,9 @@ if (canMove && !global.inCutscene) {
 	if (x != xprevious || y != yprevious) {
 		stepsTaken++; // Increase the current steps taken
 	}
+}
+else {
+	if (!obj_overworldmenu.active) canMove = true;
 }
 
 // Animating the object

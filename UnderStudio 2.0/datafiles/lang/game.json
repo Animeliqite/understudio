@@ -1,3 +1,18 @@
 {
-    "test.0" : "Hello!"
+  "owmenu.love": "LV",
+  "owmenu.hp": "HP",
+  "owmenu.gold": "G",
+  "owmenu.item": "ITEM",
+  "owmenu.stat": "STAT",
+  "owmenu.cell": "CELL",
+  "owmenu.at": "AT",
+  "owmenu.df": "DF",
+  "owmenu.exp": "EXP",
+  "owmenu.next": "NEXT",
+  "owmenu.weapon": "WEAPON",
+  "owmenu.armor": "ARMOR",
+  "owmenu.gold_alt": "GOLD",
+  "owmenu.actions.use": "USE",
+  "owmenu.actions.info": "INFO",
+  "owmenu.actions.drop": "DROP"
 }
