@@ -5,6 +5,7 @@ event_inherited();
 
 // Functions
 cutsceneOnInteraction = function () {
-	c_add_event(dialogue_simple, ["* This is merely a test.#* It's recommended to change it."]);
-	cutsceneWaitForDialogueEnd();
+	c_set_player_moveable(cut, false);
+	c_run_text(cut, "* Placeholder dialogue!", true);
+	c_set_player_moveable(cut, true);
 }

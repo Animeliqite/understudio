@@ -2,10 +2,6 @@
 
 // Initialize the variables
 var u = BT_UP, d = BT_DOWN, l = BT_LEFT, r = BT_RIGHT;
-var collisionLeft = place_meeting(x - moveSpeed, y, obj_solidparent);
-var collisionRight = place_meeting(x + moveSpeed, y, obj_solidparent);
-var collisionUp = place_meeting(x, y - moveSpeed, obj_solidparent);
-var collisionDown = place_meeting(x, y + moveSpeed, obj_solidparent);
 var sprWidth = sprite_width, sprHeight = sprite_height;
 
 // Make it so that two buttons are not pressed at the same time
@@ -13,33 +9,37 @@ if (l && r) r = false;
 if (u && d) d = false;
 
 // Check what buttons are pressed
-if (canMove && !global.inCutscene) {
-	if (u) {
-		if (!collisionUp)
-			y -= moveSpeed;
-		if (!l && !r) || (currDir == DIR_DOWN)
-			currDir = DIR_UP;
-	}
+if (canMove && canMoveOverworldMenu && canMoveDialogue) {
+	var tries = 0;
+	while (place_meeting(x, y - moveSpeed, obj_solidparent) && !d) y += 0.01;
+	while (place_meeting(x, y + moveSpeed, obj_solidparent) && !u) y -= 0.01;
+	while (place_meeting(x - moveSpeed, y, obj_solidparent) && !r) x += 0.01;
+	while (place_meeting(x + moveSpeed, y, obj_solidparent) && !l) x -= 0.01;
+	
+	repeat (moveSpeed * 10) {
+		if (u) {
+			y -= 0.1;
+			if (!l && !r) || (currDir == DIR_DOWN)
+				currDir = DIR_UP;
+		}
 
-	if (d) {
-		if (!collisionDown)
-			y += moveSpeed;
-		if (!l && !r) || (currDir == DIR_UP)
-			currDir = DIR_DOWN;
-	}
+		if (d) {
+			y += 0.1;
+			if (!l && !r) || (currDir == DIR_UP)
+				currDir = DIR_DOWN;
+		}
 
-	if (l) {
-		if (!collisionLeft)
-			x -= moveSpeed;
-		if (!u && !d) || (currDir == DIR_RIGHT)
-			currDir = DIR_LEFT;
-	}
+		if (l) {
+			x -= 0.1;
+			if (!u && !d) || (currDir == DIR_RIGHT)
+				currDir = DIR_LEFT;
+		}
 
-	if (r) {
-		if (!collisionRight)
-			x += moveSpeed;
-		if (!u && !d) || (currDir == DIR_LEFT)
-			currDir = DIR_RIGHT;
+		if (r) {
+			x += 0.1;
+			if (!u && !d) || (currDir == DIR_LEFT)
+				currDir = DIR_RIGHT;
+		}
 	}
 	
 	// Slope collision check!
@@ -116,7 +116,7 @@ if (canMove && !global.inCutscene) {
 	}
 }
 else {
-	if (!obj_overworldmenu.active) canMove = true;
+	if (!obj_overworldmenu.active) canMoveOverworldMenu = true;
 }
 
 // Animating the object

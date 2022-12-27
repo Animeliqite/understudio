@@ -1,3 +1,3 @@
 /// @description End the cutscene
 
-c_end();
+c_destroy(cut);

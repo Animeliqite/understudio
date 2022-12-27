@@ -6,6 +6,8 @@ image_speed	= 0;
 
 // Advanced Settings
 currDir = DIR_DOWN;
+cut = c_create();
+c_pause(cut);
 
 // Functions
 cutsceneOnInteraction = function () {
@@ -13,7 +15,5 @@ cutsceneOnInteraction = function () {
 }
 
 cutsceneWaitForDialogueEnd = function () {
-	c_next_editing_phase(obj_overworldui, "dialogueCompleted", true);
-	c_add_event(c_event_empty);
-	c_next_editing_phase("global", "inputConfirmPress", true);
+	
 }

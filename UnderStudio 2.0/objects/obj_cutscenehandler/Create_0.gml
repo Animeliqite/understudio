@@ -19,3 +19,9 @@
 	This script above starts the timer and waits for a specified amount of frames. After that, the current order goes to next.
 
 */
+
+actions = [];
+actionsNew = [];
+waitForInit = false;
+processActions = false;
+paused = false;

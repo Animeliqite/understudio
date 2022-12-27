@@ -2,16 +2,16 @@
 
 switch (state) {
 	case 0: // Writing State
-		beginWriting = false;
+		//beginWriting = false;
 		if (instance_exists(writer)) {
 			if (BT_ENTER_P)
 				state = 2;
 			
-			if (writer.completed) {
+			/*if (writer.completed) {
 				instance_destroy(writer);
 				if (global.writerEvent == 0) state = 2;
 				else state = 1;
-			}
+			}*/
 		}
 		break;
 	case 1: // On Writer Complete
