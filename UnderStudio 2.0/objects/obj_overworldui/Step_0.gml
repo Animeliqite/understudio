@@ -2,17 +2,12 @@
 
 switch (state) {
 	case -1:
-		if (instance_exists(obj_player)) {
-			obj_player.canMoveDialogue = true;
-		}
+		if (instance_exists(obj_player)) obj_player.canMoveDialogue = true;
 		break;
 	case 0:
-		if (instance_exists(obj_player)) {
-			obj_player.canMoveDialogue = false;
-		}
-		
 		stateExecutedOnce = false;
 		prevState = 0;
+		if (instance_exists(obj_player)) obj_player.canMoveDialogue = false;
 		if (!instance_exists(dialogueWriter)) {
 			dialogueWriter = instance_create_depth(0, 0, 0, obj_textwriter);
 			with (dialogueWriter) {

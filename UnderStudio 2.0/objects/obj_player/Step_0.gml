@@ -68,7 +68,7 @@ if (canMove && canMoveOverworldMenu && canMoveDialogue) {
 	// Overworld Menu
 	if (BT_CONTROL_P) {
 		obj_overworldmenu.active = true;
-		canMove = false;
+		canMoveOverworldMenu = false;
 	}
 	
 	// Interaction

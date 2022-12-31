@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMFont",
+  "resourceVersion": "1.0",
+  "name": "fnt_crypt",
   "hinting": 0,
   "glyphOperations": 0,
   "interpreter": 1,
@@ -21,6 +24,7 @@
     "path": "texturegroups/Default",
   },
   "ascenderOffset": 0,
+  "ascender": 0,
   "glyphs": {
     "32": {"x":2,"y":2,"w":16,"h":36,"character":32,"shift":16,"offset":0,},
     "33": {"x":64,"y":78,"w":8,"h":36,"character":33,"shift":20,"offset":4,},
@@ -131,8 +135,4 @@
     "name": "Fonts",
     "path": "folders/Fonts.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "fnt_crypt",
-  "tags": [],
-  "resourceType": "GMFont",
 }

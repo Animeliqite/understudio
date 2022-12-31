@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSound",
+  "resourceVersion": "1.0",
+  "name": "snd_titlenoise",
   "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
@@ -17,8 +20,4 @@
     "name": "Other",
     "path": "folders/Sounds/In-Game Elements/Other.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "snd_titlenoise",
-  "tags": [],
-  "resourceType": "GMSound",
 }

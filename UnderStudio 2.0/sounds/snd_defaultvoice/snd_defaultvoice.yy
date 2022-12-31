@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSound",
+  "resourceVersion": "1.0",
+  "name": "snd_defaultvoice",
   "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
@@ -17,8 +20,4 @@
     "name": "Voices",
     "path": "folders/Sounds/In-Game Elements/Dialogues/Voices.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "snd_defaultvoice",
-  "tags": [],
-  "resourceType": "GMSound",
 }

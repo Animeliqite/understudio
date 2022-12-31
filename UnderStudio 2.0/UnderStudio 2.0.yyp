@@ -78,13 +78,6 @@
     {"id":{"name":"obj_npc_test","path":"objects/obj_npc_test/obj_npc_test.yy",},"order":1,},
     {"id":{"name":"rm_setup","path":"rooms/rm_setup/rm_setup.yy",},"order":0,},
   ],
-  "Options": [
-    {"name":"Linux","path":"options/linux/options_linux.yy",},
-    {"name":"macOS","path":"options/mac/options_mac.yy",},
-    {"name":"Windows","path":"options/windows/options_windows.yy",},
-    {"name":"operagx","path":"options/operagx/options_operagx.yy",},
-    {"name":"Main","path":"options/main/options_main.yy",},
-  ],
   "defaultScriptType": 1,
   "isEcma": false,
   "configs": {
@@ -171,6 +164,6 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"game.json","CopyToMask":-1,"filePath":"datafiles/lang",},
   ],
   "MetaData": {
-    "IDEVersion": "2023.100.0.252",
+    "IDEVersion": "2023.100.0.259",
   },
 }
