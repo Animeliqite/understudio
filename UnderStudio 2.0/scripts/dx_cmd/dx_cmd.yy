@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "cutscene",
+  "name": "dx_cmd",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

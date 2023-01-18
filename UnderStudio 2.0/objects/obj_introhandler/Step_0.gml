@@ -2,16 +2,19 @@
 
 switch (state) {
 	case 0: // Writing State
-		//beginWriting = false;
+		if (beginWriting) {
+			global.dxInterpreter.resumeScene();
+			beginWriting = false;
+		}
 		if (instance_exists(writer)) {
 			if (BT_ENTER_P)
 				state = 2;
 			
-			/*if (writer.completed) {
+			if (writer.completed) {
 				instance_destroy(writer);
 				if (global.writerEvent == 0) state = 2;
 				else state = 1;
-			}*/
+			}
 		}
 		break;
 	case 1: // On Writer Complete
@@ -37,6 +40,7 @@ switch (state) {
 	case 2: // On Skip
 		switch (subState) {
 			case 0:
+				global.dxInterpreter.endScene();
 				execute_tween(id, "image_alpha", 0, "linear", 1, false);
 				song_set_volume(music, 0, 1);
 				instance_destroy(writer);

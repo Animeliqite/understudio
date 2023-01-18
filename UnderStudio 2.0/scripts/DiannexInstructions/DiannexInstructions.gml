@@ -611,7 +611,7 @@ function __diannex_get_opcodes()
 	};
 
 	opcodes[DiannexOpcode.callext] = function()
-	{
+	{	
 		programCounter += 9;
 	
 		var argFuncName = data.strings[buffer_read(data.instructions, buffer_s32)];
@@ -621,8 +621,25 @@ function __diannex_get_opcodes()
 		for (var i = 0; i < argCount; i++) // arguments in stack are in correct order
 			args[i] = ds_stack_pop(stack);
 		
+		
+		#macro dx_arg0 (array_length(args) > 0 ? args[0].getRawValue() : undefined)
+		#macro dx_arg1 (array_length(args) > 1 ? args[1].getRawValue() : undefined)
+		#macro dx_arg2 (array_length(args) > 2 ? args[2].getRawValue() : undefined)
+		#macro dx_arg3 (array_length(args) > 3 ? args[3].getRawValue() : undefined)
+		#macro dx_arg4 (array_length(args) > 4 ? args[4].getRawValue() : undefined)
+		#macro dx_arg5 (array_length(args) > 5 ? args[5].getRawValue() : undefined)
+		#macro dx_arg6 (array_length(args) > 6 ? args[6].getRawValue() : undefined)
+		#macro dx_arg7 (array_length(args) > 7 ? args[7].getRawValue() : undefined)
+		#macro dx_arg8 (array_length(args) > 8 ? args[8].getRawValue() : undefined)
+		#macro dx_arg9 (array_length(args) > 9 ? args[9].getRawValue() : undefined)
+		#macro dx_arg10 (array_length(args) > 10 ? args[10].getRawValue() : undefined)
+		#macro dx_arg11 (array_length(args) > 11 ? args[11].getRawValue() : undefined)
+		#macro dx_arg12 (array_length(args) > 12 ? args[12].getRawValue() : undefined)
+		#macro dx_arg13 (array_length(args) > 13 ? args[13].getRawValue() : undefined)
+		#macro dx_arg14 (array_length(args) > 14 ? args[14].getRawValue() : undefined)
+		
 		var handler = functionHandlers[$ argFuncName] ?? unregisteredFunctionHandler;
-		ds_stack_push(stack, new DiannexValue(script_execute_ext(handler, args)));
+		ds_stack_push(stack, new DiannexValue(handler(dx_arg0,dx_arg1,dx_arg2,dx_arg3,dx_arg4,dx_arg5,dx_arg6,dx_arg7,dx_arg8,dx_arg9,dx_arg10,dx_arg11,dx_arg12,dx_arg13,dx_arg14)));
 	};
 
 	opcodes[DiannexOpcode.choicebeg] = function()

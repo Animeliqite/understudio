@@ -1,0 +1,49 @@
+//! Player Stats
+def player_stats
+{
+	player_hp="HP"
+	player_lv="LV"
+	player_gold="GOLD"
+	player_gold_short="G"
+}
+
+//! Cutscenes
+scene cutscene_placeholder_0
+{
+	"* Placeholder dialogue!#* Change it!"
+}
+
+scene cutscene_intro_0
+{
+	runIntroText "Long ago, two races#ruled over EARTH:#HUMANS and MONSTERS."
+	runIntroText "One day, war broke#out between the#two races."
+	runIntroText "After a long battle,#the humans were#victorious."
+	runIntroText "They sealed the monsters#underground with a magic#spell."
+	runIntroText "Many years later..."
+	runIntroText "      MT. EBOTT#         201X"
+	runIntroText "Legends say that those#who climb the mountain#never return."
+	runIntroText "`p6`"
+	runIntroText "`p6`"
+	runIntroText "`p6`"
+	runIntroText "`p6`"
+	runIntroText "`E1``p9``p9``p9``p9``p9``p8``E0`"
+}
+
+scene cutscene_test_0
+{
+	"* Welcome to the test#  introduction scene!"
+	"* Though there exists#  a remaining question I#  should ask."
+	waitFor 60
+	objectFaceTo "obj_player", 0
+	"* I... uh... well..."
+	objectFaceTo "obj_player", 90
+	"* The guy on the right#  knows how to ask#  questions."
+}
+scene cutscene_test_1
+{
+	"* Object movement test!"
+	objectGoTo "obj_player", 60, 0, true, 60
+	waitFor 60
+	objectFaceTo 180
+	"* There we go!"
+}

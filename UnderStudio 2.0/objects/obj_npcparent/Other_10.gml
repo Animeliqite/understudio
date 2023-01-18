@@ -1,4 +1,3 @@
 /// @description Interaction
 
-cutsceneOnInteraction();
-c_unpause(cut);
+global.dialogueInteractedTo = id;

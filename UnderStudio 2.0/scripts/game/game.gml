@@ -15,6 +15,13 @@ function game_init(){
 	global.windowX = window_get_x(); // The current window X
 	global.windowY = window_get_y(); // The current window Y
 	
+	// DIANNEX
+	global.dxData = new DiannexData(); // All the Diannex data
+	global.dxData.loadFromFile("dx/game.dxb"); // Load the Diannex File
+	global.dxInterpreter = global.dxData.defaultInterpreter; // All the Diannex interpreter
+	global.dxInstructions = global.dxData.instructions; // All the Diannex interpreter
+	dx_cmd();
+	
 	// LOCALIZATION
 	global.localizationFilePath = "lang/"; // The path to get all the JSON's from
 	global.localizationData = language_util(); // The entire localization data
@@ -71,6 +78,7 @@ function game_init(){
 	
 	// EVENTS
 	global.writerEvent = undefined; // The event number caused by the writer
+	global.dialogueInteractedTo = noone; // The object the player has interacted with
 	
 	// FONT
 	global.mainFontWidth = 16; // The main font width (8-Bit Operator JVE)

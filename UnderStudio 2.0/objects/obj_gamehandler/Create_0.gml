@@ -21,6 +21,9 @@ screenOffsetY = 0; // Y Offset of the screen
 screenWidth = 1; // Width of the screen
 screenHeight = 1; // Height of the screen
 
+dxWaitTimer = 0; // Diannex wait timer
+dxWaitCondition = undefined; // Diannex wait condition
+
 game_init(); // Execute the utilization script
 room_goto_next(); // Go to the next room
 
