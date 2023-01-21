@@ -10,40 +10,37 @@ if (u && d) d = false;
 
 // Check what buttons are pressed
 if (canMove && canMoveOverworldMenu && canMoveDialogue) {
-	var tries = 0;
-	while (place_meeting(x, y - moveSpeed, obj_solidparent) && !d) y += 0.01;
-	while (place_meeting(x, y + moveSpeed, obj_solidparent) && !u) y -= 0.01;
-	while (place_meeting(x - moveSpeed, y, obj_solidparent) && !r) x += 0.01;
-	while (place_meeting(x + moveSpeed, y, obj_solidparent) && !l) x -= 0.01;
+	move_and_collide(hspd,vspd,obj_solidparent);
 	
-	repeat (moveSpeed * 10) {
-		if (u) {
-			y -= 0.1;
-			if (!l && !r) || (currDir == DIR_DOWN)
-				currDir = DIR_UP;
-		}
+	if (u) {
+		vspd = -moveSpeed;
+		if (!l && !r) || (currDir == DIR_DOWN)
+			currDir = DIR_UP;
+	}
 
-		if (d) {
-			y += 0.1;
-			if (!l && !r) || (currDir == DIR_UP)
-				currDir = DIR_DOWN;
-		}
+	if (d) {
+		vspd = moveSpeed;
+		if (!l && !r) || (currDir == DIR_UP)
+			currDir = DIR_DOWN;
+	}
 
-		if (l) {
-			x -= 0.1;
-			if (!u && !d) || (currDir == DIR_RIGHT)
-				currDir = DIR_LEFT;
-		}
+	if (l) {
+		hspd = -moveSpeed;
+		if (!u && !d) || (currDir == DIR_RIGHT)
+			currDir = DIR_LEFT;
+	}
 
-		if (r) {
-			x += 0.1;
-			if (!u && !d) || (currDir == DIR_LEFT)
-				currDir = DIR_RIGHT;
-		}
+	if (r) {
+		hspd = moveSpeed;
+		if (!u && !d) || (currDir == DIR_LEFT)
+			currDir = DIR_RIGHT;
 	}
 	
+	if (!u && !d) vspd = 0;
+	if (!l && !r) hspd = 0;
+	
 	// Slope collision check!
-	if (place_meeting(x, y, obj_slopeparent)) {
+	/*if (place_meeting(x, y, obj_slopeparent)) {
 		if (place_meeting(x, y, obj_slope_bl)) {
 			if (d) x += moveSpeed;
 			if (l) y -= moveSpeed;
@@ -63,7 +60,7 @@ if (canMove && canMoveOverworldMenu && canMoveDialogue) {
 			if (u) x -= moveSpeed;
 			if (r) y += moveSpeed;
 		}
-	}
+	}*/
 	
 	// Overworld Menu
 	if (BT_CONTROL_P) {

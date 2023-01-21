@@ -21,4 +21,7 @@ function dx_cmd(){
 			}
 		} else throw "Intro instance doesn't exist.";
 	});
+	global.dxInterpreter.registerFunction("encounterStart", function (obj, encID, encExc = true, encAnim = true, encFast = false, encStyle = "normal") {
+		encounter_start(obj, encID, encExc, encAnim, encFast, encStyle);
+	});
 }
