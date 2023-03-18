@@ -25,3 +25,15 @@ function dx_cmd(){
 		encounter_start(obj, encID, encExc, encAnim, encFast, encStyle);
 	});
 }
+
+function dx_is_active() {
+	return (global.dxInterpreter.state != DiannexInterpreterState.Inactive);
+}
+
+function dx_is_paused() {
+	return (global.dxInterpreter.state == DiannexInterpreterState.Paused);
+}
+
+function dx_getraw(key) {
+	return global.dxInterpreter.getDefinition(key);
+}

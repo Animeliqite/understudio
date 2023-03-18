@@ -1,13 +1,15 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_slopeparent",
-  "eventList": [],
+  "name": "obj_battlehandler",
+  "eventList": [
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
+  ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Ancestors",
-    "path": "folders/Objects/In-Game Elements/Overworld/Technical/Ancestors.yy",
+    "name": "Battle",
+    "path": "folders/Objects/In-Game Elements/Battle.yy",
   },
   "parentObjectId": null,
   "persistent": false,

@@ -3,6 +3,7 @@
 // General settings
 currDir					= DIR_DOWN;	// What's the player's current direction?
 moveSpeed				= 3;		// The player's move speed
+moving					= false;	// Is the player moving?
 canMove					= true;		// Can the player move?
 canMoveOverworldMenu	= true;		// Can the player move? (Overworld Menu)
 canMoveDialogue			= true;		// Can the player move? (Dialogue)

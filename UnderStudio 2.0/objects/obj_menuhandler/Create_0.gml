@@ -6,13 +6,13 @@ selection				= 0;
 prevSelection			= undefined;
 
 namingName				= "";
-namingHeader			= "Name the fallen human."
+namingHeader			= dx_getraw("naming_title")
 namingLetters			= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-namingOptions			= ["Exit", "Backspace", "Done"];
+namingOptions			= [dx_getraw("naming_exit"), dx_getraw("naming_backspace"), dx_getraw("naming_done")];
 namingRows				= 7;
 
-namingHeaderConfirm		= "Is this name correct?"
-namingOptionsConfirm	= ["No", "Yes"];
+namingHeaderConfirm		= dx_getraw("naming_title_confirm")
+namingOptionsConfirm	= [dx_getraw("naming_confirm"), dx_getraw("naming_cancel")];
 namingNameXOffset		= 0;
 namingNameYOffset		= 0;
 namingNameScale			= 0;

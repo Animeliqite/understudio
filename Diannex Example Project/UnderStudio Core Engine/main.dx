@@ -7,6 +7,49 @@ def player_stats
 	player_gold_short="G"
 }
 
+//! Overworld Menu
+def overworld_menu
+{
+	owmenu_hp="HP"
+	owmenu_lv="LV"
+	owmenu_gold="GOLD"
+	owmenu_gold_short="G"
+	owmenu_at="AT"
+	owmenu_df="DF"
+	owmenu_exp="EXP"
+	owmenu_next="NEXT"
+	owmenu_weapon="WEAPON"
+	owmenu_armor="ARMOR"
+	owmenu_item="ITEM"
+	owmenu_stat="STAT"
+	owmenu_cell="CELL"
+	owmenu_use="USE"
+	owmenu_info="INFO"
+	owmenu_drop="DROP"
+}
+
+//! Menu Screen
+def menu_screen
+{
+	menu_or="Or"
+	menu_title=" --- Instruction ---"
+	menu_confirm=" - Confirm"
+	menu_cancel=" - Cancel"
+	menu_menu=" - Menu (In-game)"
+	menu_fullscreen="[F4] - Fullscreen"
+	menu_quit="[Hold ESC] - Quit"
+	menu_hp="When HP is 0, you lose."
+	menu_begin="Begin Game"
+	menu_settings="Settings"
+	naming_title="Name the fallen human."
+	naming_title_confirm="Is this name correct?"
+	naming_exit="Exit"
+	naming_backspace="Backspace"
+	naming_done="Done"
+	naming_confirm="Yes"
+	naming_decline="No"
+}
+
 //! Cutscenes
 scene cutscene_placeholder_0
 {
