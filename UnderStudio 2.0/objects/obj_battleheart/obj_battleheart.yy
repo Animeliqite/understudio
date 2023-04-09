@@ -1,15 +1,16 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_battlehandler",
+  "name": "obj_battleheart",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Handlers",
-    "path": "folders/Objects/In-Game Elements/Battle System/Handlers.yy",
+    "name": "Heart",
+    "path": "folders/Objects/In-Game Elements/Battle System/Heart.yy",
   },
   "parentObjectId": null,
   "persistent": false,
@@ -27,7 +28,10 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_battleheart",
+    "path": "sprites/spr_battleheart/spr_battleheart.yy",
+  },
   "spriteMaskId": null,
   "visible": true,
 }
