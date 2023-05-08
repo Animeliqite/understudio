@@ -34,6 +34,17 @@ function dx_is_paused() {
 	return (global.dxInterpreter.state == DiannexInterpreterState.Paused);
 }
 
-function dx_getraw(key) {
-	return global.dxInterpreter.getDefinition(key);
+function dx_getraw(def, key) {
+	return global.dxInterpreter.getDefinition(string_concat(def, ".", key));
+}
+
+function dx_endscene() {
+	try {
+		global.dxInterpreter.endScene();
+		return true;
+		
+	}
+	catch(error){
+		show_error(error, false);
+	}
 }

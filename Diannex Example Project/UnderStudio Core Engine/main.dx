@@ -82,6 +82,7 @@ scene cutscene_test_0
 	objectFaceTo "obj_player", 90
 	"* The guy on the right#  knows how to ask#  questions."
 }
+
 scene cutscene_test_1
 {
 	"* Object movement test!"

@@ -23,3 +23,11 @@ function number_sub(number, valMin = undefined, decrementAmount = 1) {
 	
 	return number;
 }
+
+function instance_find_equal_value(object, variable, value) {
+	for (var i = 0; i < instance_number(object); i++) {
+		if (variable_instance_get(instance_find(object, i), variable) == value) {
+			return instance_find(object, i);
+		}
+	}
+}

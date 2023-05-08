@@ -1,0 +1,22 @@
+{
+    "authors": [],
+    "name": "x64-Debug",
+    "options": {
+        "add_string_ids": false,
+        "binary_name": "",
+        "binary_outdir": "./out/",
+        "compile_finish_message": "",
+        "compression": true,
+        "files": [
+            "main.dx"
+        ],
+        "interpolation_enabled": true,
+        "macros": [],
+        "translation_private": false,
+        "translation_private_name": "",
+        "translation_private_outdir": "./translations/",
+        "translation_public": false,
+        "translation_public_name": "",
+        "use_string_ids": false
+    }
+}

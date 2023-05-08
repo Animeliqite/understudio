@@ -86,6 +86,9 @@ function game_init(){
 	
 	item_add(ITEM.MONSTER_CANDY);
 	item_add(ITEM.BUTTERSCOTCH_PIE);
+	
+	// Debug mode
+	#macro DEBUG true
 }
 
 function dialogue_simple(text, face = undefined, voice = snd_defaultvoice, font = fnt_main) {

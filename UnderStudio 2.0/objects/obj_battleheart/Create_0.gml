@@ -13,8 +13,10 @@ image_speed	= 0;				// The image speed
 
 // FUNCTIONS
 basicMovement = function () {
-	dirX = moveSpeed * (BT_RIGHT ? 1 : -1);
-	dirY = moveSpeed * (BT_UP ? -1 : 1);
+	var _modifier = (BT_SHIFT ? 0.5 : 1);
+	
+	dirX = moveSpeed * (BT_RIGHT ? 1 : -1) * _modifier;
+	dirY = moveSpeed * (BT_UP ? -1 : 1) * _modifier;
 	
 	if (!BT_LEFT && !BT_RIGHT) dirX = 0;
 	if (!BT_UP && !BT_DOWN) dirY = 0;

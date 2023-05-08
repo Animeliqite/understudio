@@ -36,7 +36,7 @@ function DiannexData() constructor
 	instructions = undefined;
 	flagsInitialized = false;
 	defaultInterpreter = new DiannexInterpreter(self);
-	currentCacheID = -1;
+	currentCacheID = -1	;
 	
 	setFlagHandler = function(name, value)
 	{

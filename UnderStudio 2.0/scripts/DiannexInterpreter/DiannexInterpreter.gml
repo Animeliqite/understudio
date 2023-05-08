@@ -80,9 +80,8 @@ function DiannexInterpreter(binary) constructor
 	textHandler = function(text)
 	{
 		if (room != rm_battle) {
-			dialogue_simple(text, undefined, [snd_defaultvoice], fnt_main);
+			dialogue_simple(text, undefined, [snd_defaultvoice]);
 		}
-		//throw "Missing text handler. Set variable 'textHandler' on the Diannex interpreter before using it.";
 	};
 	variableSetHandler = function(name, value)
 	{

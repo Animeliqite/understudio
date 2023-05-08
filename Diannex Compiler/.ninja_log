@@ -1,0 +1,12 @@
+# ninja log v5
+27	452	7050908520312163	CMakeFiles/diannex.dir/src/libs/miniz/miniz.c.obj	8801276a992998f6
+16	517	7050908520978836	CMakeFiles/diannex.dir/src/BinaryWriter.cpp.obj	3d76bfb09c8f12e2
+35	721	7050908523038752	CMakeFiles/diannex.dir/src/Context.cpp.obj	a5d1191d238624d8
+20	942	7050908525231138	CMakeFiles/diannex.dir/src/Binary.cpp.obj	96da9f0973285260
+8	973	7050908525551730	CMakeFiles/diannex.dir/src/Parser.cpp.obj	247f210cba0add0b
+12	1264	7050908528446839	CMakeFiles/diannex.dir/src/Bytecode.cpp.obj	621a64773d70ea9
+5	1335	7050908529178623	CMakeFiles/diannex.dir/src/Lexer.cpp.obj	93ff4e93f05b7d38
+31	1571	7050908531531346	CMakeFiles/diannex.dir/src/Translation.cpp.obj	d85b3e58b1455058
+24	2105	7050908536866546	CMakeFiles/diannex.dir/src/Utility.cpp.obj	933fe11d4393327c
+1	2409	7050908539870418	CMakeFiles/diannex.dir/src/main.cpp.obj	cf48af5d13d4db6a
+2409	2854	7050908544243142	diannex.exe	6e6715b318cf5a37

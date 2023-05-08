@@ -9,7 +9,6 @@
 
 global.chapter = 0; // The current chapter
 global.language = "en"; // The current language
-global.debug = false; // Debug menu
 
 borderOffsetX = 0; // X Offset of the border
 borderOffsetY = 0; // Y Offset of the border
