@@ -12,6 +12,8 @@ flavor_text	= dx_getraw();
 screen_fade(1,0,0.25);	// Fade the screen
 song_play(battleSong);	// Play the battle song
 
+dialogue_simple("* I said right foo cree ", undefined, [snd_alternatevoice], fnt_main, true);
+
 // MACROS
 #macro BATTLE_STATE_BUTTON 0
 #macro BATTLE_STATE_ACTION 1
@@ -28,4 +30,5 @@ instance_create_depth(185, 432, 0, obj_battlebutton_act);	// The ACT button
 instance_create_depth(345, 432, 0, obj_battlebutton_item);	// The ITEM button
 instance_create_depth(500, 432, 0, obj_battlebutton_mercy);	// The MERCY button
 instance_create_depth(500, 432, 0, obj_battleboardhandler);	// The board handler
+instance_create_depth(500, 432, 0, obj_battleuihandler);	// The UI handler
 instance_create_depth(320, 240, -300, obj_battleheart);

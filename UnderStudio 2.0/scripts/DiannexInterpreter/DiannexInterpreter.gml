@@ -82,6 +82,9 @@ function DiannexInterpreter(binary) constructor
 		if (room != rm_battle) {
 			dialogue_simple(text, undefined, [snd_defaultvoice]);
 		}
+		else {
+			dialogue_simple(text, undefined, [snd_defaultvoice], fnt_main, true);
+		}
 	};
 	variableSetHandler = function(name, value)
 	{

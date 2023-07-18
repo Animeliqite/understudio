@@ -91,13 +91,14 @@ function game_init(){
 	#macro DEBUG true
 }
 
-function dialogue_simple(text, face = undefined, voice = snd_defaultvoice, font = fnt_main) {
+function dialogue_simple(text, face = undefined, voice = snd_defaultvoice, font = fnt_main, battle = false) {
 	with (obj_overworldui) {
 		state = 0;
 		dialogueText = text;
 		dialogueFace = face;
 		dialogueVoice = voice;
 		dialogueFont = font;
+		dialogueBattle = battle;
 	}
 }
 

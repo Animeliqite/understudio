@@ -40,7 +40,8 @@ switch (state) {
 			// Check if the writer is completed
 			if (dialogueWriter.completed) {
 				// Reset the NPC's image index the player has interacted with
-				global.dialogueInteractedTo.image_index = 0;
+				if (instance_exists(global.dialogueInteractedTo))
+					global.dialogueInteractedTo.image_index = 0;
 				
 				// Reset the dialogue face image index
 				dialogueFaceIndex = 0;
@@ -70,7 +71,8 @@ switch (state) {
 			}
 			else {
 				// Increase the NPC's image index the player has interacted with
-				global.dialogueInteractedTo.image_index += 0.25;
+				if (instance_exists(global.dialogueInteractedTo))
+					global.dialogueInteractedTo.image_index += 0.25;
 				
 				// Increase the dialogue face image index
 				dialogueFaceIndex += 0.25;
