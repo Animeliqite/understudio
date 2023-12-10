@@ -6,13 +6,23 @@ subState	= 0;					// The current sub state
 selection	= 0;					// The current selection
 battleSong	= song_load("battle");	// The battle song
 
-flavor_text	= dx_getraw();
+flavorText	= dx_getraw();
+flavorFace	= undefined;
+flavorVoice	= [snd_alternatevoice];
+flavorFont	= fnt_main;
 
 // FUNCTIONS
 screen_fade(1,0,0.25);	// Fade the screen
 song_play(battleSong);	// Play the battle song
 
 dialogue_simple("* I said right foo cree ", undefined, [snd_alternatevoice], fnt_main, true);
+
+/*
+			if (dialogueBattle) {
+				if (instance_exists(obj_battleboardhandler))
+					draw_rpgtext(obj_battleboardhandler._x - obj_battleboardhandler.width + 20 + (dialogueFace != undefined ? 118 : 0), obj_battleboardhandler._y - obj_battleboardhandler.height + 20, dialogueWriter.written, dialogueFont, 1, global.mainFontWidth, global.mainFontHeight, 1, 1, c_white);
+			}
+*/
 
 // MACROS
 #macro BATTLE_STATE_BUTTON 0

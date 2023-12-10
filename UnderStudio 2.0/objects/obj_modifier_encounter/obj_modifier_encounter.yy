@@ -28,10 +28,7 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": {
-    "name": "spr_modifier_encounter",
-    "path": "sprites/spr_modifier_encounter/spr_modifier_encounter.yy",
-  },
+  "spriteId": null,
   "spriteMaskId": null,
   "visible": true,
 }

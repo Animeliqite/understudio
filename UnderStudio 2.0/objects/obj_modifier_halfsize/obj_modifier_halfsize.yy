@@ -28,10 +28,7 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": {
-    "name": "spr_modifier_halfsize",
-    "path": "sprites/spr_modifier_halfsize/spr_modifier_halfsize.yy",
-  },
+  "spriteId": null,
   "spriteMaskId": null,
   "visible": false,
 }

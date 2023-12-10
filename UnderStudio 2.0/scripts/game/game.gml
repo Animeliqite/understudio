@@ -92,13 +92,22 @@ function game_init(){
 }
 
 function dialogue_simple(text, face = undefined, voice = snd_defaultvoice, font = fnt_main, battle = false) {
-	with (obj_overworldui) {
-		state = 0;
-		dialogueText = text;
-		dialogueFace = face;
-		dialogueVoice = voice;
-		dialogueFont = font;
-		dialogueBattle = battle;
+	if (!battle) {
+		with (obj_overworldui) {
+			state = 0;
+			dialogueText = text;
+			dialogueFace = face;
+			dialogueVoice = voice;
+			dialogueFont = font;
+		}
+	}
+	else {
+		with (obj_battlehandler) {
+			flavorText = text;
+			flavorFace = face;
+			flavorVoice = voice;
+			flavorFont = font;
+		}
 	}
 }
 

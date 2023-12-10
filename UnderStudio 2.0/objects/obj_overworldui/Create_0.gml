@@ -14,4 +14,3 @@ dialogueFont = fnt_main;			// The current dialogue font
 dialogueWriter = noone;				// The dialogue writer
 dialogueIsOnTop = undefined;		// Is the dialogue box on top?
 dialogueAlignY = 0;					// Dialogue align in the Y axis
-dialogueBattle = false;				// Is the dialogue in the battle

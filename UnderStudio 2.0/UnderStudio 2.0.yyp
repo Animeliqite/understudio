@@ -64,7 +64,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"UI","folderPath":"folders/Sprites/In-Game Elements/Battle System/UI.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Effects","folderPath":"folders/Sprites/In-Game Elements/Effects.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Intro Images","folderPath":"folders/Sprites/In-Game Elements/Intro Images.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Modifiers","folderPath":"folders/Sprites/In-Game Elements/Modifiers.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Overworld","folderPath":"folders/Sprites/In-Game Elements/Overworld.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Characters","folderPath":"folders/Sprites/In-Game Elements/Overworld/Characters.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"The Protagonist","folderPath":"folders/Sprites/In-Game Elements/Overworld/Characters/The Protagonist.yy",},
@@ -94,7 +93,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.800.0.376",
+    "IDEVersion": "2023.11.0.121",
   },
   "resources": [
     {"id":{"name":"spr_gpbuttons_confirm","path":"sprites/spr_gpbuttons_confirm/spr_gpbuttons_confirm.yy",},},
@@ -115,7 +114,6 @@
     {"id":{"name":"spr_intropanels","path":"sprites/spr_intropanels/spr_intropanels.yy",},},
     {"id":{"name":"obj_debughandler","path":"objects/obj_debughandler/obj_debughandler.yy",},},
     {"id":{"name":"window","path":"scripts/window/window.yy",},},
-    {"id":{"name":"spr_modifier_halfsize","path":"sprites/spr_modifier_halfsize/spr_modifier_halfsize.yy",},},
     {"id":{"name":"obj_fadinghandler","path":"objects/obj_fadinghandler/obj_fadinghandler.yy",},},
     {"id":{"name":"obj_modifier_halfsize","path":"objects/obj_modifier_halfsize/obj_modifier_halfsize.yy",},},
     {"id":{"name":"rm_empty","path":"rooms/rm_empty/rm_empty.yy",},},
@@ -159,7 +157,6 @@
     {"id":{"name":"obj_battlebutton_item","path":"objects/obj_battlebutton_item/obj_battlebutton_item.yy",},},
     {"id":{"name":"anc_easings","path":"animcurves/anc_easings/anc_easings.yy",},},
     {"id":{"name":"obj_camerahandler","path":"objects/obj_camerahandler/obj_camerahandler.yy",},},
-    {"id":{"name":"spr_modifier_encounter","path":"sprites/spr_modifier_encounter/spr_modifier_encounter.yy",},},
     {"id":{"name":"animation","path":"scripts/animation/animation.yy",},},
     {"id":{"name":"spr_battleheart","path":"sprites/spr_battleheart/spr_battleheart.yy",},},
     {"id":{"name":"obj_slope_tl","path":"objects/obj_slope_tl/obj_slope_tl.yy",},},
@@ -207,6 +204,7 @@
     {"roomId":{"name":"rm_battle","path":"rooms/rm_battle/rm_battle.yy",},},
     {"roomId":{"name":"rm_intro","path":"rooms/rm_intro/rm_intro.yy",},},
   ],
+  "templateType": null,
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
   ],
