@@ -10,10 +10,7 @@ else dialogueAlignY = dialogueIsOnTop ? 0 : 310;
 
 // Function to draw the dialogue box
 drawDialogueBox = function () {
-	// Draw the dialogue box
 	draw_box(32, 10 + dialogueAlignY, 608, 160 + dialogueAlignY);
-	
-	// Draw the dialogue face if there's one used
 	if (dialogueFace != undefined)
 		draw_sprite_ext(dialogueFace, dialogueFaceIndex, 100, 75 + dialogueAlignY, 2, 2, 0, c_white, 1);
 }
@@ -22,24 +19,18 @@ switch (state) {
 	case -1:
 		// Check if the previous state is 0
 		if (prevState == 0) {
-			// Set the previous state to -1
 			prevState = -1;
 			
 			// Check if the state is not executed once
 			if (!stateExecutedOnce) {
-				// Draw the dialogue box
 				drawDialogueBox();
-				
-				// Set the state code execution checker to true
 				stateExecutedOnce = true;
 			}
 		}
 		break;
 	case 0:
-		if (!dialogueBattle) {
-			// Draw the dialogue box
-			drawDialogueBox();
-		}
+		// Draw the dialogue box
+		drawDialogueBox();
 		
 		// Check if the dialogue writer exists
 		if (instance_exists(dialogueWriter)) {

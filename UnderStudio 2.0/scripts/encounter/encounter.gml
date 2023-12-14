@@ -5,6 +5,7 @@ function encounter_start(object, encounterID, encounterExclamation = true, encou
 	inst.encounterExclamation = encounterExclamation;
 	inst.encounterStyle = encounterStyle;
 	inst.encounterFast = encounterFast;
+	global.encounterID = encounterID;
 }
 
 function encounter_is_active() {

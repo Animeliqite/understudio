@@ -68,6 +68,8 @@ function game_init(){
 	global.playerDFArmor = 0; // The player's armor defending strength
 	global.playerInventory = ds_list_create(); // The player's inventory
 	
+	// ENCOUNTER
+	global.encounterID = -1;
 	
 	// OTHER
 	window_set_color(c_black); // Set the window color
@@ -107,6 +109,7 @@ function dialogue_simple(text, face = undefined, voice = snd_defaultvoice, font 
 			flavorFace = face;
 			flavorVoice = voice;
 			flavorFont = font;
+			event_user(0);
 		}
 	}
 }

@@ -83,6 +83,13 @@ function draw_rpgtext(_x, _y, text, font = fnt_main, alpha = 1, charWidth = glob
 					case 2:
 						draw_text_transformed(cx + cos(current_time / 125 + siner) * 1.5, cy + sin(current_time / 125 + siner) * 1.5, c, scaleX, scaleY, 0);
 						break;
+					case 3:
+						randomize();
+						var _chances = random(100);
+						if (_chances > 95)
+							draw_text_transformed(cx + irandom(1), cy + irandom(1), c, scaleX, scaleY, 0);
+						else draw_text_transformed(cx, cy, c, scaleX, scaleY, 0);
+						break;
 				}
 				
 				cx += (charWidth != -1 ? charWidth : string_width(c));

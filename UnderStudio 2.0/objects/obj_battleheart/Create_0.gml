@@ -10,6 +10,7 @@ dirY		= 0;				// The Y direction
 colorBlend	= c_red;			// The color blend
 image_index	= 0;				// The image index
 image_speed	= 0;				// The image speed
+image_blend	= colorBlend;		// The image blend
 
 // FUNCTIONS
 basicMovement = function () {
