@@ -16,6 +16,7 @@ flavorFont		= fnt_main;
 flavorActionText = "";
 
 battleEnemies	= [];
+chosenEnemy		= 0;
 
 // FUNCTIONS
 screen_fade(1,0,0.25);				// Fade the screen

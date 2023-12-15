@@ -51,11 +51,12 @@ switch (state) {
 						}
 				
 						var _str = "";
-						for (var i = 0; i < _selectionSize; i++) {
+						for (var i = 0; i < _selectionSize + 1; i++) {
 							_str += $"    * {battleEnemies[i].enemyName} #"
 						}
 						drawMenuText(_str);
 						
+						chosenEnemy = battleEnemies[selection];
 						obj_battleheart.x = _board._x - _board.width + 40;
 						obj_battleheart.y = _board._y - _board.height + 30 + (selection * 38);
 						
@@ -65,6 +66,13 @@ switch (state) {
 						}
 						break;
 					case 1:
+						chosenEnemy.executeFunction(0);
+						subSubState = 1.1;
+						break;
+					case 2:
+						chosenEnemy.executeFunction(1);
+						subSubState = 2.1;
+						break;
 				}
 				break;
 		}

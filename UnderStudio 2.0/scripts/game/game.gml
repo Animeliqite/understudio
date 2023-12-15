@@ -70,6 +70,8 @@ function game_init(){
 	
 	// ENCOUNTER
 	global.encounterID = -1;
+	global.battleFightTargetObj = obj_battle_fight_target_knife;
+	global.battleFightSliceObj = obj_battle_fight_slice_knife;
 	
 	// OTHER
 	window_set_color(c_black); // Set the window color
