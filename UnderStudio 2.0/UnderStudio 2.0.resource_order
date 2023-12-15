@@ -124,6 +124,7 @@
     {"name":"obj_slopeparent","order":1,"path":"objects/obj_slopeparent/obj_slopeparent.yy",},
     {"name":"obj_battlebutton_mercy","order":5,"path":"objects/obj_battlebutton_mercy/obj_battlebutton_mercy.yy",},
     {"name":"obj_solid","order":2,"path":"objects/obj_solid/obj_solid.yy",},
+    {"name":"spr_battle_dmg","order":1,"path":"sprites/spr_battle_dmg/spr_battle_dmg.yy",},
     {"name":"integers","order":1,"path":"scripts/integers/integers.yy",},
     {"name":"audio","order":6,"path":"scripts/audio/audio.yy",},
     {"name":"spr_player_right","order":3,"path":"sprites/spr_player_right/spr_player_right.yy",},

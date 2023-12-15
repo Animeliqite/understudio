@@ -201,6 +201,7 @@
     {"id":{"name":"obj_battlebutton_mercy","path":"objects/obj_battlebutton_mercy/obj_battlebutton_mercy.yy",},},
     {"id":{"name":"obj_solid","path":"objects/obj_solid/obj_solid.yy",},},
     {"id":{"name":"obj_solidparent","path":"objects/obj_solidparent/obj_solidparent.yy",},},
+    {"id":{"name":"spr_battle_dmg","path":"sprites/spr_battle_dmg/spr_battle_dmg.yy",},},
     {"id":{"name":"obj_overworldui","path":"objects/obj_overworldui/obj_overworldui.yy",},},
     {"id":{"name":"spr_bt_button_fight","path":"sprites/spr_bt_button_fight/spr_bt_button_fight.yy",},},
     {"id":{"name":"integers","path":"scripts/integers/integers.yy",},},

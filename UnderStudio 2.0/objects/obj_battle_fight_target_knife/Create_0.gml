@@ -1,5 +1,7 @@
 /// @description Initialize
 
+var _board = obj_battleboardhandler;
+
 x = _board._x;
 y = _board._y;
 

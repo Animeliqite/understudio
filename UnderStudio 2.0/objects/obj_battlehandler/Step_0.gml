@@ -36,7 +36,13 @@ switch (state) {
 					case 0:
 						var _selectionSize = array_length(battleEnemies) - 1;
 						var _prevSelection = selection;
-				
+						
+						var _str = "";
+						for (var i = 0; i < _selectionSize + 1; i++) {
+							_str += $"    * {battleEnemies[i].enemyName} #"
+						}
+						drawMenuText(_str);
+						
 						if (BT_UP_P) selection = number_sub(selection, 0);
 						if (BT_DOWN_P) selection = number_add(selection, _selectionSize);
 				
@@ -47,30 +53,25 @@ switch (state) {
 			
 							sfx_play(snd_menuselect);
 							instance_destroy(flavorWriter);
-							flavorActionText = "";
 						}
-				
-						var _str = "";
-						for (var i = 0; i < _selectionSize + 1; i++) {
-							_str += $"    * {battleEnemies[i].enemyName} #"
-						}
-						drawMenuText(_str);
-						
-						chosenEnemy = battleEnemies[selection];
-						obj_battleheart.x = _board._x - _board.width + 40;
-						obj_battleheart.y = _board._y - _board.height + 30 + (selection * 38);
 						
 						if (_prevSelection != selection) {
 							sfx_play(snd_menumove);
 							_prevSelection = selection;
 						}
+						
+						chosenEnemy = battleEnemies[selection];
+						obj_battleheart.x = _board._x - _board.width + 40;
+						obj_battleheart.y = _board._y - _board.height + 36 + (selection * 38);
 						break;
 					case 1:
 						chosenEnemy.executeFunction(0);
+						flavorActionText = "";
 						subSubState = 1.1;
 						break;
 					case 2:
 						chosenEnemy.executeFunction(1);
+						flavorActionText = "";
 						subSubState = 2.1;
 						break;
 				}
