@@ -10,6 +10,8 @@ executeFuncID = -1;
 enemyIdleSprite = undefined;
 enemyHurtSprite = undefined;
 
+damageTaken = 0;
+
 enemyActions = {
 	actionNames: ["Check", "Talk"],
 	actionFuncIDs: [0, 1]

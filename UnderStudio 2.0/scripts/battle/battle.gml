@@ -9,3 +9,7 @@ function battle_retrieve_enemies() {
 	}
 	return _enemy;
 }
+
+function battle_calculate_dmg(dmg) {
+	return (global.playerAT + global.playerATWeapon + floor(median(10, global.playerHP._max, 90) - 10) / 10) * floor(dmg);
+}

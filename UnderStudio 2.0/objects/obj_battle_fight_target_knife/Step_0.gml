@@ -8,8 +8,12 @@ if (BT_ENTER_P && !targetHitExecutedOnce) {
 	instance_destroy(instance_find_equal_value(obj_animationhandler, "targetInstance", id));
 	instance_create_depth(_sliceX, _sliceY, depth - 200, global.battleFightSliceObj);
 	
+	_enemy.damageTaken = targetDMG;
+	
 	alarm[0] = 60;
 	targetHitExecutedOnce = true;
 }
 
-targetDMG = abs(x - barX);
+if (abs(x - barX) > abs(x - barX - 1))
+	targetDMG -= 0.25;
+else targetDMG += 0.25;
