@@ -7,21 +7,17 @@
 <hr>
 
 <h3 align="center">Important Rules</h3>
-<p>1. This is a brand new branch, aiming to recreate UnderStudio into something robust to all the developers.</p>
-<p>2. UnderStudio might use external assets later on. Thanks to <a href="https://github.com/colinator27" target="_blank">Colinator27</a> for helping with all the problems.</p>
-<p>3. You'll have to credit the people behind this project upon using it on your project. Legal action will be taken otherwise.</p>
+<p>1. This is a brand new branch. For v1.0, you may as well look into other branches.</p>
+<p>2. UnderStudio uses <a href="https://github.com/Rupitian/diannex" target="_blank">Diannex</a> for in-game localization and cutscenes.</p>
+<p>3. Crediting me and other contributors will be appreciated!</p>
 <p>4. UnderStudio uses the latest beta version of Game Maker Studio 2. Only people with beta releases access will be able to use it.</p>
-<p>5. The engine will stay public to everyone as long as this gets credited by all the users.</p>
+<p>5. The engine will stay public to everyone.</p>
 
 <hr>
 
 <h3 align="center">Credits & Special Thanks</h3>
-<a href="https://github.com/ejmshadow" target="_blank">EjmShadow</a>
-<h6>  for collaborating into the project.</h6>
-<a href="https://github.com/iamadevil" target="_blank">IamADevil</a>
-<h6>  for collaborating into the project.</h6>
 <a href="https://github.com/colinator27" target="_blank">Colinator27</a>
 <h6>  for helping me go through several obstacles of development.</h6>
 
 <hr>
-<h6 align="center">UnderStudio by Animeliqite (2021-2022)</h6>
+<h6 align="center">UnderStudio by Animeliqite (2021-2024)</h6>
