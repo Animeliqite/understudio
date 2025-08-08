@@ -1,9 +1,9 @@
 {
-  "$GMScript":"",
-  "%Name":"integers",
+  "$GMScript":"v1",
+  "%Name":"helpers",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"integers",
+  "name":"helpers",
   "parent":{
     "name":"Additional Scripts",
     "path":"folders/Scripts/Additional Scripts.yy",

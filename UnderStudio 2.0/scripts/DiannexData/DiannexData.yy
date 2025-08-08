@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"DiannexData",
   "isCompatibility":false,
   "isDnD":false,

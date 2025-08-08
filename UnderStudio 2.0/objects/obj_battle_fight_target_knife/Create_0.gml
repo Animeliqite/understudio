@@ -12,4 +12,4 @@ targetFade = false;
 barX = x - sprite_width / 2;
 barY = y;
 
-execute_tween(id, "barX", x + sprite_width / 2, "linear", 2, false);
+execute_tween(id, "barX", x + sprite_width / 2, "linear", 60, false);

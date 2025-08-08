@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"diannex",
   "isCompatibility":false,
   "isDnD":false,

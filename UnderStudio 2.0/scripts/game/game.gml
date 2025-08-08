@@ -22,10 +22,6 @@ function game_init(){
 	global.dxInstructions = global.dxData.instructions; // All the Diannex interpreter
 	dx_cmd();
 	
-	// LOCALIZATION
-	global.localizationFilePath = "lang/"; // The path to get all the JSON's from
-	global.localizationData = language_util(); // The entire localization data
-	
 	// INPUT
 	input_init(); // Initialize the input system
 	input_update(); // Update the input system once
@@ -42,9 +38,14 @@ function game_init(){
 	global.cutsceneConditionResultAsSet = array_create(128, 0);
 	global.cutsceneConditionIsGlobal = array_create(128, false);
 	global.cutsceneCondition = array_create(128, undefined);
+	global.interactionCooldown = 0;
 	global.cutscene = array_create(128);
 	for (var i = 0; i <= 128; i++)
 		global.cutscene[i] = [[],[]]
+	
+	// DIALOGUE
+	global.currSpeaker = "none";
+	speaker_init();
 	
 	// AUDIO
 	audio_channel_num(128); // Set the maximum audio channel number
@@ -95,25 +96,25 @@ function game_init(){
 	#macro DEBUG true
 }
 
-function dialogue_simple(text, face = undefined, voice = snd_defaultvoice, font = fnt_main, battle = false) {
-	if (!battle) {
-		with (obj_overworldui) {
-			state = 0;
-			dialogueText = text;
-			dialogueFace = face;
-			dialogueVoice = voice;
-			dialogueFont = font;
-		}
-	}
-	else {
-		with (obj_battlehandler) {
-			flavorText = text;
-			flavorFace = face;
-			flavorVoice = voice;
-			flavorFont = font;
-			event_user(0);
-		}
-	}
+function dialogue_simple(text) {
+	if (room != rm_battle) {
+        with (obj_overworldui) {
+            state = 0;
+            dialogueText = text;
+            dialogueFace = global.speakers.GetSpeakerData(global.currSpeaker, "Face");
+            dialogueVoice = global.speakers.GetSpeakerData(global.currSpeaker, "Voice");
+            dialogueFont = global.speakers.GetSpeakerData(global.currSpeaker, "Font");
+        }
+    }
+    else {
+        with (obj_battlehandler) {
+            flavorText = text;
+            flavorFace = global.speakers.GetSpeakerData(global.currSpeaker, "Face");
+            flavorVoice = global.speakers.GetSpeakerData(global.currSpeaker, "Voice");
+            flavorFont = global.speakers.GetSpeakerData(global.currSpeaker, "Font");
+            event_user(0);
+        }
+    }
 }
 
 function camera_is_on_top() {

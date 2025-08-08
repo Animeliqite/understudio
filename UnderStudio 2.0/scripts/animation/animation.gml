@@ -13,10 +13,35 @@ function execute_tween(instance, variable, targetValue, curveSubName = "linear",
 	}
 }
 
+function tween_exists(instance, variable = undefined) {
+	for (var i = 0; i < instance_number(obj_animationhandler); i++) {
+		with (instance_find(obj_animationhandler,i)) {
+			if (targetInstance == instance) {
+				if (variable != undefined) {
+					if (targetVariable == variable)
+						return true;
+					else
+						return false;
+				}
+				else {
+					return true;
+				}
+			}
+			else {
+				return false;
+			}
+		}
+	}
+}
+
 // This script creates a fader object which fades in/out the screen.
-function screen_fade(alphaBegin, alphaStop, duration = 0.25, fadingColor = c_black) {
+function screen_fade(alphaBegin, alphaStop, duration = 15, fadingColor = c_black) {
+	// If the fading handler exists, destroy it
+	if (instance_exists(obj_fadinghandler))
+		instance_destroy(obj_fadinghandler);
+	
 	// Set the values
-	var faderInst = instance_create_depth(0, 0, -9999, obj_fadinghandler)
+	var faderInst = instance_create_depth(0, 0, -1000, obj_fadinghandler)
 	with (faderInst) {
 		faderAlpha = alphaBegin;
 		faderAlphaTarget = alphaStop;

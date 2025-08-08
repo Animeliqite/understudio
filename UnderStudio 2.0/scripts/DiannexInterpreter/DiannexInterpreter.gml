@@ -79,12 +79,7 @@ function DiannexInterpreter(binary) constructor
 	// Other handlers
 	textHandler = function(text)
 	{
-		if (room != rm_battle) {
-			dialogue_simple(text, undefined, [snd_defaultvoice]);
-		}
-		else {
-			dialogue_simple(text, undefined, [snd_defaultvoice], fnt_main, true);
-		}
+		dialogue_simple(text);
 	};
 	variableSetHandler = function(name, value)
 	{
@@ -96,7 +91,13 @@ function DiannexInterpreter(binary) constructor
 	};
 	endSceneHandler = function(name)
 	{
-		// Does nothing by default
+		global.interactionCooldown = 3;
+		global.currSpeaker = "noone";
+		
+		if (instance_exists(obj_player)) {
+            obj_player.canMoveCutscene = true;
+			obj_player.canInteract = true;
+        }
 	};
 	chanceHandler = function(chance)
 	{

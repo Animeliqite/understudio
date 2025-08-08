@@ -38,6 +38,15 @@ function dx_getraw(def, key) {
 	return global.dxInterpreter.getDefinition(string_concat(def, ".", key));
 }
 
+function dx_runscene(scene) {
+	if (instance_exists(obj_player))
+		obj_player.canMoveCutscene = false;
+	
+    global.dxInterpreter.runScene(scene);
+	
+    return true;
+}
+
 function dx_endscene() {
 	try {
 		global.dxInterpreter.endScene();

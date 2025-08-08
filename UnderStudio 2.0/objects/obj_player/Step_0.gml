@@ -74,58 +74,68 @@ if (canMove && canMoveOverworldMenu && canMoveDialogue) {
 	
 	// INTERACTION
 	
-	// Check if there's a collision with an NPC
-	if (collision_rectangle(x - (sprWidth / 2) - 5, y - (sprHeight / 2) - 5, x + (sprWidth / 2) + 5, y + (sprWidth / 2) + 5, obj_npcparent, false, false)) {
-		var dirAsResponse = undefined;
-		
-		// Check if the player has a collision with an NPC
-		if (place_meeting(x, y, obj_npcparent)) {
-			// Relocate the X position of the player
-			x = xprevious;
+	// Directional interaction area in front of the player
+	var interact_x1, interact_y1, interact_x2, interact_y2;
 			
-			// Relocate the Y position of the player
+	var offset = 6; // how far in front of player to check
+	var range = 12; // width/height of the interaction box
+	var dir_response; // NPC direction response
+			
+	switch (currDir) {
+		case DIR_UP:
+			interact_x1 = x - range / 2;
+			interact_y1 = y - offset - range;
+			interact_x2 = x + range / 2;
+			interact_y2 = y - offset;
+			dir_response = DIR_DOWN;
+			break;
+		case DIR_DOWN:
+			interact_x1 = x - range / 2;
+			interact_y1 = y + offset;
+			interact_x2 = x + range / 2;
+			interact_y2 = y + offset + range + 6;
+			dir_response = DIR_UP;
+			break;
+		case DIR_LEFT:
+			interact_x1 = x - offset - range;
+			interact_y1 = y - range / 2;
+			interact_x2 = x - offset;
+			interact_y2 = y + range / 2;
+			dir_response = DIR_RIGHT;
+			break;
+		case DIR_RIGHT:
+			interact_x1 = x + offset;
+			interact_y1 = y - range / 2;
+			interact_x2 = x + offset + range;
+			interact_y2 = y + range / 2;
+			dir_response = DIR_LEFT;
+			break;
+	}
+			
+	// Check for NPCs directly in front
+	var interaction = collision_rectangle(interact_x1, interact_y1, interact_x2, interact_y2, obj_npcparent, false, true);
+
+	if (interaction != noone && !dx_is_active()) {
+		if (BT_ENTER_P && canInteract && global.interactionCooldown <= 0) {
+			if (!obj_overworldmenu.active) {
+			    with (interaction) {
+			        currDir = dir_response; // NPC looks toward player
+			        event_user(0); // trigger dialogue or response
+			    }
+			}
+		}
+
+		if (canInteract && global.interactionCooldown > 0) {
+			global.interactionCooldown--;
+		}
+	}
+			
+	// Special collision for NPCs
+	if (place_meeting(x, y, obj_npc_scene)) {
+		var inst = instance_place(x, y, obj_npc_scene);
+		if (inst.collision && !inst.smoothCollision) {
+			x = xprevious;
 			y = yprevious;
-		}
-		
-		// Check if the player is facing up
-		if (currDir == DIR_UP) {
-			if (collision_line(x, y, x, y - sprHeight + 5, obj_npcparent, false, false))
-				dirAsResponse = DIR_DOWN; // The NPC is going to look down
-		}
-		
-		// Check if the player is facing down
-		if (currDir == DIR_DOWN) {
-			if (collision_line(x, y, x, y + sprHeight - 5, obj_npcparent, false, false))
-				dirAsResponse = DIR_UP; // The NPC is going to look up
-		}
-		
-		// Check if the player is facing left
-		if (currDir == DIR_LEFT) {
-			if (collision_line(x, y, x - sprHeight + 5, y, obj_npcparent, false, false))
-				dirAsResponse = DIR_RIGHT; // The NPC is going to look right
-		}
-		
-		// Check if the player is facing right
-		if (currDir == DIR_RIGHT) {
-			if (collision_line(x, y, x + sprHeight - 5, y, obj_npcparent, false, false))
-				dirAsResponse = DIR_LEFT; // The NPC is going to look left
-		}
-		
-		// Check if the confirm key is pressed
-		if (BT_ENTER_P) {
-			// Check if the response direction is not undefined
-			if (!is_undefined(dirAsResponse))
-				// Execute a code as the NPC parent object
-				with (instance_nearest(x, y, obj_npcparent)) {
-					// Check if the overworld menu is active
-					if (!obj_overworldmenu.active) {
-						// Set the NPC's direction to the response direction
-						currDir = dirAsResponse;
-						
-						// Execute the user event
-						event_user(0);
-					}
-				}
 		}
 	}
 	

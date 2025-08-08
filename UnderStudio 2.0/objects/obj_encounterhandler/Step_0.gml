@@ -46,14 +46,14 @@ switch (state) {
 		switch (subState) {
 			case 0:
 				sfx_play(snd_heartmove);
-				execute_tween(id, "heartX", heartGoToX, "linear", 0.5, false);
-				execute_tween(id, "heartY", heartGoToY, "linear", 0.5, false);
+				execute_tween(id, "heartX", heartGoToX, "linear", 15, false);
+				execute_tween(id, "heartY", heartGoToY, "linear", 15, false);
 				subState = 1;
 				break;
 			case 1:
 				encounterMovePhase++;
 				if (encounterMovePhase == game_get_speed(gamespeed_fps) / 2) {
-					screen_fade(1,0,0.25);
+					screen_fade(1,0,15);
 					room_goto(rm_battle);
 				}
 				break;

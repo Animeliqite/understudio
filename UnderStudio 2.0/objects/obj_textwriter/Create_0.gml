@@ -22,5 +22,4 @@ charWidth		= global.mainFontWidth;				// The width of an each character
 charHeight		= global.mainFontHeight;			// The height of an each character
 
 formatText		= true;								// Should the writer format the text?
-punctuations	= [".", ",", ":", ";", "!", "?"];	// Text punctuations needed for formatting
 alarm[0]		= 1;								// Trigger an alarm to add formatting

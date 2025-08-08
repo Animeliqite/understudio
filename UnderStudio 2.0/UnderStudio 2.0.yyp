@@ -1,5 +1,5 @@
 {
-  "$GMProject":"",
+  "$GMProject":"v1",
   "%Name":"UnderStudio 2.0",
   "AudioGroups":[
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
@@ -46,6 +46,7 @@
     {"$GMFolder":"","%Name":"Program Setup","folderPath":"folders/Rooms/Program Setup.yy","name":"Program Setup","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Scripts","folderPath":"folders/Scripts.yy","name":"Scripts","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Additional Scripts","folderPath":"folders/Scripts/Additional Scripts.yy","name":"Additional Scripts","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Data","folderPath":"folders/Scripts/Data.yy","name":"Data","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Program Setup","folderPath":"folders/Scripts/Program Setup.yy","name":"Program Setup","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"User Interface","folderPath":"folders/Scripts/User Interface.yy","name":"User Interface","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sequences","folderPath":"folders/Sequences.yy","name":"Sequences","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -86,9 +87,9 @@
     {"$GMFolder":"","%Name":"Tile Sets","folderPath":"folders/Tile Sets.yy","name":"Tile Sets","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Timelines","folderPath":"folders/Timelines.yy","name":"Timelines","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
+  "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"game.dxb","CopyToMask":-1,"filePath":"datafiles/dx","name":"game.dxb","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"game.json","CopyToMask":-1,"filePath":"datafiles/lang","name":"game.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"alarm_titlescreen.ogg","CopyToMask":-1,"filePath":"datafiles/mus","name":"alarm_titlescreen.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"battle.ogg","CopyToMask":-1,"filePath":"datafiles/mus","name":"battle.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"cymbal.ogg","CopyToMask":-1,"filePath":"datafiles/mus","name":"cymbal.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -98,7 +99,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.4.0.137",
+    "IDEVersion":"2024.13.1.193",
   },
   "name":"UnderStudio 2.0",
   "resources":[
@@ -165,12 +166,12 @@
     {"id":{"name":"encounter","path":"scripts/encounter/encounter.yy",},},
     {"id":{"name":"enumerates","path":"scripts/enumerates/enumerates.yy",},},
     {"id":{"name":"game","path":"scripts/game/game.yy",},},
+    {"id":{"name":"helpers","path":"scripts/helpers/helpers.yy",},},
     {"id":{"name":"input","path":"scripts/input/input.yy",},},
-    {"id":{"name":"integers","path":"scripts/integers/integers.yy",},},
     {"id":{"name":"interface","path":"scripts/interface/interface.yy",},},
     {"id":{"name":"item","path":"scripts/item/item.yy",},},
-    {"id":{"name":"language","path":"scripts/language/language.yy",},},
     {"id":{"name":"owmenu","path":"scripts/owmenu/owmenu.yy",},},
+    {"id":{"name":"speaker_data","path":"scripts/speaker_data/speaker_data.yy",},},
     {"id":{"name":"window","path":"scripts/window/window.yy",},},
     {"id":{"name":"snd_alternatevoice","path":"sounds/snd_alternatevoice/snd_alternatevoice.yy",},},
     {"id":{"name":"snd_defaultvoice","path":"sounds/snd_defaultvoice/snd_defaultvoice.yy",},},
@@ -181,7 +182,6 @@
     {"id":{"name":"snd_noise","path":"sounds/snd_noise/snd_noise.yy",},},
     {"id":{"name":"snd_slice","path":"sounds/snd_slice/snd_slice.yy",},},
     {"id":{"name":"snd_titlenoise","path":"sounds/snd_titlenoise/snd_titlenoise.yy",},},
-    {"id":{"name":"spr_aaa","path":"sprites/spr_aaa/spr_aaa.yy",},},
     {"id":{"name":"spr_battle_dmg","path":"sprites/spr_battle_dmg/spr_battle_dmg.yy",},},
     {"id":{"name":"spr_battle_fight_slice","path":"sprites/spr_battle_fight_slice/spr_battle_fight_slice.yy",},},
     {"id":{"name":"spr_battle_fight_target","path":"sprites/spr_battle_fight_target/spr_battle_fight_target.yy",},},

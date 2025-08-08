@@ -19,7 +19,7 @@ battleEnemies	= [];
 chosenEnemy		= 0;
 
 // FUNCTIONS
-screen_fade(1,0,0.25);				// Fade the screen
+screen_fade(1,0,15);				// Fade the screen
 song_play(song_load(battleSong));	// Play the battle song
 dialogue_simple(flavorText, undefined, [snd_alternatevoice], fnt_main, true);
 

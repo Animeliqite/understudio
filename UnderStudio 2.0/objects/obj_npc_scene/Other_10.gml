@@ -2,4 +2,4 @@
 
 if (global.dxInterpreter.state != DiannexInterpreterState.Inactive) exit;
 event_inherited();
-global.dxInterpreter.runScene(scene);
+dx_runscene(scene);

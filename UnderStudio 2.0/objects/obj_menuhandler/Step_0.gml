@@ -137,9 +137,9 @@ switch (state) {
 		}
 		
 		if (!tweenExecutedOnce) {
-			execute_tween(id, "namingNameXOffset", -40, "linear", 3, false);
-			execute_tween(id, "namingNameYOffset", 60, "linear", 3, false);
-			execute_tween(id, "namingNameScale", 3, "linear", 3, false);
+			execute_tween(id, "namingNameXOffset", -40, "linear", 90, false);
+			execute_tween(id, "namingNameYOffset", 60, "linear", 90, false);
+			execute_tween(id, "namingNameScale", 3, "linear", 90, false);
 			tweenExecutedOnce = true;
 		}
 		break;
@@ -149,7 +149,7 @@ switch (state) {
 			musicFile = song_load("cymbal");
 			song_play(musicFile);
 		
-			cymbalFader = screen_fade(0, 1, audio_sound_length(musicFile), c_white);
+			cymbalFader = screen_fade(0, 1, audio_sound_length(musicFile) * 30, c_white);
 			if (alarm[0] < 0) alarm[0] = audio_sound_length(musicFile) * game_get_speed(gamespeed_fps);
 			subState = 1;
 		}

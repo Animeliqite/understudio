@@ -20,13 +20,13 @@ switch (state) {
 	case 1: // On Writer Complete
 		switch (subState) {
 			case 0:
-				execute_tween(id, "image_alpha", 0, "linear", 0.5, false);
+				execute_tween(id, "image_alpha", 0, "linear", 15, false);
 				subState++;
 			case 1:
 				if (timer < 0.4)
 					timer += 0.5 / game_get_speed(gamespeed_fps);
 				else {
-					execute_tween(id, "image_alpha", 1, "linear", 0.5, false);
+					execute_tween(id, "image_alpha", 1, "linear", 15, false);
 					image_index++;
 					beginWriting = true;
 					fading = false;
@@ -41,7 +41,7 @@ switch (state) {
 		switch (subState) {
 			case 0:
 				global.dxInterpreter.endScene();
-				execute_tween(id, "image_alpha", 0, "linear", 1, false);
+				execute_tween(id, "image_alpha", 0, "linear", 30, false);
 				song_set_volume(music, 0, 1);
 				instance_destroy(writer);
 				subState++;

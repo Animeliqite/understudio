@@ -1,15 +1,31 @@
 /// @description Functionality
 
-// Initialize the variables
-var offsetX = camWidth / camScaleX, offsetY = camHeight / camScaleY;
-x = lerp(x, median(0, (currTarget == noone ? posCenterX - offsetY / 2 : currTarget.x - offsetX / 2), room_width - offsetX), posLagX);
-y = lerp(y, median(0, (currTarget == noone ? posCenterY - offsetY / 2 : currTarget.y - offsetY / 2), room_height - offsetY), posLagY);
+var offsetX = camWidth / camScaleX;
+var offsetY = camHeight / camScaleY;
 
-// Make it so that moving the camera is easier
+// Compute desired non-lerped (real) position
+realX = median(0, (currTarget != noone ? currTarget.x - offsetX / 2 : posX), room_width - offsetX);
+realY = median(0, (currTarget != noone ? currTarget.y - offsetY / 2 : posY), room_height - offsetY);
+
+// Snap immediately at room start
+if (!camera_initialized) {
+    x = realX;
+    y = realY;
+    camera_initialized = true;
+} else {
+    x = lerp(x, realX, posLagX);
+    y = lerp(y, realY, posLagY);
+}
+
 posCenterX = x + (offsetX / 2);
 posCenterY = y + (offsetY / 2);
+isTweening = (tween_exists(id, "posX") || tween_exists(id, "posY"));
 
-// Update the built-in functions with the variables
+if (!isTweening) {
+    posX = realX; // Important: use true position
+    posY = realY;
+}
+
 camera_set_view_pos(cam, x, y);
 camera_set_view_angle(cam, camAngle);
 camera_set_view_size(cam, camWidth / camScaleX, camHeight / camScaleY);
