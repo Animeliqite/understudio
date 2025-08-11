@@ -1,29 +1,26 @@
+#region Numbers
 function number_add(number, valMax = undefined, incrementAmount = 1) {
-	if (!is_undefined(valMax)) {
-		if (number < valMax) && (!is_undefined(valMax)) {
-			if (number + incrementAmount >= valMax)
-				number = valMax;
-			else number += incrementAmount;
-		}
-	}
-	else number += incrementAmount;
-	
-	return number;
+    var result = number + incrementAmount;
+    return (valMax != undefined) ? min(result, valMax) : result;
 }
 
 function number_sub(number, valMin = undefined, decrementAmount = 1) {
-	if (!is_undefined(valMin)) {
-		if (number > valMin) {
-			if (number - decrementAmount <= valMin)
-				number = valMin;
-			else number -= decrementAmount;
-		}
-	}
-	else number -= decrementAmount;
-	
-	return number;
+    var result = number - decrementAmount;
+    return (valMin != undefined) ? max(result, valMin) : result;
 }
 
+function number_add_wrap(number, valMin, valMax, incrementAmount = 1) {
+    var range = valMax - valMin;
+    return valMin + ((number - valMin + incrementAmount) mod range);
+}
+
+function number_sub_wrap(number, valMin, valMax, decrementAmount = 1) {
+    var range = valMax - valMin;
+    return valMin + ((number - valMin - decrementAmount + range) mod range);
+}
+#endregion
+
+#region Animation
 // Similar to lerp, but with linear interpolation
 function approach(currValue, targetValue, incrementAmount) {
     if (currValue < targetValue)
@@ -31,7 +28,32 @@ function approach(currValue, targetValue, incrementAmount) {
     else
         return max(currValue - incrementAmount, targetValue);
 }
+#endregion
 
+#region Timers
+
+function timer_set(callback, time_in_frames, args_array) {
+    var t = time_source_create(time_source_global, time_in_frames, time_source_units_frames, callback, args_array);
+    time_source_start(t);
+    return t;
+}
+
+function timer_repeat(callback, interval_in_frames, args_array) {
+    var t = time_source_create(time_source_global, interval_in_frames, time_source_units_frames, callback, args_array, -1, time_source_expire_after);
+    time_source_start(t);
+    return t;
+}
+
+function timer_stop_safe(timer_id) {
+    if (time_source_exists(timer_id)) {
+        time_source_stop(timer_id);
+        time_source_destroy(timer_id);
+    }
+}
+
+#endregion
+
+#region Others
 /// Smart-format text with grouped dots
 function format_text_with_pauses(_txt) {
     var out = "";
@@ -82,3 +104,4 @@ function array_index_of(_array, _value) {
     }
     return -1;
 }
+#endregion

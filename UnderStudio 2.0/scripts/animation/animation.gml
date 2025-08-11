@@ -34,6 +34,22 @@ function tween_exists(instance, variable = undefined) {
 	}
 }
 
+function tween_destroy(instance, variable = undefined, skip = false) {
+	var inst = instance_find_equal_value(obj_animationhandler, "targetInstance", instance);
+	
+	if (instance_exists(inst)) {
+		if (variable != undefined) {
+			if (inst.targetVariable == variable) {
+				if (skip) inst.targetVariable = inst.newValue;
+				instance_destroy(inst);
+			}
+		}
+		else {
+			instance_destroy(inst);
+		}
+	}
+}
+
 // This script creates a fader object which fades in/out the screen.
 function screen_fade(alphaBegin, alphaStop, duration = 15, fadingColor = c_black) {
 	// If the fading handler exists, destroy it

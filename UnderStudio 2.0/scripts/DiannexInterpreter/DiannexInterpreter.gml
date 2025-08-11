@@ -79,7 +79,14 @@ function DiannexInterpreter(binary) constructor
 	// Other handlers
 	textHandler = function(text)
 	{
-		dialogue_simple(text);
+		if (asset_has_tags(room, "Overworld", asset_room)) {
+	        dialogue_simple(text);
+	    }
+    
+		if (asset_has_tags(room, "Battle", asset_room)) {
+	        battle_set_menu_text(text);
+	    }
+		
 	};
 	variableSetHandler = function(name, value)
 	{

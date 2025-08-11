@@ -24,10 +24,19 @@ function DialogueSpeaker() constructor {
 function speaker_init() {
 	global.speakers = new DialogueSpeaker();
 	
+	// Default speaker
 	global.speakers.AddSpeaker(
-		"noone",
+		"none",
 		"",
 		[snd_defaultvoice],
+		undefined,
+	);
+	
+	// Alternate speaker (Battle)
+	global.speakers.AddSpeaker(
+		"none_alt",
+		"",
+		[snd_alternatevoice],
 		undefined,
 	);
 }

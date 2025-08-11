@@ -1,11 +1,11 @@
 /// @description Initialize
 
-enemyName	= "Test Monster";
-enemyHP		= 100;
-enemyHPMax	= 100;
-enemyDEF	= 0;
+enemyName = "Test Monster";
+enemyHP = 100;
+enemyHPMax = 100;
+enemyDEF = 0;
 
-executeFuncID = -1;
+enemyEvent = undefined;
 
 enemyIdleSprite = undefined;
 enemyHurtSprite = undefined;
@@ -17,7 +17,7 @@ enemyActions = {
 	actionFuncIDs: [0, 1]
 }
 
-executeFunction = function (functionID) {
-	executeFuncID = functionID;
+executeEnemyEvent = function (event) {
+	enemyEvent = event;
 	event_user(0);
 }

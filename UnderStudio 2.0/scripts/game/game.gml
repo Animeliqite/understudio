@@ -97,23 +97,12 @@ function game_init(){
 }
 
 function dialogue_simple(text) {
-	if (room != rm_battle) {
-        with (obj_overworldui) {
-            state = 0;
-            dialogueText = text;
-            dialogueFace = global.speakers.GetSpeakerData(global.currSpeaker, "Face");
-            dialogueVoice = global.speakers.GetSpeakerData(global.currSpeaker, "Voice");
-            dialogueFont = global.speakers.GetSpeakerData(global.currSpeaker, "Font");
-        }
-    }
-    else {
-        with (obj_battlehandler) {
-            flavorText = text;
-            flavorFace = global.speakers.GetSpeakerData(global.currSpeaker, "Face");
-            flavorVoice = global.speakers.GetSpeakerData(global.currSpeaker, "Voice");
-            flavorFont = global.speakers.GetSpeakerData(global.currSpeaker, "Font");
-            event_user(0);
-        }
+    with (obj_overworldui) {
+        state = 0;
+        dialogueText = text;
+        dialogueFace = global.speakers.GetSpeakerData(global.currSpeaker, "Face");
+        dialogueVoice = global.speakers.GetSpeakerData(global.currSpeaker, "Voice");
+        dialogueFont = global.speakers.GetSpeakerData(global.currSpeaker, "Font");
     }
 }
 

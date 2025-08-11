@@ -1,27 +1,42 @@
 /// @description Initialize
 
-// VARIABLES
-state		= 0;					// The current state
-subState	= 0;					// The current sub state
-subSubState	= 0;					// The current menu state
-selection	= 0;					// The current selection
-battleSong	= "battle";				// The battle song
+// State Machine
+state = BATTLE_STATE.BUTTON;
+state_next = undefined;
+state_executed_once = false;
 
-flavorWriter	= noone;
-flavorText		= "* Monsters block the way!";
-flavorFace		= undefined;
-flavorVoice		= [snd_alternatevoice];
-flavorFont		= fnt_main;
+menu = BATTLE_MENU.NONE;
+menu_next = undefined;
+menu_executed_once = false;
+
+// Selections
+selection_button = 0;
+selection_enemy = 0;
+selection_act = [0, 0];
+selection_item = [0, 0];
+selection_spare = 0;
+
+flavorWriter = noone;
+flavorText = "* Monsters block the way!";
+flavorSpeaker = "none_alt";
+
+// Other
+highlight_buttons = false;
+battleSong = "battle";
+
+// Flavor speaker specific properties
+flavorFace = undefined;
+flavorVoice = undefined;
+flavorFont = fnt_main;
 
 flavorActionText = "";
 
-battleEnemies	= [];
-chosenEnemy		= 0;
+battleEnemies = [];
 
 // FUNCTIONS
-screen_fade(1,0,15);				// Fade the screen
-song_play(song_load(battleSong));	// Play the battle song
-dialogue_simple(flavorText, undefined, [snd_alternatevoice], fnt_main, true);
+screen_fade(1,0,15); // Fade the screen
+song_play(song_load(battleSong)); // Play the battle song
+battle_set_menu_text(flavorText);
 
 // OTHER
 event_user(1);

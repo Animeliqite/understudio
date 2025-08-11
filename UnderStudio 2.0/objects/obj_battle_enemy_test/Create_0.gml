@@ -2,10 +2,10 @@
 
 event_inherited();
 
-enemyName	= "Test Monster";
-enemyHP		= 100;
-enemyHPMax	= 100;
-enemyDEF	= 0;
+enemyName = "Test Monster";
+enemyHP = 100;
+enemyHPMax = 100;
+enemyDEF = 0;
 
 enemyIdleSprite = spr_enemy_testmonster;
 enemyHurtSprite = spr_enemy_testmonster_hurt;
