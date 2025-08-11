@@ -30,4 +30,7 @@ switch (enemyEvent) {
 			battle_set_state(battle_get_next_state());
 		}, 45, []);
 		break;
+	case ENEMY_EVENT.TURN_PREPARATION:
+		obj_battleboardhandler.updatePosition(300, 250, 200, 50);
+		break;
 }
