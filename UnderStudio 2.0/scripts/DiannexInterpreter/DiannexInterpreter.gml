@@ -99,7 +99,7 @@ function DiannexInterpreter(binary) constructor
 	endSceneHandler = function(name)
 	{
 		global.interactionCooldown = 3;
-		global.currSpeaker = "noone";
+		global.currSpeaker = "none";
 		
 		if (instance_exists(obj_player)) {
             obj_player.canMoveCutscene = true;
