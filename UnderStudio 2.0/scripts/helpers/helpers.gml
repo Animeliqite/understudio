@@ -28,6 +28,25 @@ function approach(currValue, targetValue, incrementAmount) {
     else
         return max(currValue - incrementAmount, targetValue);
 }
+
+function shake_object(_target, _x, _y, _rand_x, _rand_y, _dec_x, _dec_y) {
+	if (!instance_exists(_target)) return;
+
+	var inst = instance_create_depth(_target.x, _target.y, 0, obj_shakehandler);
+	inst.shake_target = _target;
+	inst.shake_x = _x;
+	inst.shake_y = _y;
+	inst.shake_random_x = _rand_x;
+	inst.shake_random_y = _rand_y;
+	inst.shake_decrease_x = _dec_x;
+	inst.shake_decrease_y = _dec_y;
+
+	inst.shake_curr_x = _x;
+	inst.shake_curr_y = _y;
+	inst.shake_dir_x = 1;
+	inst.shake_dir_y = 1;
+	inst.shake_active = true;
+}
 #endregion
 
 #region Timers

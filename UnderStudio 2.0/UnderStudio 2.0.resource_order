@@ -90,6 +90,7 @@
     {"name":"obj_modifier_encounter","order":1,"path":"objects/obj_modifier_encounter/obj_modifier_encounter.yy",},
     {"name":"obj_npc_scene","order":1,"path":"objects/obj_npc_scene/obj_npc_scene.yy",},
     {"name":"obj_overworldmenu","order":1,"path":"objects/obj_overworldmenu/obj_overworldmenu.yy",},
+    {"name":"obj_shakehandler","order":7,"path":"objects/obj_shakehandler/obj_shakehandler.yy",},
     {"name":"obj_slope_br","order":1,"path":"objects/obj_slope_br/obj_slope_br.yy",},
     {"name":"obj_slope_tl","order":3,"path":"objects/obj_slope_tl/obj_slope_tl.yy",},
     {"name":"obj_slope_tr","order":2,"path":"objects/obj_slope_tr/obj_slope_tr.yy",},

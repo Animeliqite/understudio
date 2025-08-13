@@ -1,19 +1,16 @@
 {
   "$GMObject":"",
-  "%Name":"obj_battlevaporhandler",
+  "%Name":"obj_shakehandler",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_battlevaporhandler",
+  "name":"obj_shakehandler",
   "overriddenProperties":[],
   "parent":{
-    "name":"Vaporization",
-    "path":"folders/Objects/In-Game Elements/Battle System/Effects/Vaporization.yy",
+    "name":"Program Setup",
+    "path":"folders/Objects/Program Setup.yy",
   },
   "parentObjectId":null,
   "persistent":false,

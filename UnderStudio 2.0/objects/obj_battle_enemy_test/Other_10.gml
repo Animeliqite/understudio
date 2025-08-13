@@ -7,16 +7,21 @@ switch (enemyEvent) {
 		break;
 	case ENEMY_EVENT.ENEMY_DAMAGE:
 		var dmg_taken = battle_calculate_dmg(_obj.damageTaken);
+		sprite_index = _obj.enemyHurtSprite;
 		
-		instance_create_depth(x, y - (sprite_height / 2), -2000, obj_battledmghandler, {
-			dmgAmount: dmg_taken,
-			hpOld: _obj.enemyHP
-		});
+		shake_object(id, 16, 0, false, false, 1, 1);
+		with (instance_create_depth(x, y - (sprite_height / 2), -2000, obj_battledmghandler)) {
+			dmgAmount = dmg_taken;
+			hpOld = _obj.enemyHP;
+		};
+		
 		
 		sfx_play(snd_battle_enemy_hurt);
 		enemyHP -= dmg_taken;
 		break;
 	case ENEMY_EVENT.ENEMY_DAMAGE_AFTERMATH:
+		sprite_index = _obj.enemyIdleSprite;
+		
 		if (enemyHP > 0) {
 			sfx_play(snd_battle_enemy_vaporize);
 			
@@ -27,9 +32,6 @@ switch (enemyEvent) {
 			}
 			
 			instance_destroy();
-		}
-		else {
-			show_debug_message("enemy survived!");
 		}
 		
 		// Aftermath of this state

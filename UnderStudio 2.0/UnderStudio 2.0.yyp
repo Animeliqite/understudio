@@ -146,6 +146,7 @@
     {"id":{"name":"obj_overworldmenu","path":"objects/obj_overworldmenu/obj_overworldmenu.yy",},},
     {"id":{"name":"obj_overworldui","path":"objects/obj_overworldui/obj_overworldui.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
+    {"id":{"name":"obj_shakehandler","path":"objects/obj_shakehandler/obj_shakehandler.yy",},},
     {"id":{"name":"obj_slope_bl","path":"objects/obj_slope_bl/obj_slope_bl.yy",},},
     {"id":{"name":"obj_slope_br","path":"objects/obj_slope_br/obj_slope_br.yy",},},
     {"id":{"name":"obj_slope_tl","path":"objects/obj_slope_tl/obj_slope_tl.yy",},},
