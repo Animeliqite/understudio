@@ -1,21 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_battle_enemy_test",
+  "%Name":"obj_battlevaporpx",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":10,"eventType":7,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_battle_enemy_test",
+  "name":"obj_battlevaporpx",
   "overriddenProperties":[],
   "parent":{
-    "name":"Monsters",
-    "path":"folders/Objects/In-Game Elements/Battle System/Monsters.yy",
+    "name":"Vaporization",
+    "path":"folders/Objects/In-Game Elements/Battle System/Effects/Vaporization.yy",
   },
-  "parentObjectId":{
-    "name":"obj_battleenemyhandler",
-    "path":"objects/obj_battleenemyhandler/obj_battleenemyhandler.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -34,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_enemy_testmonster",
-    "path":"sprites/spr_enemy_testmonster/spr_enemy_testmonster.yy",
+    "name":"spr_pixel",
+    "path":"sprites/spr_pixel/spr_pixel.yy",
   },
   "spriteMaskId":null,
   "visible":true,
