@@ -31,6 +31,16 @@ function battle_execute_enemy_event(enemy_no, event) {
 	}
 }
 
+// Creates a speech bubble
+function battle_create_speechbubble(_x, _y, text, width, height) {
+	speech_bubble = instance_create_depth(_x, _y, 0, obj_battlespeechbubblehandler);
+	speech_bubble.writer_text = text;
+	speech_bubble.width = width;
+	speech_bubble.height = height;
+	
+	return speech_bubble;
+}
+
 // Gets the selected battle enemy
 function battle_get_selected_enemy() {
 	return obj_battlehandler.selection_enemy;

@@ -1,6 +1,6 @@
 /// @description Draw the UI
 
-draw_healthbar(x - barWidth / 2, y - barHeight / 2 + barYOffset, x + barWidth / 2, y + barHeight / 2 + barYOffset, ((hpOld - dmgAmount) / hpOld) * 100, barBackColor, barRemainingColor, barRemainingColor, 0, true, false);
+draw_healthbar(x - barWidth / 2, y - barHeight / 2 + barYOffset, x + barWidth / 2, y + barHeight / 2 + barYOffset, ((hpOld - (dmgAmount * dmgAmountAnim)) / hpOld) * 100, barBackColor, barRemainingColor, barRemainingColor, 0, true, false);
 
 draw_set_font(dmgFont);
 draw_set_color(c_red);

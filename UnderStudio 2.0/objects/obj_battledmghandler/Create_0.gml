@@ -6,6 +6,7 @@ barYOffset = 20;
 barRemainingColor = c_lime;
 barBackColor = c_gray;
 
+dmgAmountAnim = 0;
 dmgAmount = 0;
 hpOld = 0;
 

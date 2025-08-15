@@ -121,7 +121,9 @@ else if (state == BATTLE_STATE.PLAYER_ACTION) {
 	else if (menu == BATTLE_MENU.ENEMY_DEATH) {
 		if (!menu_executed_once) {
 			battle_get_soul().visible = false;
+			
 			battle_set_next_state(BATTLE_STATE.TURN_PREPARATION);
+			battle_set_state(battle_get_next_state());
 			
 			battle_execute_enemy_event(selection_enemy, ENEMY_EVENT.ENEMY_DAMAGE_AFTERMATH);
 			menu_executed_once = true;
