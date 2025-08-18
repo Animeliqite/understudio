@@ -1,12 +1,14 @@
 /// @description Enemy Events
 
 var _obj = id;
+var bt = obj_battlehandler;
+
 switch (enemyEvent) {
 	case ENEMY_EVENT.PLAYER_FIGHT:
 		instance_create_depth(0, 0, -2000, global.battleFightTargetObj);
 		break;
 	case ENEMY_EVENT.ENEMY_DAMAGE:
-		var dmg_taken = battle_calculate_dmg(_obj.damageTaken);
+		var dmg_taken = battle_calculate_dmg(bt.damage_accuracy);
 		sprite_index = _obj.enemyHurtSprite;
 		
 		shake_object(id, 16, 0, false, false, 1, 1);
@@ -24,6 +26,8 @@ switch (enemyEvent) {
 		
 		if (enemyHP < 0) {
 			sfx_play(snd_battle_enemy_vaporize);
+			battle_remove_enemy(battle_get_selected_enemy());
+			battle_accumulate_rewards(enemyXP, enemyGold);
 			
 			with (instance_create_depth(x, y, depth, obj_battlevaporhandler)) {
 				sprite = _obj.enemyHurtSprite;

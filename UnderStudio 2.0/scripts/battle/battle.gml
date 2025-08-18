@@ -18,6 +18,7 @@ function battle_set_menu_text(text) {
         flavorFace = global.speakers.GetSpeakerData(flavorSpeaker, "Face");
         flavorVoice = global.speakers.GetSpeakerData(flavorSpeaker, "Voice");
         flavorFont = global.speakers.GetSpeakerData(flavorSpeaker, "Font");
+		
         event_user(0);
     }
 }
@@ -39,6 +40,25 @@ function battle_create_speechbubble(_x, _y, text, width, height) {
 	speech_bubble.height = height;
 	
 	return speech_bubble;
+}
+
+function battle_accumulate_rewards(xp, gold) {
+	with (obj_battlehandler) {
+		reward_xp += xp;
+		reward_gold += gold;
+	}
+}
+
+// Removes an enemy from the list
+function battle_remove_enemy(enemy_no) {
+	with (obj_battlehandler) {
+		battleEnemies = array_delete(battleEnemies, enemy_no, 1);
+	}
+}
+
+// Checks if any enemies exist in the list
+function battle_enemy_exists() {
+	return array_length(obj_battlehandler.battleEnemies) != 0;
 }
 
 // Gets the selected battle enemy
@@ -93,5 +113,5 @@ function battle_get_soul() {
 
 // Calculates damage depending on player stats
 function battle_calculate_dmg(dmg) {
-	return (global.playerAT + global.playerATWeapon + floor(median(10, global.playerHP._max, 90) - 10) / 10) * floor(dmg);
+	return floor((global.playerAT + global.playerATWeapon + floor(median(10, global.playerHP._max, 90) - 10) / 10) * dmg);
 }

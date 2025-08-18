@@ -4,13 +4,13 @@ enemyName = "Test Monster";
 enemyHP = 100;
 enemyHPMax = 100;
 enemyDEF = 0;
+enemyXP = 5;
+enemyGold = 5;
 
 enemyEvent = undefined;
 
 enemyIdleSprite = undefined;
 enemyHurtSprite = undefined;
-
-damageTaken = 0;
 
 enemyActions = {
 	actionNames: ["Check", "Talk"],

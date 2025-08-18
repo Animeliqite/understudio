@@ -19,10 +19,17 @@ selection_spare = 0;
 flavorWriter = noone;
 flavorText = "* Monsters block the way!";
 flavorSpeaker = "none_alt";
+resultText = "* YOU WON!#* You earned {0} EXP and {1} GOLD."
+
+// Rewards
+reward_xp = 0;
+reward_gold = 0;
 
 // Other
 highlight_buttons = false;
-battleSong = "battle";
+battle_ended = false;
+damage_accuracy = 0;
+battleSong = song_load("battle");
 
 // Flavor speaker specific properties
 flavorFace = undefined;
@@ -35,7 +42,7 @@ battleEnemies = [];
 
 // FUNCTIONS
 screen_fade(1,0,15); // Fade the screen
-song_play(song_load(battleSong)); // Play the battle song
+song_play(battleSong); // Play the battle song
 battle_set_menu_text(flavorText);
 
 // OTHER

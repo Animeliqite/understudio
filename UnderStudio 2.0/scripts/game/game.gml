@@ -84,6 +84,7 @@ function game_init(){
 	// EVENTS
 	global.writerEvent = undefined; // The event number caused by the writer
 	global.dialogueInteractedTo = noone; // The object the player has interacted with
+	global.prevRoom = room;
 	
 	// FONT
 	global.mainFontWidth = 16; // The main font width (8-Bit Operator JVE)

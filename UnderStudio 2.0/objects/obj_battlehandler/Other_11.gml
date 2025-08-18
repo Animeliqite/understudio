@@ -9,7 +9,8 @@ enum BATTLE_STATE {
 	IN_TURN,
 	TURN_END,
 	RESULT,
-	CUSTOM
+	CUSTOM,
+	NONE
 }
 
 enum BATTLE_MENU {

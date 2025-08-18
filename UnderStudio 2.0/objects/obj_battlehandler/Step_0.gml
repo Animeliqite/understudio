@@ -2,6 +2,19 @@
 
 var _board = obj_battleboardhandler;
 
+// Text skipping functionality for the writer
+if (instance_exists(flavorWriter)) {
+	if (BT_SHIFT_P && !flavorWriter.completed)
+		flavorWriter.skipText = true;
+}
+
+// If no enemies exist, end the battle
+if (!battle_enemy_exists() && !battle_ended) {
+	battle_set_state(BATTLE_STATE.RESULT);
+	battle_set_next_state(BATTLE_STATE.RESULT);
+	battle_ended = true;
+}
+
 if (state == BATTLE_STATE.BUTTON) {
 	// Initialize the variables
 	var _buttonSize = instance_number(obj_battlebuttonhandler);
@@ -41,13 +54,6 @@ if (state == BATTLE_STATE.BUTTON) {
 			
 		sfx_play(snd_menuselect);
 		instance_destroy(flavorWriter);
-	}
-	
-	if (BT_SHIFT_P) {
-		if (instance_exists(flavorWriter)) {
-			if (!flavorWriter.completed)
-				flavorWriter.skipText = true;
-		}
 	}
 		
 	// Check if the previous selection is not the current selection
@@ -135,5 +141,33 @@ else if (state == BATTLE_STATE.TURN_PREPARATION) {
 		battle_get_soul().visible = true;
 		battle_execute_enemy_event(selection_enemy, ENEMY_EVENT.TURN_PREPARATION);
 		state_executed_once = true;
+	}
+}
+else if (state == BATTLE_STATE.RESULT) {
+	if (!state_executed_once) {
+		battle_set_menu_text(string_ext(resultText, [reward_xp, reward_gold]));
+		song_stop(battleSong);
+		
+		global.playerEXP += reward_xp;
+		global.playerGold += reward_gold;
+		
+		state_executed_once = true;
+	}
+	else {
+		if (instance_exists(flavorWriter)) {
+			if (BT_ENTER_P && flavorWriter.completed) {
+				screen_fade(0, 1, 10);
+				
+				timer_set(function () {
+					room_goto(global.prevRoom);
+				}, 10, []);
+				
+				timer_set(function () {
+					screen_fade(1, 0, 10);
+				}, 11, []);
+				
+				battle_set_state(BATTLE_STATE.NONE);
+			}
+		}
 	}
 }
