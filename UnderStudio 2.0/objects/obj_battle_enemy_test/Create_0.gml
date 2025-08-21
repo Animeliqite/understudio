@@ -3,7 +3,7 @@
 event_inherited();
 
 enemyName = "Test Monster";
-enemyHP = 100;
+enemyHP = 1;
 enemyHPMax = 100;
 enemyDEF = 0;
 enemyXP = 5;
