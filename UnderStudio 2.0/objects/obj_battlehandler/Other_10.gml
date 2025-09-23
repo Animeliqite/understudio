@@ -7,7 +7,7 @@ if (!instance_exists(flavorWriter)) {
 	// Create the flavor writer
 	flavorWriter = instance_create_depth(0, 0, 0, obj_textwriter);
 	with (flavorWriter) {
-		text = _obj.flavorText;
+		set_text(_obj.flavorText);
 		voice = _obj.flavorVoice;
 		textSpeed = 0;
 		drawText = false;

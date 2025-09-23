@@ -33,6 +33,14 @@ enum ENEMY_EVENT {
 	TURN_END
 }
 
+enum BATTLE_BUTTON {
+    FIGHT,
+    ACT,
+    ITEM,
+    MERCY,
+    _SIZE = 4 // A trick to get the number of buttons easily
+}
+
 battleEnemies = battle_retrieve_enemies();
 
 instance_create_depth(32, 432, 0, obj_battlebutton_fight);	// The FIGHT button

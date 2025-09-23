@@ -21,6 +21,25 @@ if (state == 0) {
 	
 	// Check if the dialogue writer exists
 	if (instance_exists(dialogueWriter)) {
-		draw_rpgtext(dialogueFace != undefined ? 178 : 60, 30 + (onTop ? 0 : 310), dialogueWriter.written, dialogueFont, 1, global.mainFontWidth, global.mainFontHeight, 1, 1, c_white);
+		draw_text_extended(
+		    dialogueFace != undefined ? 178 : 60,
+		    30 + (onTop ? 0 : 310),
+		    dialogueWriter.raw_text,     // The full text string, with all [commands] and `commands`
+		    {
+				halign: fa_left,
+			    valign: fa_top,
+			    size: 1,
+			    visible: dialogueWriter.visible_chars,
+			    font: dialogueFont,
+			    alpha: 1,
+			    color: c_white,
+			    effect: "none",
+				letter_width: global.mainFontWidth,
+				letter_height: global.mainFontHeight,
+			    letter_spacing: 0,
+			    line_spacing: 1,
+			    line_break: -1
+			}
+		);
 	}
 }

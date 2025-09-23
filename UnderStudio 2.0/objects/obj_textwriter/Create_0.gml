@@ -1,25 +1,48 @@
-/// @description Initialize
+// @description Initialize Typewriter
 
-text			= "";								// The text that the writer is going to write.
-written			= "";								// The current written text
-currentPos		= 0;								// The current text position
-textSpeed		= 0;								// The speed of the writing process
+// --- Core Typewriter State ---
+text			= "";						// The text that the writer is going to write.
+visible_chars	= 0;						// The number of characters currently visible.
+textSpeed		= 1;						// The speed of the writing process (frames per character).
+holdTimer		= 0;						// The timer that the writer is going to wait before adding a letter.
+voice			= [snd_defaultvoice];		// The sound that will play when the writer writes a letter.
 
-font			= fnt_main;							// The font the text is going to be written with
-color			= c_white;							// The color the text is going to be written with
-voice			= [snd_defaultvoice];				// The sound that will play when the writer writes a letter
-alpha			= 1;								// The alpha the text is going to be written with
+// --- Control & Status Flags ---
+drawText		= true;						// Decides whether to draw the text on the screen.
+skipText		= false;					// Decides whether to skip the writing process.
+skippable		= true;						// Is the text skippable?
+completed		= false;					// Is the writer finished?
 
-drawText		= true;								// Decides whether to draw the text on the screen
-skipText		= false;							// Decides whether to skip the writing process
-skippable		= true;								// Is the text skippable?
-completed		= false;							// A getter-purposed variable that checks whether the writer has completed writing
-holdTimer		= 0;								// The timer that the writer is going to wait before adding a letter
+// --- Formatting & Parsing ---
+formatText		= true;						// Should the writer auto-format the text with pauses?
+raw_text        = "";                       // The original, un-formatted text.
+parser_pos      = 0;                        // The internal position for parsing commands in the text.
 
-scaleX			= 1;								// The X scale of the letters
-scaleY			= 1;								// The Y scale of the letters
-charWidth		= global.mainFontWidth;				// The width of an each character
-charHeight		= global.mainFontHeight;			// The height of an each character
+// --- Arguments for the new drawing function ---
+text_args = {
+    halign:         fa_left,
+    valign:         fa_top,
+    size:           1,
+    visible:        0, // This will be updated every frame
+    font:           fnt_main,
+    alpha:          1,
+    color:          c_white,
+    effect:         "none",
+	letter_width:   -1,
+	letter_height:  -1,
+    letter_spacing: 1,
+    line_spacing:   1.2,
+    line_break:     -1, // Default to no word wrap. Set to a pixel width to enable.
+};
 
-formatText		= true;								// Should the writer format the text?
-alarm[0]		= 1;								// Trigger an alarm to add formatting
+// A function to easily set up the typewriter
+function set_text(_text) {
+    raw_text = _text;
+    text = formatText ? format_text_with_pauses(raw_text) : raw_text;
+    
+    visible_chars = 0;
+    parser_pos = 0;
+    completed = false;
+    skipText = false;
+    holdTimer = max(0, textSpeed);
+}

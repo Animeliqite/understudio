@@ -23,6 +23,26 @@ function battle_set_menu_text(text) {
     }
 }
 
+// Executes battle state once
+function battle_execute_once_in_state(_function) {
+	var bt = obj_battlehandler;
+	
+	if (!bt.state_executed_once) {
+		_function();
+		bt.state_executed_once = true;
+	}
+}
+
+// Executes battle menu state once
+function battle_execute_once_in_menu(_function) {
+	var bt = obj_battlehandler;
+	
+	if (!bt.menu_executed_once) {
+		_function();
+		bt.menu_executed_once = true;
+	}
+}
+
 // Executes enemy event from battle
 function battle_execute_enemy_event(enemy_no, event) {
 	var enemy = battleEnemies[enemy_no];

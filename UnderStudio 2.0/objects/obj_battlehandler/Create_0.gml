@@ -19,7 +19,7 @@ selection_spare = 0;
 flavorWriter = noone;
 flavorText = "* Monsters block the way!";
 flavorSpeaker = "none_alt";
-resultText = "* YOU WON!#* You earned {0} EXP and {1} GOLD."
+resultText = "* YOU WON!\n* You earned {0} EXP and {1} GOLD."
 
 // Rewards
 reward_xp = 0;

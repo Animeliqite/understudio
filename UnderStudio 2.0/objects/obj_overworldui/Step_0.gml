@@ -23,16 +23,9 @@ switch (state) {
 			// Create the dialogue writer
 			dialogueWriter = instance_create_depth(0, 0, 0, obj_textwriter);
 			with (dialogueWriter) {
-				// Set the dialogue text
-				text = obj_overworldui.dialogueText;
-				
-				// Set the dialogue voice
+				set_text(obj_overworldui.dialogueText);
 				voice = obj_overworldui.dialogueVoice;
-				
-				// Set the dialogue text speed
 				textSpeed = 0;
-				
-				// Set drawing text to true
 				drawText = false;
 			}
 		}
