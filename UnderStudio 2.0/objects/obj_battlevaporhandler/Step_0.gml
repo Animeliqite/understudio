@@ -13,13 +13,16 @@ if (instance_exists(col)) {
 	
 			for (var i = 0; i < w; i++) {
 				if (position_meeting(_bbox_left + i, _bbox_top + anim_h, col)) {
-					instance_create_depth(_bbox_left + i, _bbox_top + anim_h, depth, obj_battlevaporpx);
+					var _dust = instance_create_depth(_bbox_left + i, _bbox_top + anim_h, depth, obj_battlevaporpx);
+					_dust.dir = random(360);
+					_dust.spd = 1 + random(2);
 				}
 			}
 		}
 		else {
 			if (anim_h < h) {
 				anim_h += yscale * 2;
+				dust_is_colliding = false; 
 			}
 			else {
 				state = 1;
@@ -29,18 +32,17 @@ if (instance_exists(col)) {
 				if (position_meeting(_bbox_left + i, _bbox_top + anim_h, col)) {
 					if (!dust_is_colliding) {
 						dust_curr_dir = random(360);
-						dust_curr_spd = 2 + random(2);
+						dust_curr_spd = 1 + random(2);
 						dust_is_colliding = true;
 					}
-					
-					var _dust = instance_create_depth(_bbox_left + i, _bbox_top + anim_h, depth, obj_battlevaporpx);
-					_dust.direction = dust_curr_dir;
-					_dust.speed = dust_curr_spd;
+					else {
+						var _dust = instance_create_depth(_bbox_left + i, _bbox_top + anim_h, depth, obj_battlevaporpx);
+						_dust.dir = dust_curr_dir;
+						_dust.spd = dust_curr_spd;
+					}
 				}
 				else {
-					if (dust_is_colliding) {
-						dust_is_colliding = false;
-					}
+					dust_is_colliding = false;
 				}
 			}
 		}

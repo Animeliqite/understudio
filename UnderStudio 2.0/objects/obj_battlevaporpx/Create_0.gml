@@ -1,5 +1,5 @@
-direction = random(360);
-speed = 2 + random(2);
+dir = 0;
+spd = 0;
 
 image_xscale = 2;
 image_yscale = 2;

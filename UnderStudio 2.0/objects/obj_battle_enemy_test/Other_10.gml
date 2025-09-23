@@ -31,6 +31,7 @@ switch (enemyEvent) {
 			
 			with (instance_create_depth(x, y, depth, obj_battlevaporhandler)) {
 				sprite = _obj.enemyHurtSprite;
+				dust_alt = false;
 				xscale = 2;
 				yscale = 2;
 			}
