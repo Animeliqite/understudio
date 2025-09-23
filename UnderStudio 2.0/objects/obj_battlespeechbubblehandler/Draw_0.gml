@@ -17,5 +17,20 @@ if (arrow_draw) {
 	}
 }
 
-if (instance_exists(writer))
-	draw_rpgtext(x + 15, y + 12, writer.written, writer_font, 1, 10, 18, 1, 1, c_black);
+if (instance_exists(writer)) {
+	draw_text_extended(x + 15, y + 12, writer.raw_text, {
+		halign: fa_left,
+		valign: fa_top,
+		size: 1,
+		visible: writer.visible_chars,
+		font: writer_font,
+		alpha: 1,
+		color: c_black,
+		effect: "none",
+		letter_width: 10,
+		letter_height: 18,
+		letter_spacing: 0,
+		line_spacing: 1,
+		line_break: -1
+	});
+}

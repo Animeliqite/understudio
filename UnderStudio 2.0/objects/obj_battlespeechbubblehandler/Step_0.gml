@@ -1,7 +1,7 @@
 if (state == 0) {
 	writer = instance_create_depth(0, 0, 0, obj_textwriter);
 	writer.drawText = false;
-	writer.text = writer_text;
+	writer.set_text(writer_text);
 	writer.voice = writer_voice;
 	writer.skippable = writer_skippable;
 	

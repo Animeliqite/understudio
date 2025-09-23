@@ -40,7 +40,7 @@ switch (enemyEvent) {
 		}
 		break;
 	case ENEMY_EVENT.TURN_PREPARATION:
-		battle_create_speechbubble(x + 80, y - 180, "Test#message!", 200, 80);
+		battle_create_speechbubble(x + 80, y - 180, "[effect:wavy]Test\nmessage!", 200, 80);
 		
 		obj_battleboardhandler.updatePosition(320, 320, 120, 50);
 		break;

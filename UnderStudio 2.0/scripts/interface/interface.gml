@@ -184,7 +184,8 @@ function draw_text_extended(_x, _y, _text, _args) {
 					}
                     break;
                 case "wavy":
-                    _y_offset = sin((current_time / 100) + (_draw_x / 20)) * 3 * _current_size;
+                    _x_offset = cos((current_time / 250) + (_draw_x / 20)) * 2 * _current_size;
+                    _y_offset = sin((current_time / 250) + (_draw_x / 20)) * 2 * _current_size;
                     break;
             }
 			
