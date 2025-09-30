@@ -124,6 +124,55 @@ switch (state) {
 					battle_execute_enemy_event(selection_enemy, ENEMY_EVENT.PLAYER_FIGHT);
 				});
 				break;
+			
+			case BATTLE_MENU.PLAYER_ACT:
+				break;
+			
+			case BATTLE_MENU.PLAYER_ITEM:
+				break;
+				
+			case BATTLE_MENU.PLAYER_MERCY:
+				var _prevSelection = selection_enemy;
+				
+				var _board = obj_battleboardhandler;
+				var _heartX = _board._x - _board.width + 40;
+				var _heartY = _board._y - _board.height + 36 + (selection_spare * 38);
+				
+				// Draw text
+				drawMenuText($"    * Spare\n    * Flee");
+				
+				// Update heart position
+				with (battle_get_soul()) {
+					x = _heartX;
+					y = _heartY;
+				}
+				
+				// Actions
+				if (BT_UP_P) selection_spare = number_sub_wrap(selection_spare, 0, 2);
+				if (BT_DOWN_P) selection_spare = number_add_wrap(selection_spare, 0, 2);
+				
+				if (BT_ENTER_P) {
+					switch (selection_spare) {
+						case 0: break;
+						case 1: break;
+					}
+					
+					sfx_play(snd_menuselect);
+					highlight_buttons = false;
+					flavorActionText = "";
+				}
+				
+				if (BT_SHIFT_P) {
+					battle_set_state(BATTLE_STATE.BUTTON);
+					battle_set_menu(BATTLE_MENU.NONE);
+					flavorActionText = "";
+				}
+				
+				// Selection sound
+				if (_prevSelection != selection_enemy) {
+					sfx_play(snd_menumove);
+				}
+				break;
 				
 			case BATTLE_MENU.ENEMY_DAMAGE:
 				battle_execute_once_in_menu(function() {
