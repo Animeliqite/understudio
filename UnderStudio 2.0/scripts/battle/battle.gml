@@ -126,9 +126,31 @@ function battle_get_next_menu() {
 	return obj_battlehandler.menu_next;
 }
 
+// Updates battle board
+function battle_update_board(_x, _y, _w, _h) {
+	return obj_battleboardhandler.updatePosition(_x, _y, _w, _h);
+}
+
 // Gets the battle soul
 function battle_get_soul() {
 	return obj_battleheart;
+}
+
+// Centers the battle soul to the battle board
+function battle_center_soul_pos() {
+	if (instance_exists(battle_get_soul())) {
+		obj_battleheart.x = obj_battleboardhandler._x;
+		obj_battleheart.y = obj_battleboardhandler._y;
+	}
+}
+
+function battle_set_state_condition(condition_type, func, func_args) {
+	switch (condition_type) {
+		case BATTLE_STATE_CONDITION.TO_TURN:
+			obj_battlehandler.state_condition_to_turn = func;
+			obj_battlehandler.state_condition_to_turn_args = func_args;
+			break;
+	}
 }
 
 // Calculates damage depending on player stats

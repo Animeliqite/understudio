@@ -40,8 +40,14 @@ switch (enemyEvent) {
 		}
 		break;
 	case ENEMY_EVENT.TURN_PREPARATION:
-		battle_create_speechbubble(x + 80, y - 180, "[effect:wavy]Test\nmessage!", 200, 80);
+		var _speech = battle_create_speechbubble(x + 80, y - 180, "[effect:wavy]Test\nmessage!", 200, 80);
+		battle_update_board(320, 320, 120, 50);
+		battle_center_soul_pos();
 		
-		obj_battleboardhandler.updatePosition(320, 320, 120, 50);
+		// If the monster's speech is finished, we'll be inside a turn
+		battle_set_state_condition(BATTLE_STATE_CONDITION.TO_TURN, function (speech) {
+			if (!instance_exists(speech))
+				return true;
+		}, [_speech]);
 		break;
 }

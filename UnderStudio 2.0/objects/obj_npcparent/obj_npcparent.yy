@@ -30,14 +30,14 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"currDir","filters":[],"listItems":[
+    {"$GMObjectProperty":"v2","%Name":"currDir","filters":[],"listItems":[
         "DIR_UP",
         "DIR_DOWN",
         "DIR_LEFT",
         "DIR_RIGHT",
       ],"multiselect":false,"name":"currDir","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"DIR_DOWN","varType":6,},
-    {"$GMObjectProperty":"v1","%Name":"collision","filters":[],"listItems":[],"multiselect":false,"name":"collision","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
-    {"$GMObjectProperty":"v1","%Name":"smoothCollision","filters":[],"listItems":[],"multiselect":false,"name":"smoothCollision","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
+    {"$GMObjectProperty":"v2","%Name":"collision","filters":[],"listItems":[],"multiselect":false,"name":"collision","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
+    {"$GMObjectProperty":"v2","%Name":"smoothCollision","filters":[],"listItems":[],"multiselect":false,"name":"smoothCollision","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

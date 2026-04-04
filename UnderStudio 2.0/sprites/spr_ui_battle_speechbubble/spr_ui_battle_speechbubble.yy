@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"spr_ui_battle_speechbubble",
   "bboxMode":0,
   "bbox_bottom":47,
@@ -12,7 +12,7 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"1945c501-25db-4f2b-a69f-27e3bd3d0820","name":"1945c501-25db-4f2b-a69f-27e3bd3d0820","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"1945c501-25db-4f2b-a69f-27e3bd3d0820","name":"1945c501-25db-4f2b-a69f-27e3bd3d0820","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

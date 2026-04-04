@@ -30,7 +30,7 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"scene","filters":[],"listItems":[],"multiselect":false,"name":"scene","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"cutscene_placeholder_0","varType":2,},
+    {"$GMObjectProperty":"v2","%Name":"scene","filters":[],"listItems":[],"multiselect":false,"name":"scene","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"cutscene_placeholder_0","varType":2,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

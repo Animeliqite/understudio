@@ -196,10 +196,18 @@ switch (state) {
 	case BATTLE_STATE.TURN_PREPARATION:
 		battle_execute_once_in_state(function() {
 			battle_get_soul().visible = true;
+			battle_set_next_state(BATTLE_STATE.IN_TURN);
 			battle_execute_enemy_event(selection_enemy, ENEMY_EVENT.TURN_PREPARATION);
 		});
+		
+		// Go to next state when the condition is met
+		if (method_call(state_condition_to_turn, state_condition_to_turn_args)) {
+			battle_set_state(battle_get_next_state());
+		}
 		break;
-
+	
+	case BATTLE_STATE.IN_TURN:
+		break;
 	// =================================================================
 	case BATTLE_STATE.RESULT:
 		if (!state_executed_once) {

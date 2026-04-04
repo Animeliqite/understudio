@@ -5,6 +5,12 @@ state = BATTLE_STATE.BUTTON;
 state_next = undefined;
 state_executed_once = false;
 
+// State Conditions
+state_condition_to_turn_args = []; // Condition before going inside a turn
+state_condition_to_turn = function () {
+	return true;
+}
+
 menu = BATTLE_MENU.NONE;
 menu_next = undefined;
 menu_executed_once = false;
